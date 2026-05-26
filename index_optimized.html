@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>三角洲 TTK计算中心 - 战术装配模拟器</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap">
+  </noscript>
+  <link rel="stylesheet" href="./styles_optimized.css">
+  <script src="./assets/libs/chart.umd.min.js" defer></script>
+  <script src="./assets/libs/chartjs-plugin-datalabels.min.js" defer></script>
+</head>
+
+<body>
+  <div class="cyber-scanlines"></div>
+  
+  <header class="app-header">
+    <div class="header-main">
+      <div class="title-container">
+        <div class="logo-wrapper">
+          <svg class="delta-logo-svg" viewBox="0 0 100 100" width="46" height="46">
+            <defs>
+              <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00f0ff" />
+                <stop offset="100%" stop-color="#00ffb7" />
+              </linearGradient>
+              <filter id="logoGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+            <polygon points="50,12 88,78 12,78" fill="none" stroke="url(#logoGrad)" stroke-width="6" stroke-linejoin="round" filter="url(#logoGlow)" />
+            <path d="M50,28 L35,53 L47,53 L40,73 L65,48 L53,48 Z" fill="url(#logoGrad)" filter="url(#logoGlow)" />
+          </svg>
+        </div>
+        <div class="title-text-group">
+          <div class="title-brand-row">
+            <span class="brand-beacon">烽火地带</span>
+            <span class="brand-season">S9</span>
+          </div>
+          <div class="title-sub-row">
+            <span class="cyber-logo-badge">TACTICAL SYSTEM</span>
+            <span class="cyber-logo-sub">TTK 战术模拟与伤害结算分析中心</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="version-info">
+        <span class="author">
+          <a href="https://space.bilibili.com/15094121" target="_blank" title="访问UP主B站页面">
+            <svg class="author-icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M17.81 2.2a.75.75 0 0 1 1.02.26l1.56 2.7a.75.75 0 0 1-1.3.75l-1.55-2.69a.75.75 0 0 1 .27-1.02zM6.19 2.2a.75.75 0 0 0-1.02.26L3.61 5.16a.75.75 0 1 0 1.3.75l1.55-2.69a.75.75 0 0 0-.27-1.02zM2 9.75A3.75 3.75 0 0 1 5.75 6h12.5A3.75 3.75 0 0 1 22 9.75v6.5A3.75 3.75 0 0 1 18.25 20H5.75A3.75 3.75 0 0 1 2 16.25v-6.5zm3.75-2.25A2.25 2.25 0 0 0 3.5 9.75v6.5a2.25 2.25 0 0 0 2.25 2.25h12.5a2.25 2.25 0 0 0 2.25-2.25v-6.5a2.25 2.25 0 0 0-2.25-2.25H5.75zm1.5 5.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm8 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0z"/>
+            </svg>
+            <span class="author-label">UP主:</span>
+            <span class="author-name">中毒的AI</span>
+          </a>
+        </span>
+        <span class="author">
+          <a href="https://space.bilibili.com/69673916" target="_blank" title="访问UP主B站页面">
+            <svg class="author-icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M17.81 2.2a.75.75 0 0 1 1.02.26l1.56 2.7a.75.75 0 0 1-1.3.75l-1.55-2.69a.75.75 0 0 1 .27-1.02zM6.19 2.2a.75.75 0 0 0-1.02.26L3.61 5.16a.75.75 0 1 0 1.3.75l1.55-2.69a.75.75 0 0 0-.27-1.02zM2 9.75A3.75 3.75 0 0 1 5.75 6h12.5A3.75 3.75 0 0 1 22 9.75v6.5A3.75 3.75 0 0 1 18.25 20H5.75A3.75 3.75 0 0 1 2 16.25v-6.5zm3.75-2.25A2.25 2.25 0 0 0 3.5 9.75v6.5a2.25 2.25 0 0 0 2.25 2.25h12.5a2.25 2.25 0 0 0 2.25-2.25v-6.5a2.25 2.25 0 0 0-2.25-2.25H5.75zm1.5 5.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm8 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0z"/>
+            </svg>
+            <span class="author-label">UP主:</span>
+            <span class="author-name">丨重华丨</span>
+          </a>
+        </span>
+        <span class="author">
+          <a href="https://space.bilibili.com/75044691?spm_id_from=333.337.0.0" target="_blank" title="访问UP主B站页面">
+            <svg class="author-icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M17.81 2.2a.75.75 0 0 1 1.02.26l1.56 2.7a.75.75 0 0 1-1.3.75l-1.55-2.69a.75.75 0 0 1 .27-1.02zM6.19 2.2a.75.75 0 0 0-1.02.26L3.61 5.16a.75.75 0 1 0 1.3.75l1.55-2.69a.75.75 0 0 0-.27-1.02zM2 9.75A3.75 3.75 0 0 1 5.75 6h12.5A3.75 3.75 0 0 1 22 9.75v6.5A3.75 3.75 0 0 1 18.25 20H5.75A3.75 3.75 0 0 1 2 16.25v-6.5zm3.75-2.25A2.25 2.25 0 0 0 3.5 9.75v6.5a2.25 2.25 0 0 0 2.25 2.25h12.5a2.25 2.25 0 0 0 2.25-2.25v-6.5a2.25 2.25 0 0 0-2.25-2.25H5.75zm1.5 5.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm8 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0z"/>
+            </svg>
+            <span class="author-label">UP主:</span>
+            <span class="author-name">恐惧可怕</span>
+          </a>
+        </span>
+      </div>
+    </div>
+  </header>
+  
+  <main class="dashboard-grid">
+    <!-- Left Column: Config Panel -->
+    <section class="config-sidebar">
+      <!-- Card 1: 武器基本参数 -->
+      <div class="tactical-card" id="combat-params-card">
+        <div class="card-header">
+          <div class="card-tag">PANEL 01</div>
+          <h3 class="card-title"><span class="icon">⚡</span> 武器基础参数</h3>
+        </div>
+        <div class="card-body">
+          <div class="control-row">
+            <div class="control-item">
+              <label for="bulletLevel">子弹等级</label>
+              <select id="bulletLevel">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5" selected>5</option>
+              </select>
+            </div>
+            <div class="control-item">
+              <label for="distance">交战距离 (m)</label>
+              <input type="number" id="distance" value="30" min="0">
+            </div>
+          </div>
+          <div class="control-row">
+            <div class="control-item">
+              <label for="globalBarrelType">枪管类型</label>
+              <select id="globalBarrelType">
+                <option value="none">无</option>
+                <option value="longest" selected>输出最高枪管</option>
+              </select>
+            </div>
+            <div class="control-item">
+              <label for="hitRate">命中率</label>
+              <input type="number" id="hitRate" value="0.85" min="0" max="1" step="0.01">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 2: 目标防御属性 -->
+      <div class="tactical-card" id="defense-params-card">
+        <div class="card-header">
+          <div class="card-tag">PANEL 02</div>
+          <h3 class="card-title"><span class="icon">🛡️</span> 目标防御属性</h3>
+        </div>
+        <div class="card-body">
+          <div class="control-row">
+            <div class="control-item flex-fill">
+              <label for="healthValue">生命值</label>
+              <input type="number" id="healthValue" value="100" min="1" max="800">
+            </div>
+          </div>
+          <div class="control-row">
+            <div class="control-item">
+              <label for="armorLevel">护甲等级</label>
+              <select id="armorLevel">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5" selected>5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+            <div class="control-item">
+              <label for="armorValue">护甲值</label>
+              <input type="number" id="armorValue" value="125" min="0" max="200">
+            </div>
+          </div>
+          <div class="control-row">
+            <div class="control-item">
+              <label for="helmetLevel">头盔等级</label>
+              <select id="helmetLevel">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+            <div class="control-item">
+              <label for="helmetValue">头盔值</label>
+              <input type="number" id="helmetValue" value="35" min="0" max="100">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 3: 伤害机制与开关 -->
+      <div class="tactical-card" id="mechanism-params-card">
+        <div class="card-header">
+          <div class="card-tag">PANEL 03</div>
+          <h3 class="card-title"><span class="icon">⚙️</span> 伤害判定开关</h3>
+        </div>
+        <div class="card-body">
+          <div class="checkbox-grid">
+            <label class="checkbox-container">
+              <input type="checkbox" id="triggerDelayEnable" checked>
+              <span class="checkbox-checkmark"></span>
+              <span class="checkbox-label">启用扳机延迟</span>
+            </label>
+            <label class="checkbox-container">
+              <input type="checkbox" id="limbProtection" checked>
+              <span class="checkbox-checkmark"></span>
+              <span class="checkbox-label">手部防护机制</span>
+            </label>
+            <label class="checkbox-container">
+              <input type="checkbox" id="markovModelEnable">
+              <span class="checkbox-checkmark"></span>
+              <span class="checkbox-label">弹道联动 (马尔可夫)</span>
+            </label>
+          </div>
+          
+          <div class="bulk-exclude-section">
+            <div class="section-title">批量武器排除控制</div>
+            <div class="exclude-btn-group">
+              <button type="button" class="btn-exclude" id="excludeLmgBtn">一键剔除所有轻机枪</button>
+              <button type="button" class="btn-exclude" id="excludeDmrBtn">一键剔除精确步枪 (除M14)</button>
+              <button type="button" class="btn-exclude btn-reset-exclude" id="resetExcludeBtn">恢复全部被剔除武器</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 4: 击中部位概率 -->
+      <div class="tactical-card" id="hit-prob-card">
+        <div class="card-header">
+          <div class="card-tag">PANEL 04</div>
+          <h3 class="card-title"><span class="icon">🎯</span> 击中部位概率模型</h3>
+        </div>
+        <div class="card-body">
+          <div class="prob-grid">
+            <div class="prob-input-item">
+              <span class="part-indicator head"></span>
+              <label for="pHead">头部</label>
+              <div class="prob-adjuster-wrap">
+                <button type="button" class="btn-prob-adj" onclick="adjustProbability('pHead', -0.03, event)">-</button>
+                <input type="number" id="pHead" value="0.10" step="0.01" min="0" max="1">
+                <button type="button" class="btn-prob-adj" onclick="adjustProbability('pHead', 0.03, event)">+</button>
+              </div>
+            </div>
+            <div class="prob-input-item">
+              <span class="part-indicator chest"></span>
+              <label for="pChest">胸部</label>
+              <div class="prob-adjuster-wrap">
+                <button type="button" class="btn-prob-adj" onclick="adjustProbability('pChest', -0.03, event)">-</button>
+                <input type="number" id="pChest" value="0.30" step="0.01" min="0" max="1">
+                <button type="button" class="btn-prob-adj" onclick="adjustProbability('pChest', 0.03, event)">+</button>
+              </div>
+            </div>
+            <div class="prob-input-item">
+              <span class="part-indicator stomach"></span>
+              <label for="pStomach">腹部</label>
+              <div class="prob-adjuster-wrap">
+                <button type="button" class="btn-prob-adj" onclick="adjustProbability('pStomach', -0.03, event)">-</button>
+                <input type="number" id="pStomach" value="0.19" step="0.01" min="0" max="1">
+                <button type="button" class="btn-prob-adj" onclick="adjustProbability('pStomach', 0.03, event)">+</button>
+              </div>
+            </div>
+            <div class="prob-input-item">
+              <span class="part-indicator arms"></span>
+              <label for="pArms">手部</label>
+              <div class="prob-adjuster-wrap">
+                <button type="button" class="btn-prob-adj" onclick="adjustProbability('pArms', -0.03, event)">-</button>
+                <input type="number" id="pArms" value="0.23" step="0.01" min="0" max="1">
+                <button type="button" class="btn-prob-adj" onclick="adjustProbability('pArms', 0.03, event)">+</button>
+              </div>
+            </div>
+            <div class="prob-input-item">
+              <span class="part-indicator legs"></span>
+              <label for="pLegs">脚部</label>
+              <div class="prob-adjuster-wrap">
+                <button type="button" class="btn-prob-adj" onclick="adjustProbability('pLegs', -0.03, event)">-</button>
+                <input type="number" id="pLegs" value="0.18" step="0.01" min="0" max="1">
+                <button type="button" class="btn-prob-adj" onclick="adjustProbability('pLegs', 0.03, event)">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="prob-actions-bar">
+            <button id="avgHitProbBtn" type="button" class="btn-tech">平均击中概率模型</button>
+            <div class="prob-hint-tag">头 0.10 / 胸 0.30 / 腹 0.19 / 手 0.23 / 脚 0.18</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 5: 马尔可夫转移矩阵 -->
+      <div class="tactical-card" id="markov-matrix-group" style="display: none;">
+        <div class="card-header">
+          <div class="card-tag">PANEL 05</div>
+          <h3 class="card-title"><span class="icon">🔄</span> 马尔可夫状态转移矩阵</h3>
+        </div>
+        <div class="card-body">
+          <div class="matrix-table-wrap">
+            <table class="matrix-table">
+              <thead>
+                <tr>
+                  <th>上一发部位 \ 下一发</th>
+                  <th class="col-head">头部</th>
+                  <th class="col-chest">胸部</th>
+                  <th class="col-stomach">腹部</th>
+                  <th class="col-arms">手部</th>
+                  <th class="col-legs">脚部</th>
+                  <th class="col-miss">打空</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="row-label">头部 (head)</td>
+                  <td><input type="number" id="m_head_head" value="0.15" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_head_chest" value="0.10" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_head_stomach" value="0.05" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_head_arms" value="0.05" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_head_legs" value="0.01" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_head_miss" value="0.64" step="0.01" min="0" max="1"></td>
+                </tr>
+                <tr>
+                  <td class="row-label">胸部 (chest)</td>
+                  <td><input type="number" id="m_chest_head" value="0.30" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_chest_chest" value="0.40" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_chest_stomach" value="0.10" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_chest_arms" value="0.10" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_chest_legs" value="0.02" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_chest_miss" value="0.08" step="0.01" min="0" max="1"></td>
+                </tr>
+                <tr>
+                  <td class="row-label">腹部 (stomach)</td>
+                  <td><input type="number" id="m_stomach_head" value="0.05" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_stomach_chest" value="0.55" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_stomach_stomach" value="0.20" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_stomach_arms" value="0.10" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_stomach_legs" value="0.05" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_stomach_miss" value="0.05" step="0.01" min="0" max="1"></td>
+                </tr>
+                <tr>
+                  <td class="row-label">手部 (arms)</td>
+                  <td><input type="number" id="m_arms_head" value="0.05" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_arms_chest" value="0.40" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_arms_stomach" value="0.15" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_arms_arms" value="0.30" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_arms_legs" value="0.05" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_arms_miss" value="0.05" step="0.01" min="0" max="1"></td>
+                </tr>
+                <tr>
+                  <td class="row-label">脚部 (legs)</td>
+                  <td><input type="number" id="m_legs_head" value="0.02" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_legs_chest" value="0.20" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_legs_stomach" value="0.40" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_legs_arms" value="0.08" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_legs_legs" value="0.20" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_legs_miss" value="0.10" step="0.01" min="0" max="1"></td>
+                </tr>
+                <tr>
+                  <td class="row-label">打空 (miss)</td>
+                  <td><input type="number" id="m_miss_head" value="0.10" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_miss_chest" value="0.30" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_miss_stomach" value="0.19" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_miss_arms" value="0.23" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_miss_legs" value="0.18" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_miss_miss" value="0.00" step="0.01" min="0" max="1"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Matrix Quick Adjuster -->
+          <div class="matrix-quick-adjuster" id="matrixAdjusterWrap" style="display: none;">
+            <div class="adjuster-header">
+              <span class="adjuster-title">✨ 选中单元格微调 (鼠标滚轮/滑动条/快捷按键)</span>
+              <span class="adjuster-target" id="matrixAdjustTarget">点击下方单元格进行微调</span>
+            </div>
+            
+            <div class="adjuster-control-row">
+              <button type="button" class="btn-matrix-step" id="matrixStepDec" title="减少0.01">-</button>
+              <input type="range" id="matrixAdjustSlider" min="0" max="1" step="0.01" value="0.00" class="cyber-slider">
+              <button type="button" class="btn-matrix-step" id="matrixStepInc" title="增加0.01">+</button>
+              <span class="adjuster-value" id="matrixAdjustVal">0.00</span>
+            </div>
+
+            <!-- 快捷点击按键区 -->
+            <div class="adjuster-buttons-row">
+              <span class="btn-group-label">设置：</span>
+              <button type="button" class="btn-matrix-quick btn-val" data-val="0.00">0.00</button>
+              <button type="button" class="btn-matrix-quick btn-val" data-val="0.05">0.05</button>
+              <button type="button" class="btn-matrix-quick btn-val" data-val="0.10">0.10</button>
+              <button type="button" class="btn-matrix-quick btn-val" data-val="0.20">0.20</button>
+              <button type="button" class="btn-matrix-quick btn-val" data-val="0.30">0.30</button>
+              <button type="button" class="btn-matrix-quick btn-val" data-val="0.50">0.50</button>
+              
+              <span class="btn-group-label" style="margin-left: 10px;">调整：</span>
+              <button type="button" class="btn-matrix-quick btn-delta" data-delta="-0.05">-0.05</button>
+              <button type="button" class="btn-matrix-quick btn-delta" data-delta="+0.05">+0.05</button>
+              <button type="button" class="btn-matrix-quick btn-delta" data-delta="-0.03">-0.03</button>
+              <button type="button" class="btn-matrix-quick btn-delta" data-delta="+0.03">+0.03</button>
+              <button type="button" class="btn-matrix-quick btn-delta" style="background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.1); color: var(--color-text-secondary);" data-delta="-0.01">-0.01</button>
+              <button type="button" class="btn-matrix-quick btn-delta" style="background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.1); color: var(--color-text-secondary);" data-delta="+0.01">+0.01</button>
+              
+              <button type="button" class="btn-matrix-quick btn-reset" id="matrixResetCell" style="margin-left: auto;">恢复默认</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Right Column: Visualizations & Table -->
+    <section class="analytics-main">
+      <!-- Card: Action Control Center -->
+      <div class="tactical-card" id="action-controls-card">
+        <div class="card-header">
+          <div class="card-tag">SYSTEM CTRL</div>
+          <h3 class="card-title"><span class="icon">🚀</span> 模拟计算与数据控制</h3>
+        </div>
+        <div class="card-body action-flex-container">
+          <div class="primary-buttons">
+            <button id="calcBtn" class="btn-tactical primary">生成 TTK 排行榜</button>
+            <button id="distChartBtn" class="btn-tactical secondary">生成 TTK 距离曲线</button>
+          </div>
+          
+          <div class="rank-filter-control">
+            <span class="filter-icon">⚙️</span>
+            <label for="rankFilterMode">排行筛选模式</label>
+            <select id="rankFilterMode">
+              <option value="none">完整列表</option>
+              <option value="keepTop" selected>保留前 N 位</option>
+              <option value="trimBottom">剔除后 N 位</option>
+            </select>
+            <div class="filter-inputs">
+              <input type="number" id="keepTopCount" value="20" min="0" step="1" placeholder="前N" title="保留前N位">
+              <input type="number" id="trimBottomCount" value="0" min="0" step="1" placeholder="倒数N" title="剔除倒数N位">
+              <span class="rank-filter-hint">名</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card: Visualization Canvas -->
+      <div class="tactical-card" id="visualization-card">
+        <div class="card-header">
+          <div class="card-tag">DATAVIS 01</div>
+          <h3 class="card-title"><span class="icon">📈</span> 战术分析曲线</h3>
+        </div>
+        <div class="card-body chart-grid">
+          <div class="canvas-container ttk-chart-container">
+            <div class="canvas-header">TTK (击杀时间) 柱状排行榜 (ms)</div>
+            <div class="canvas-wrapper ttk-canvas-wrapper">
+              <canvas id="ttkChart"></canvas>
+            </div>
+          </div>
+          
+          <div class="canvas-container distance-chart-container">
+            <div class="canvas-header">不同交战距离下的 TTK 衰减曲线 (ms)</div>
+            <div class="canvas-wrapper distance-canvas-wrapper">
+              <canvas id="distanceChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card: Armory Table -->
+      <div class="tactical-card" id="armory-card">
+        <div class="card-header">
+          <div class="card-tag">DATABASE 01</div>
+          <h3 class="card-title"><span class="icon">⚙️</span> 枪械自定义装配军械库</h3>
+        </div>
+        <div class="card-body">
+          <div class="table-container-wrap">
+            <table id="attachmentTable">
+              <thead>
+                <tr>
+                  <th>武器名称</th>
+                  <th>枪械类型</th>
+                  <th>射速 (RPM)</th>
+                  <th>初速 (m/s)</th>
+                  <th>有效射程</th>
+                  <th>基础伤害</th>
+                  <th>护甲伤害</th>
+                  <th>部位倍率</th>
+                  <th>枪管配件</th>
+                  <th>枪口配件</th>
+                  <th>子弹型号</th>
+                  <th>自定义命中率</th>
+                  <th>初速精度微调</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Modal Dialog -->
+  <div id="weaponDetailModal" class="weapon-detail-modal hidden">
+    <div class="weapon-detail-backdrop" data-close="weapon-detail-modal"></div>
+    <div class="weapon-detail-dialog" role="dialog" aria-modal="true" aria-labelledby="weaponDetailTitle">
+      <div class="modal-cyber-header">
+        <span class="modal-tag">DETAILED PROFILE</span>
+        <button id="weaponDetailCloseBtn" class="weapon-detail-close" type="button" aria-label="关闭">×</button>
+      </div>
+      <div id="weaponDetailContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // Intercept Chart.js using a Proxy to automatically apply premium dark mode settings
+    // while preserving all non-enumerable static methods like Chart.register() perfectly.
+    // Enhanced with safe try-catch wrappers to prevent unhandled JS exceptions from flatlining the charts.
+    // Optimized with a setter to safely support deferred/asynchronous script loading.
+    (function() {
+      function localDebounce(fn, delay) {
+        let timer = null;
+        let lastArgs = null;
+        let lastContext = null;
+        return function(...args) {
+          lastArgs = args;
+          lastContext = this;
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            fn.apply(lastContext, lastArgs);
+          }, delay);
+        };
+      }
+
+      let chartVal = undefined;
+      const applyProxy = (OriginalChart) => {
+        if (!OriginalChart || OriginalChart.__isProxy) return OriginalChart;
+        
+        return new Proxy(OriginalChart, {
+          construct(target, args) {
+            const config = args[1];
+            if (config && config.options) {
+              try {
+                // Force responsive and aspect ratios
+                config.options.responsive = true;
+                config.options.maintainAspectRatio = false;
+                
+                // Add native resize throttling to prevent heavy rendering layout recalculations
+                config.options.resizeDelay = 150;
+                
+                // Disable animations for instant rendering and optimal performance
+                config.options.animation = false;
+                config.options.animations = false;
+                
+                // Override scales config
+                if (!config.options.scales) config.options.scales = {};
+                
+                const adjustScale = (scale) => {
+                  if (!scale.grid) scale.grid = {};
+                  scale.grid.color = 'rgba(255, 255, 255, 0.08)';
+                  scale.grid.borderColor = 'rgba(0, 240, 255, 0.2)';
+                  
+                  if (!scale.ticks) scale.ticks = {};
+                  scale.ticks.color = 'rgba(255, 255, 255, 0.6)';
+                  scale.ticks.font = {
+                    family: 'Rajdhani, sans-serif',
+                    size: 11,
+                    weight: '500'
+                  };
+                };
+                
+                if (config.options.scales.x) adjustScale(config.options.scales.x);
+                if (config.options.scales.y) adjustScale(config.options.scales.y);
+                
+                // Override plugins config
+                if (!config.options.plugins) config.options.plugins = {};
+                
+                // Legend styling
+                if (!config.options.plugins.legend) config.options.plugins.legend = {};
+                if (!config.options.plugins.legend.labels) config.options.plugins.legend.labels = {};
+                config.options.plugins.legend.labels.color = 'rgba(255, 255, 255, 0.85)';
+                config.options.plugins.legend.labels.font = {
+                  family: 'Inter, sans-serif',
+                  size: 11
+                };
+                
+                // Tooltip styling
+                if (!config.options.plugins.tooltip) config.options.plugins.tooltip = {};
+                config.options.plugins.tooltip.backgroundColor = 'rgba(15, 23, 42, 0.95)';
+                config.options.plugins.tooltip.titleColor = '#00f0ff';
+                config.options.plugins.tooltip.bodyColor = '#ffffff';
+                config.options.plugins.tooltip.borderColor = 'rgba(0, 240, 255, 0.3)';
+                config.options.plugins.tooltip.borderWidth = 1;
+                config.options.plugins.tooltip.titleFont = { family: 'Rajdhani, sans-serif', weight: 'bold' };
+                config.options.plugins.tooltip.bodyFont = { family: 'Inter, sans-serif' };
+                
+                // Custom callbacks for tooltips to show delta at the total sum level (in footer)
+                if (!config.options.plugins.tooltip.callbacks) config.options.plugins.tooltip.callbacks = {};
+                config.options.plugins.tooltip.callbacks.footer = function(tooltipItems) {
+                  try {
+                    if (!tooltipItems || tooltipItems.length === 0) return '';
+                    const context = tooltipItems[0];
+                    const label = context.label;
+                    const datasets = context.chart && context.chart.data && context.chart.data.datasets;
+                    if (!datasets) return '';
+                    const isBar = context.chart && context.chart.config && context.chart.config.type === 'bar';
+                    
+                    if (isBar) {
+                      // Sum all dataset values for the current dataIndex to get total stacked TTK (convert seconds to ms)
+                      let stackSum = 0;
+                      datasets.forEach(ds => {
+                        if (ds && ds.data) {
+                          stackSum += parseFloat(ds.data[context.dataIndex]) || 0;
+                        }
+                      });
+                      const totalTtk = Math.round(stackSum * 1000);
+                      
+                      const displayDelta = window.displayTtkDeltas ? window.displayTtkDeltas[label] : null;
+                      if (displayDelta && displayDelta.diff) {
+                        return `总击杀时间 (TTK): ${totalTtk}ms (${displayDelta.text})`;
+                      }
+                      return `总击杀时间 (TTK): ${totalTtk}ms`;
+                    }
+                  } catch (err) {
+                    console.error("Error in tooltip footer callback:", err);
+                  }
+                  return '';
+                };
+                
+                // ── Cyberpunk premium stacked-bar dataset colors ──
+                if (config.type === 'bar' && config.data && config.data.datasets) {
+                  const cyberPalette = [
+                    { bg: 'rgba(0, 240, 255, 0.82)',   border: '#00f0ff' },   // 0: 极光青
+                    { bg: 'rgba(139, 92, 246, 0.82)',  border: '#8b5cf6' },   // 1: 电致紫
+                    { bg: 'rgba(249, 115, 22, 0.82)',  border: '#f97316' },   // 2: 赛博橙
+                    { bg: 'rgba(59, 130, 246, 0.82)',  border: '#3b82f6' },   // 3: 数字蓝
+                    { bg: 'rgba(16, 185, 129, 0.82)',  border: '#10b981' },   // 4: 荧光绿
+                  ];
+                  config.data.datasets.forEach((ds, i) => {
+                    if (cyberPalette[i]) {
+                      ds.backgroundColor = cyberPalette[i].bg;
+                      ds.borderColor     = cyberPalette[i].border;
+                      ds.borderWidth     = 1;
+                      ds.hoverBackgroundColor = cyberPalette[i].border;
+                    }
+                  });
+                }
+                
+                // Datalabels override (glowing values on bars)
+                if (config.options.plugins.datalabels) {
+                  config.options.plugins.datalabels.color = '#ffffff';
+                  config.options.plugins.datalabels.textShadowColor = 'rgba(0, 0, 0, 0.9)';
+                  config.options.plugins.datalabels.textShadowBlur = 4;
+                  config.options.plugins.datalabels.textAlign = 'center';
+                  config.options.plugins.datalabels.font = {
+                    family: 'Rajdhani, sans-serif',
+                    weight: 'bold',
+                    size: 12
+                  };
+                  
+                  // Custom formatter: prominent delta arrows on top-stack datalabel
+                  config.options.plugins.datalabels.formatter = function(value, context) {
+                    try {
+                      if (context.datasetIndex !== 4) return '';
+                      
+                      const label = context.chart && context.chart.data && context.chart.data.labels && context.chart.data.labels[context.dataIndex];
+                      if (!label) return '';
+                      
+                      const datasets = context.chart && context.chart.data && context.chart.data.datasets;
+                      if (!datasets) return '';
+                      
+                      let stackSum = 0;
+                      datasets.forEach(ds => {
+                        if (ds && ds.data) stackSum += parseFloat(ds.data[context.dataIndex]) || 0;
+                      });
+                      const totalTtk = Math.round(stackSum * 1000);
+                      
+                      const displayDelta = window.displayTtkDeltas ? window.displayTtkDeltas[label] : null;
+                      if (displayDelta && displayDelta.diff) {
+                        return `${totalTtk}ms\n${displayDelta.sym} ${displayDelta.text}`;
+                      }
+                      return `${totalTtk}ms`;
+                    } catch (err) {
+                      console.error("Error in datalabels formatter:", err);
+                      return '';
+                    }
+                  };
+                }
+              } catch (err) {
+                console.error("Error setting static options in construct:", err);
+              }
+              
+              // Calculate and set initial scale ceiling using stacked sums or simple max
+              const isBar = config.type === 'bar';
+              let maxVal = 0;
+              try {
+                if (config.data && config.data.datasets && config.data.datasets.length > 0) {
+                  const labels = config.data.labels || [];
+                  const datasets = config.data.datasets;
+                  if (isBar) {
+                    labels.forEach((_, dataIdx) => {
+                      let stackSum = 0;
+                      datasets.forEach(ds => {
+                        if (ds && ds.data) {
+                          stackSum += parseFloat(ds.data[dataIdx]) || 0;
+                        }
+                      });
+                      if (stackSum > maxVal) maxVal = stackSum;
+                    });
+                  } else {
+                    datasets.forEach(ds => {
+                      if (ds && ds.data) {
+                        ds.data.forEach(val => {
+                          const num = parseFloat(val) || 0;
+                          if (num > maxVal) maxVal = num;
+                        });
+                      }
+                    });
+                  }
+                }
+              } catch (err) {
+                console.error("Error calculating maxVal during chart construct:", err);
+              }
+              
+              if (maxVal > 0) {
+                try {
+                  const isHorizontal = config.options.indexAxis === 'y';
+                  const valueAxisKey = isHorizontal ? 'x' : 'y';
+                  const maxValInMs = maxVal * 1000;
+                  const ceilingInMs = Math.ceil((maxValInMs * 1.12) / 50) * 50;
+                  if (!config.options.scales[valueAxisKey]) config.options.scales[valueAxisKey] = {};
+                  config.options.scales[valueAxisKey].max = ceilingInMs / 1000;
+                } catch (err) {
+                  console.error("Error setting scale ceiling in construct:", err);
+                }
+              }
+              
+              // Set initial current values using stacked totals (convert to milliseconds)
+              try {
+                if (config.data && isBar) {
+                  const initialValues = {};
+                  const labels = config.data.labels || [];
+                  const datasets = config.data.datasets || [];
+                  labels.forEach((lbl, idx) => {
+                    if (lbl) {
+                      let stackSum = 0;
+                      datasets.forEach(ds => {
+                        if (ds && ds.data) {
+                          stackSum += parseFloat(ds.data[idx]) || 0;
+                        }
+                      });
+                      initialValues[lbl] = Math.round(stackSum * 1000);
+                    }
+                  });
+                  window.currentTtkValues = initialValues;
+                  if (window.isUserGeneratingTtk) {
+                    window.displayTtkDeltas = window.buildTtkDeltas ? window.buildTtkDeltas(initialValues, window.lastTtkValues) : {};
+                    window.saveTtkValues && window.saveTtkValues('deltas', window.displayTtkDeltas);
+                  }
+                  window.saveTtkValues && window.saveTtkValues('current', initialValues);
+                }
+              } catch (err) {
+                console.error("Error setting initial values during chart construct:", err);
+              }
+            }
+            
+            let chartInstance;
+            try {
+              chartInstance = new target(...args);
+            } catch (err) {
+              console.error("Error calling OriginalChart constructor:", err);
+              // Fallback: build standard chart without customized options
+              chartInstance = new target(args[0], args[1]);
+            }
+            
+            // Intercept chart resize to throttle heavy rendering layout recalculations
+            try {
+              const originalResize = chartInstance.resize;
+              chartInstance.resize = localDebounce(function() {
+                try {
+                  return originalResize.apply(this, arguments);
+                } catch (err) {
+                  console.error("Error in throttled chart resize:", err);
+                }
+              }, 150);
+            } catch (err) {
+              console.error("Error applying resize intercept:", err);
+            }
+            
+            // Intercept chart update to recalculate axis ceiling and track delta comparison
+            if (chartInstance.canvas && chartInstance.canvas.id === 'ttkChart') {
+              const originalUpdate = chartInstance.update;
+              chartInstance.update = function(mode) {
+                try {
+                  const isHorizontal = this.options && this.options.indexAxis === 'y';
+                  const valueAxisKey = isHorizontal ? 'x' : 'y';
+                  
+                  let maxVal = 0;
+                  const activeData = this.data || (this.config && this.config.data);
+                  if (activeData && activeData.datasets && activeData.datasets.length > 0) {
+                    const labels = activeData.labels || [];
+                    const datasets = activeData.datasets;
+                    labels.forEach((_, dataIdx) => {
+                      let stackSum = 0;
+                      datasets.forEach(ds => {
+                        if (ds && ds.data) {
+                          stackSum += parseFloat(ds.data[dataIdx]) || 0;
+                        }
+                      });
+                      if (stackSum > maxVal) maxVal = stackSum;
+                    });
+                  }
+                  
+                  if (maxVal > 0 && this.options) {
+                    const maxValInMs = maxVal * 1000;
+                    const ceilingInMs = Math.ceil((maxValInMs * 1.12) / 50) * 50;
+                    if (!this.options.scales) this.options.scales = {};
+                    if (!this.options.scales[valueAxisKey]) this.options.scales[valueAxisKey] = {};
+                    this.options.scales[valueAxisKey].max = ceilingInMs / 1000;
+                  }
+                  
+                  if (activeData) {
+                    const newValues = {};
+                    const labels = activeData.labels || [];
+                    const datasets = activeData.datasets || [];
+                    labels.forEach((lbl, idx) => {
+                      if (lbl) {
+                        let stackSum = 0;
+                        datasets.forEach(ds => {
+                          if (ds && ds.data) {
+                            stackSum += parseFloat(ds.data[idx]) || 0;
+                          }
+                        });
+                        newValues[lbl] = Math.round(stackSum * 1000);
+                      }
+                    });
+                    window.currentTtkValues = newValues;
+                    if (window.isUserGeneratingTtk) {
+                      window.displayTtkDeltas = window.buildTtkDeltas ? window.buildTtkDeltas(newValues, window.lastTtkValues) : {};
+                      window.saveTtkValues && window.saveTtkValues('deltas', window.displayTtkDeltas);
+                    }
+                    window.saveTtkValues && window.saveTtkValues('current', newValues);
+                  }
+                } catch (e) {
+                  console.error("Error in ttkChart update intercept:", e);
+                }
+                
+                // ALWAYS fall back to original update to avoid flatlining the chart!
+                try {
+                  return originalUpdate.apply(this, arguments);
+                } catch (err) {
+                  console.error("Error running originalUpdate.apply in Proxy:", err);
+                }
+              };
+            }
+            
+            return chartInstance;
+          },
+          get(target, prop, receiver) {
+            if (prop === '__isProxy') return true;
+            const value = Reflect.get(target, prop, receiver);
+            if (prop === 'register' && typeof value === 'function') {
+              // Wrap Chart.register to intercept the rankDelayPlugin and upgrade its drawing
+              return function(...pluginArgs) {
+                pluginArgs.forEach(plugin => {
+                  if (plugin && plugin.id === 'rankDelayPlugin' && typeof plugin.afterDatasetsDraw === 'function') {
+                    const originalDraw = plugin.afterDatasetsDraw;
+                    plugin.afterDatasetsDraw = function(chart) {
+                      const ctx = chart.ctx;
+                      if (!ctx) { originalDraw.call(this, chart); return; }
+                      // Proxy ctx.fillText to intercept color and font for rank/delay labels
+                      const origFillText  = ctx.fillText.bind(ctx);
+                      const origFillStyle = Object.getOwnPropertyDescriptor(CanvasRenderingContext2D.prototype, 'fillStyle');
+                      let _pendingFill = ctx.fillStyle;
+                      Object.defineProperty(ctx, 'fillStyle', {
+                        get: () => _pendingFill,
+                        set: (v) => {
+                          // Map old hard-coded colors → cyber palette
+                          if (v === '#000000' || v === 'black')  _pendingFill = 'rgba(255,255,255,0.75)';
+                          else if (v === '#ff0000' || v === 'red')    _pendingFill = '#ff3a6e'; // rank-up
+                          else if (v === '#00ff00' || v === 'lime')   _pendingFill = '#00ffcc'; // rank-down
+                          else _pendingFill = v;
+                          origFillStyle.set.call(ctx, _pendingFill);
+                        },
+                        configurable: true
+                      });
+                      ctx.fillText = function(text, x, y) {
+                        const t = String(text).trim();
+                        if (t === '0' || t === '+0' || t === '-0') return;
+                        const savedFont = ctx.font;
+                        ctx.font = 'bold 12px Rajdhani, sans-serif';
+                        origFillText(text, x, y);
+                        ctx.font = savedFont;
+                      };
+                      try {
+                        originalDraw.call(this, chart);
+                      } finally {
+                        // Restore original fillText and fillStyle descriptor
+                        ctx.fillText = origFillText;
+                        delete ctx.fillStyle;
+                        origFillStyle.set.call(ctx, _pendingFill);
+                      }
+                    };
+                  }
+                });
+                return value.apply(target, pluginArgs);
+              };
+            }
+            if (typeof value === 'function') {
+              return value.bind(target);
+            }
+            return value;
+          }
+        });
+      };
+
+      if (typeof Chart !== 'undefined') {
+        window.Chart = applyProxy(Chart);
+      } else {
+        Object.defineProperty(window, 'Chart', {
+          configurable: true,
+          enumerable: true,
+          get() {
+            return chartVal;
+          },
+          set(val) {
+            chartVal = applyProxy(val);
+          }
+        });
+      }
+    })();
+  </script>
+  <script>
+    // State Caching and Auto-Balancing Systems
+    window.TTK_VALUES_STORAGE_KEY = 'deltaTtk_values';
+    window.DEFAULT_CONFIG_VERSION = '2026-05-26-defaults-v3';
+
+    // ── High Performance DOM Caching layer ──
+    const domCache = new Map();
+    function getCachedEl(id) {
+      let el = domCache.get(id);
+      if (!el) {
+        el = document.getElementById(id);
+        if (el) domCache.set(id, el);
+      }
+      return el;
+    }
+
+    const queryCache = new Map();
+    function getCachedQuery(selector) {
+      let el = queryCache.get(selector);
+      if (!el) {
+        el = document.querySelector(selector);
+        if (el) queryCache.set(selector, el);
+      }
+      return el;
+    }
+
+    // ── High Performance Custom Debounce utility with manual flush option ──
+    function debounce(fn, delay) {
+      let timer = null;
+      let lastArgs = null;
+      let lastContext = null;
+      
+      const debounced = function(...args) {
+        lastArgs = args;
+        lastContext = this;
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          timer = null;
+          fn.apply(lastContext, lastArgs);
+        }, delay);
+      };
+      
+      debounced.flush = function() {
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+          fn.apply(lastContext, lastArgs);
+        }
+      };
+      
+      return debounced;
+    }
+
+    window.applyDefaultConfigMigration = function() {
+      try {
+        if (localStorage.getItem('deltaTtk_defaultConfigVersion') === window.DEFAULT_CONFIG_VERSION) return;
+        const defaultSettings = {
+          bulletLevel: '5',
+          armorLevel: '5',
+          armorValue: '125',
+          helmetLevel: '4',
+          helmetValue: '35',
+          limbProtection: true,
+          rankFilterMode: 'keepTop',
+          keepTopCount: '20',
+          trimBottomCount: '0',
+          m_head_head: '0.15',
+          m_head_chest: '0.10',
+          m_head_stomach: '0.05',
+          m_head_arms: '0.05',
+          m_head_legs: '0.01',
+          m_head_miss: '0.64',
+          m_chest_head: '0.30',
+          m_chest_chest: '0.40',
+          m_chest_stomach: '0.10',
+          m_chest_arms: '0.10',
+          m_chest_legs: '0.02',
+          m_chest_miss: '0.08',
+          m_stomach_head: '0.05',
+          m_stomach_chest: '0.55',
+          m_stomach_stomach: '0.20',
+          m_stomach_arms: '0.10',
+          m_stomach_legs: '0.05',
+          m_stomach_miss: '0.05',
+          m_arms_head: '0.05',
+          m_arms_chest: '0.40',
+          m_arms_stomach: '0.15',
+          m_arms_arms: '0.30',
+          m_arms_legs: '0.05',
+          m_arms_miss: '0.05',
+          m_legs_head: '0.02',
+          m_legs_chest: '0.20',
+          m_legs_stomach: '0.40',
+          m_legs_arms: '0.08',
+          m_legs_legs: '0.20',
+          m_legs_miss: '0.10',
+          m_miss_head: '0.10',
+          m_miss_chest: '0.30',
+          m_miss_stomach: '0.19',
+          m_miss_arms: '0.23',
+          m_miss_legs: '0.18',
+          m_miss_miss: '0.00'
+        };
+
+        const cachedInputs = JSON.parse(localStorage.getItem('deltaTtk_settings') || '{}');
+        Object.assign(cachedInputs, defaultSettings);
+        localStorage.setItem('deltaTtk_settings', JSON.stringify(cachedInputs));
+
+        const appConfig = JSON.parse(localStorage.getItem('ttk_calculator_config') || '{}');
+        Object.assign(appConfig, {
+          bulletLevel: 5,
+          armorLevel: 5,
+          armorValue: 125,
+          helmetLevel: 4,
+          helmetValue: 35,
+          limbProtection: true,
+          rankFilterMode: 'keepTop',
+          keepTopCount: 20,
+          trimBottomCount: 0
+        });
+        localStorage.setItem('ttk_calculator_config', JSON.stringify(appConfig));
+        localStorage.setItem('deltaTtk_defaultConfigVersion', window.DEFAULT_CONFIG_VERSION);
+      } catch (err) {
+        console.error("Error applying default config migration:", err);
+      }
+    };
+
+    window.applyDefaultConfigMigration();
+
+    window.loadTtkValues = function() {
+      try {
+        const saved = localStorage.getItem(window.TTK_VALUES_STORAGE_KEY);
+        return saved ? JSON.parse(saved) : {};
+      } catch (err) {
+        console.error("Error loading TTK values:", err);
+        return {};
+      }
+    };
+
+    window.saveTtkValues = function(kind, values) {
+      try {
+        if (!values || typeof values !== 'object') return;
+        const saved = window.loadTtkValues();
+        saved[kind] = values;
+        localStorage.setItem(window.TTK_VALUES_STORAGE_KEY, JSON.stringify(saved));
+      } catch (err) {
+        console.error("Error saving TTK values:", err);
+      }
+    };
+
+    window.buildTtkDeltas = function(currentValues, previousValues) {
+      const deltas = {};
+      if (!currentValues || !previousValues) return deltas;
+      Object.keys(currentValues).forEach(label => {
+        const current = currentValues[label];
+        const previous = previousValues[label];
+        if (previous === undefined || previous === null || current === previous) return;
+        const diff = Math.round(current - previous);
+        deltas[label] = {
+          diff,
+          sym: diff > 0 ? '▲' : '▼',
+          text: diff > 0 ? `+${diff}ms` : `${diff}ms`
+        };
+      });
+      return deltas;
+    };
+
+    window.restoreTtkValues = function() {
+      const saved = window.loadTtkValues();
+      if (saved.current && typeof saved.current === 'object') {
+        window.currentTtkValues = { ...saved.current };
+      }
+      if (saved.last && typeof saved.last === 'object') {
+        window.lastTtkValues = { ...saved.last };
+      } else if (saved.current && typeof saved.current === 'object') {
+        window.lastTtkValues = { ...saved.current };
+      }
+      if (saved.deltas && typeof saved.deltas === 'object') {
+        window.displayTtkDeltas = { ...saved.deltas };
+      }
+    };
+
+    // ── Optimized & Debounced saveAllInputs ──
+    const _originalSaveAllInputs = function() {
+      const settings = {};
+      const ids = [
+        'bulletLevel', 'distance', 'globalBarrelType', 'hitRate',
+        'healthValue', 'armorLevel', 'armorValue', 'helmetLevel', 'helmetValue',
+        'triggerDelayEnable', 'limbProtection', 'markovModelEnable',
+        'pHead', 'pChest', 'pStomach', 'pArms', 'pLegs'
+      ];
+      
+      const markovRows = ['head', 'chest', 'stomach', 'arms', 'legs', 'miss'];
+      const markovCols = ['head', 'chest', 'stomach', 'arms', 'legs', 'miss'];
+      markovRows.forEach(r => {
+        markovCols.forEach(c => {
+          ids.push(`m_${r}_${c}`);
+        });
+      });
+      
+      ids.forEach(id => {
+        const el = getCachedEl(id);
+        if (el) {
+          if (el.type === 'checkbox') {
+            settings[id] = el.checked;
+          } else {
+            settings[id] = el.value;
+          }
+        }
+      });
+      
+      try {
+        localStorage.setItem('deltaTtk_settings', JSON.stringify(settings));
+      } catch (err) {
+        console.error("Error saving settings to localStorage:", err);
+      }
+    };
+    window.saveAllInputs = debounce(_originalSaveAllInputs, 250);
+
+    window.restoreAllInputs = function() {
+      const saved = localStorage.getItem('deltaTtk_settings');
+      if (!saved) return;
+      
+      window.isRestoring = true;
+      const settings = JSON.parse(saved);
+      for (const id in settings) {
+        const el = getCachedEl(id);
+        if (el) {
+          if (el.type === 'checkbox') {
+            if (el.checked !== settings[id]) {
+              el.checked = settings[id];
+              el.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+          } else {
+            if (el.value !== settings[id]) {
+              el.value = settings[id];
+              el.dispatchEvent(new Event('input', { bubbles: true }));
+              el.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+          }
+        }
+      }
+      window.isRestoring = false;
+    };
+
+    // ── Optimized & Debounced saveTableSettings ──
+    const _originalSaveTableSettings = function() {
+      const tableData = {};
+      document.querySelectorAll("#attachmentTable tbody tr").forEach(row => {
+        const name = row.dataset.weaponName || (row.cells[0] && row.cells[0].textContent.trim());
+        if (!name) return;
+        
+        const barrelSel = row.querySelector('.barrelSel');
+        const muzzleSel = row.querySelector('.muzzleSel');
+        const bulletSel = row.querySelector('.bulletSel');
+        const hitRateInput = row.querySelector('.hitRateInput');
+        const slider = row.querySelector('.velocity-precision-slider');
+        
+        tableData[name] = {
+          barrel: barrelSel ? barrelSel.value : undefined,
+          muzzle: muzzleSel ? muzzleSel.value : undefined,
+          bullet: bulletSel ? bulletSel.value : undefined,
+          hitRate: hitRateInput ? hitRateInput.value : undefined,
+          slider: slider ? slider.value : undefined
+        };
+      });
+      
+      try {
+        localStorage.setItem('deltaTtk_tableSettings', JSON.stringify(tableData));
+      } catch (err) {
+        console.error("Error saving table settings to localStorage:", err);
+      }
+    };
+    window.saveTableSettings = debounce(_originalSaveTableSettings, 250);
+
+    // ── Flush debounced writes synchronously when exiting the page ──
+    window.addEventListener('beforeunload', () => {
+      if (window.saveAllInputs && typeof window.saveAllInputs.flush === 'function') {
+        window.saveAllInputs.flush();
+      }
+      if (window.saveTableSettings && typeof window.saveTableSettings.flush === 'function') {
+        window.saveTableSettings.flush();
+      }
+    });
+
+    window.restoreTableSettings = function() {
+      const saved = localStorage.getItem('deltaTtk_tableSettings');
+      if (!saved) return;
+      
+      const tableData = JSON.parse(saved);
+      let changed = false;
+      
+      document.querySelectorAll("#attachmentTable tbody tr").forEach(row => {
+        const name = row.dataset.weaponName || (row.cells[0] && row.cells[0].textContent.trim());
+        if (!name || !tableData[name]) return;
+        
+        const data = tableData[name];
+        
+        const barrelSel = row.querySelector('.barrelSel');
+        if (barrelSel && data.barrel !== undefined && barrelSel.value !== data.barrel) {
+          barrelSel.value = data.barrel;
+          barrelSel.dispatchEvent(new Event('change', { bubbles: true }));
+          changed = true;
+        }
+        
+        const muzzleSel = row.querySelector('.muzzleSel');
+        if (muzzleSel && data.muzzle !== undefined && muzzleSel.value !== data.muzzle) {
+          muzzleSel.value = data.muzzle;
+          muzzleSel.dispatchEvent(new Event('change', { bubbles: true }));
+          changed = true;
+        }
+        
+        const bulletSel = row.querySelector('.bulletSel');
+        if (bulletSel && data.bullet !== undefined && bulletSel.value !== data.bullet) {
+          bulletSel.value = data.bullet;
+          bulletSel.dispatchEvent(new Event('change', { bubbles: true }));
+          changed = true;
+        }
+        
+        const hitRateInput = row.querySelector('.hitRateInput');
+        if (hitRateInput && data.hitRate !== undefined && hitRateInput.value !== data.hitRate) {
+          hitRateInput.value = data.hitRate;
+          hitRateInput.dispatchEvent(new Event('input', { bubbles: true }));
+          hitRateInput.dispatchEvent(new Event('change', { bubbles: true }));
+          changed = true;
+        }
+        
+        const slider = row.querySelector('.velocity-precision-slider');
+        if (slider && data.slider !== undefined && slider.value !== data.slider) {
+          slider.value = data.slider;
+          slider.dispatchEvent(new Event('input', { bubbles: true }));
+          slider.dispatchEvent(new Event('change', { bubbles: true }));
+          
+          const valSpan = slider.parentNode.querySelector('.velocity-precision-value');
+          if (valSpan) {
+            valSpan.textContent = `${Math.round(parseFloat(data.slider) * 100)}%`;
+          }
+          changed = true;
+        }
+      });
+      
+      if (changed) {
+        window.needsTtkRebuild = true;
+      }
+    };
+
+    window.saveExclusions = function() {
+      const exclusions = {};
+      document.querySelectorAll("#attachmentTable tbody tr").forEach(row => {
+        const name = row.dataset.weaponName || (row.cells[0] && row.cells[0].textContent.trim());
+        if (name && row.dataset.excluded === "1") {
+          exclusions[name] = true;
+        }
+      });
+      localStorage.setItem('deltaTtk_exclusions', JSON.stringify(exclusions));
+    };
+
+    window.normalizeToSumOne = function(currentVals, keys) {
+      const values = keys.map(k => parseFloat(currentVals[k]) || 0);
+      const sum = values.reduce((s, v) => s + v, 0);
+      if (sum === 0) {
+        const share = Math.floor(100 / keys.length);
+        const cents = keys.map(() => share);
+        let rem = 100 - share * keys.length;
+        for (let i = 0; i < rem; i++) cents[i]++;
+        const nextVals = {};
+        keys.forEach((k, i) => { nextVals[k] = cents[i] / 100; });
+        return nextVals;
+      }
+      const items = keys.map((k, i) => {
+        const ideal = (values[i] / sum) * 100;
+        const floorVal = Math.floor(ideal);
+        const remainder = ideal - floorVal;
+        return { key: k, floorVal, remainder };
+      });
+      const sumFloors = items.reduce((s, item) => s + item.floorVal, 0);
+      let centsNeeded = 100 - sumFloors;
+      items.sort((a, b) => b.remainder - a.remainder);
+      for (let i = 0; i < centsNeeded; i++) items[i].floorVal++;
+      const nextVals = {};
+      items.forEach(item => { nextVals[item.key] = item.floorVal / 100; });
+      return nextVals;
+    };
+
+    window.additiveBalance = function(currentVals, changedKey, targetVal, keys) {
+      const cents = {};
+      // Read current DOM values as cents (the changedKey already has its new value set in DOM)
+      keys.forEach(k => cents[k] = Math.round((parseFloat(currentVals[k]) || 0) * 100));
+      
+      // Use sum-based correction: calculate how far the total is from 100
+      // This fixes the zero-delta bug caused by DOM value already being updated before this call
+      const sumCents = keys.reduce((s, k) => s + cents[k], 0);
+      let remainingDelta = 100 - sumCents;
+      
+      if (remainingDelta === 0) {
+        const nextVals = {};
+        keys.forEach(k => nextVals[k] = cents[k] / 100);
+        return nextVals;
+      }
+      
+      // Distribute the imbalance across all keys EXCEPT the one the user changed
+      const otherKeys = keys.filter(k => k !== changedKey);
+      
+      let iterations = 0;
+      while (remainingDelta !== 0 && iterations < 100) {
+        iterations++;
+        const eligibleKeys = otherKeys.filter(k => {
+          return remainingDelta > 0 ? cents[k] < 100 : cents[k] > 0;
+        });
+        if (eligibleKeys.length === 0) break;
+        
+        const rawShare = remainingDelta / eligibleKeys.length;
+        let share = remainingDelta > 0 ? Math.ceil(rawShare) : Math.floor(rawShare);
+        if (share === 0 && remainingDelta !== 0) {
+          share = remainingDelta > 0 ? 1 : -1;
+        }
+        
+        for (const k of eligibleKeys) {
+          if (remainingDelta === 0) break;
+          const oldVal = cents[k];
+          const desiredVal = oldVal + share;
+          const clampedVal = Math.max(0, Math.min(100, desiredVal));
+          const actualChange = clampedVal - oldVal;
+          if (actualChange !== 0) {
+            cents[k] = clampedVal;
+            remainingDelta -= actualChange;
+          }
+        }
+      }
+      
+      // If still imbalanced (all other keys are at 0 or 100), absorb remainder into the changed key itself
+      if (remainingDelta !== 0) {
+        cents[changedKey] = Math.max(0, Math.min(100, cents[changedKey] + remainingDelta));
+      }
+      
+      const nextVals = {};
+      keys.forEach(k => nextVals[k] = cents[k] / 100);
+      return nextVals;
+    };
+
+    window.normalizeMarkovRow = function(rowName) {
+      const cols = ['head', 'chest', 'stomach', 'arms', 'legs', 'miss'];
+      const inputs = {};
+      cols.forEach(c => {
+        const el = getCachedEl(`m_${rowName}_${c}`);
+        inputs[c] = el ? (parseFloat(el.value) || 0) : 0;
+      });
+      const normalized = window.normalizeToSumOne(inputs, cols);
+      cols.forEach(c => {
+        const el = getCachedEl(`m_${rowName}_${c}`);
+        if (el) {
+          // Silent update — do NOT dispatch change events to avoid triggering balanceMarkovRow loops
+          el.value = normalized[c].toFixed(2);
+        }
+      });
+    };
+
+    window.balanceMarkovRow = function(rowName, changedColName) {
+      if (window.isRestoring || window.isBalancingMarkov) return;
+      window.isBalancingMarkov = true;
+      
+      const cols = ['head', 'chest', 'stomach', 'arms', 'legs', 'miss'];
+      const inputs = {};
+      cols.forEach(c => {
+        const el = getCachedEl(`m_${rowName}_${c}`);
+        inputs[c] = el ? (parseFloat(el.value) || 0) : 0;
+      });
+      
+      const changedVal = inputs[changedColName];
+      const balanced = window.additiveBalance(inputs, changedColName, changedVal, cols);
+      
+      // Batch DOM writes in the next animation frame for optimal visual performance
+      requestAnimationFrame(() => {
+        cols.forEach(c => {
+          const el = getCachedEl(`m_${rowName}_${c}`);
+          if (el) {
+            const newVal = balanced[c].toFixed(2);
+            if (el.value !== newVal) {
+              el.value = newVal;
+            }
+          }
+        });
+        
+        if (window.activeMatrixInput && window.activeMatrixRow === rowName) {
+          const activeSlider = getCachedEl('matrixAdjustSlider');
+          const activeValText = getCachedEl('matrixAdjustVal');
+          const activeInputEl = getCachedEl(`m_${window.activeMatrixRow}_${window.activeMatrixCol}`);
+          if (activeInputEl) {
+            const activeVal = activeInputEl.value;
+            if (activeSlider && activeSlider.value !== activeVal) activeSlider.value = activeVal;
+            if (activeValText && activeValText.textContent !== activeVal) activeValText.textContent = activeVal;
+          }
+        }
+      });
+      
+      window.isBalancingMarkov = false;
+      window.saveAllInputs();
+      // Chart is NOT auto-refreshed here — user clicks 生成 TTK 排行榜 when ready
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Restore standard configuration inputs from cache before chart/table rendering
+      window.restoreAllInputs();
+      window.restoreTtkValues();
+
+      // Snapshot baseline TTK values BEFORE each calculation (capture phase = runs before bundle.js handlers)
+      const calcBtnEarly = getCachedEl("calcBtn");
+      if (calcBtnEarly) {
+        calcBtnEarly.addEventListener("click", (event) => {
+          if (!event.isTrusted) return;
+          window.isUserGeneratingTtk = true;
+          if (window.currentTtkValues) {
+            window.lastTtkValues = { ...window.currentTtkValues };
+            window.saveTtkValues && window.saveTtkValues('last', window.lastTtkValues);
+          }
+          setTimeout(() => {
+            window.isUserGeneratingTtk = false;
+          }, 5000);
+        }, { capture: true });
+      }
+
+      // ── High Performance Throttled ResizeObserver for Chart.js Containers ──
+      if (window.ResizeObserver) {
+        try {
+          const throttledResize = debounce((entries) => {
+            for (const entry of entries) {
+              try {
+                const canvas = entry.target.querySelector('canvas');
+                if (canvas && typeof Chart !== 'undefined') {
+                  const chart = Chart.getChart(canvas);
+                  if (chart) {
+                    chart.resize();
+                  }
+                }
+              } catch (err) {
+                console.error("Error in throttled ResizeObserver canvas lookup:", err);
+              }
+            }
+          }, 150);
+
+          const resizeObserver = new ResizeObserver((entries) => {
+            throttledResize(entries);
+          });
+
+          document.querySelectorAll('.canvas-wrapper').forEach(container => {
+            resizeObserver.observe(container);
+          });
+        } catch (err) {
+          console.error("Error initializing ResizeObserver:", err);
+        }
+      }
+
+
+      // Debounced calc trigger: bundles rapid balance calls into a single click after 80ms settle
+      window._triggerCalcDebounced = function() {
+        if (window.isRestoring) return;
+        clearTimeout(window._calcDebounceTimer);
+        window._calcDebounceTimer = setTimeout(() => {
+          window.needsTtkRebuild = true;
+        }, 80);
+      };
+
+      // Defer startup normalization by 150ms to run safely after bundle.js completes config restores
+      // Set isRestoring=true during normalization to block any auto-calc triggers from event cascades
+      setTimeout(() => {
+        window.isRestoring = true;
+        const startupMarkovRows = ['head', 'chest', 'stomach', 'arms', 'legs', 'miss'];
+        startupMarkovRows.forEach(r => {
+          window.normalizeMarkovRow(r);
+        });
+        window.normalizeProbability();
+        window.isRestoring = false;
+        
+        window.needsTtkRebuild = true;
+      }, 150);
+
+      // Button: Exclude LMG
+      const excludeLmgBtn = getCachedEl("excludeLmgBtn");
+      if (excludeLmgBtn) {
+        excludeLmgBtn.addEventListener("click", () => {
+          document.querySelectorAll("#attachmentTable tbody tr").forEach((row) => {
+            const typeCell = row.cells[1];
+            if (typeCell && typeCell.textContent.trim() === "轻机枪") {
+              row.dataset.excluded = "1";
+              row.style.display = "none";
+            }
+          });
+          window.saveExclusions();
+          window.needsTtkRebuild = true;
+        });
+      }
+
+      // Button: Exclude DMR except M14
+      const excludeDmrBtn = getCachedEl("excludeDmrBtn");
+      if (excludeDmrBtn) {
+        excludeDmrBtn.addEventListener("click", () => {
+          document.querySelectorAll("#attachmentTable tbody tr").forEach((row) => {
+            const nameCell = row.cells[0];
+            const typeCell = row.cells[1];
+            if (nameCell && typeCell) {
+              const name = nameCell.textContent.trim();
+              const type = typeCell.textContent.trim();
+              if (type === "精确射手步枪" && !name.includes("M14")) {
+                row.dataset.excluded = "1";
+                row.style.display = "none";
+              }
+            }
+          });
+          window.saveExclusions();
+          window.needsTtkRebuild = true;
+        });
+      }
+
+      // Button: Reset Exclusions
+      const resetExcludeBtn = getCachedEl("resetExcludeBtn");
+      if (resetExcludeBtn) {
+        resetExcludeBtn.addEventListener("click", () => {
+          document.querySelectorAll("#attachmentTable tbody tr").forEach((row) => {
+            delete row.dataset.excluded;
+            delete row.dataset.trimExcluded;
+            row.style.display = "";
+          });
+          localStorage.removeItem('deltaTtk_exclusions');
+          window.needsTtkRebuild = true;
+        });
+      }
+
+      // Auto-updater for probability hint tag
+      const probParts = ['pHead', 'pChest', 'pStomach', 'pArms', 'pLegs'];
+      function updateProbHintTag() {
+        const pHead = parseFloat(getCachedEl('pHead').value) || 0;
+        const pChest = parseFloat(getCachedEl('pChest').value) || 0;
+        const pStomach = parseFloat(getCachedEl('pStomach').value) || 0;
+        const pArms = parseFloat(getCachedEl('pArms').value) || 0;
+        const pLegs = parseFloat(getCachedEl('pLegs').value) || 0;
+        
+        const hintEl = getCachedQuery('.prob-hint-tag');
+        if (hintEl) {
+          hintEl.textContent = `头 ${pHead.toFixed(2)} / 胸 ${pChest.toFixed(2)} / 腹 ${pStomach.toFixed(2)} / 手 ${pArms.toFixed(2)} / 脚 ${pLegs.toFixed(2)}`;
+        }
+      }
+      
+      probParts.forEach(id => {
+        const el = getCachedEl(id);
+        if (el) {
+          el.addEventListener('change', updateProbHintTag);
+          el.addEventListener('input', updateProbHintTag);
+          el.addEventListener('change', () => window.balanceProbability(id));
+          el.addEventListener('input', () => window.balanceProbability(id));
+        }
+      });
+      updateProbHintTag();
+
+      // Bind Markov row auto-balancers & Interactive Adjusters
+      const markovRows = ['head', 'chest', 'stomach', 'arms', 'legs', 'miss'];
+      const markovCols = ['head', 'chest', 'stomach', 'arms', 'legs', 'miss'];
+      
+      // 1. Show/hide matrix card based on the checkbox state dynamically
+      const markovModelEnable = getCachedEl("markovModelEnable");
+      const markovMatrixGroup = getCachedEl("markov-matrix-group");
+      if (markovModelEnable && markovMatrixGroup) {
+        const toggleMatrix = () => {
+          if (markovModelEnable.checked) {
+            markovMatrixGroup.style.display = "";
+          } else {
+            markovMatrixGroup.style.display = "none";
+          }
+        };
+        markovModelEnable.addEventListener("change", toggleMatrix);
+        toggleMatrix(); // Init state
+      }
+
+      // 2. Backup default values for restoration
+      window.defaultMarkovValues = {};
+      markovRows.forEach(r => {
+        markovCols.forEach(c => {
+          const id = `m_${r}_${c}`;
+          const el = getCachedEl(id);
+          if (el) {
+            window.defaultMarkovValues[id] = el.value || "0.00";
+          }
+        });
+      });
+
+      // 3. Active cell handling system
+      window.activeMatrixInput = null;
+      window.activeMatrixRow = null;
+      window.activeMatrixCol = null;
+
+      const partNames = {
+        'head': '头部',
+        'chest': '胸部',
+        'stomach': '腹部',
+        'arms': '手部',
+        'legs': '脚部',
+        'miss': '打空'
+      };
+
+      const adjusterWrap = getCachedEl("matrixAdjusterWrap");
+      const adjusterTarget = getCachedEl("matrixAdjustTarget");
+      const adjusterSlider = getCachedEl("matrixAdjustSlider");
+      const adjusterVal = getCachedEl("matrixAdjustVal");
+
+      function setActiveCell(el) {
+        if (window.activeMatrixInput) {
+          window.activeMatrixInput.classList.remove("active-matrix-cell");
+        }
+        
+        window.activeMatrixInput = el;
+        if (!el) {
+          const wrap = getCachedEl("matrixAdjusterWrap");
+          if (wrap) wrap.style.display = "none";
+          return;
+        }
+        
+        el.classList.add("active-matrix-cell");
+        const parts = el.id.split("_");
+        window.activeMatrixRow = parts[1];
+        window.activeMatrixCol = parts[2];
+        
+        const wrap = getCachedEl("matrixAdjusterWrap");
+        if (wrap) wrap.style.display = "block";
+        const targetText = getCachedEl("matrixAdjustTarget");
+        if (targetText) {
+          targetText.innerHTML = `状态转移: <span style="color:var(--color-cyan)">${partNames[window.activeMatrixRow]}</span> → <span style="color:var(--color-orange)">${partNames[window.activeMatrixCol]}</span>`;
+        }
+        
+        const val = parseFloat(el.value) || 0;
+        const slider = getCachedEl("matrixAdjustSlider");
+        if (slider) slider.value = val;
+        const valText = getCachedEl("matrixAdjustVal");
+        if (valText) valText.textContent = val.toFixed(2);
+      }
+
+      // 4. Bind events to all Markov Matrix cell inputs
+      markovRows.forEach(r => {
+        markovCols.forEach(c => {
+          const el = getCachedEl(`m_${r}_${c}`);
+          if (el) {
+            // Standard focus/click adjustments
+            el.addEventListener('focus', () => setActiveCell(el));
+            el.addEventListener('click', () => setActiveCell(el));
+            
+            // Standard manual input updates
+            el.addEventListener('input', () => window.balanceMarkovRow(r, c));
+            el.addEventListener('change', () => window.balanceMarkovRow(r, c));
+
+            // Premium Hover Mouse Wheel adjustment support
+            el.addEventListener('wheel', (e) => {
+              e.preventDefault(); // Prevent standard page scroll
+              setActiveCell(el);
+              
+              const isShift = e.shiftKey;
+              const step = isShift ? 0.03 : 0.01;
+              const delta = e.deltaY < 0 ? step : -step;
+              
+              let current = parseFloat(el.value) || 0;
+              let next = Math.max(0, Math.min(1.0, Math.round((current + delta) * 100) / 100));
+              el.value = next.toFixed(2);
+              
+              const activeSlider = getCachedEl('matrixAdjustSlider');
+              const activeValText = getCachedEl('matrixAdjustVal');
+              if (activeSlider) activeSlider.value = next;
+              if (activeValText) activeValText.textContent = next.toFixed(2);
+              
+              window.balanceMarkovRow(r, c);
+            }, { passive: false });
+          }
+        });
+      });
+
+      // 5. Bind events to slider input
+      const sliderEl = getCachedEl("matrixAdjustSlider");
+      if (sliderEl) {
+        sliderEl.addEventListener("input", (e) => {
+          if (!window.activeMatrixInput) return;
+          const val = parseFloat(e.target.value) || 0;
+          window.activeMatrixInput.value = val.toFixed(2);
+          const valText = getCachedEl("matrixAdjustVal");
+          if (valText) valText.textContent = val.toFixed(2);
+          window.balanceMarkovRow(window.activeMatrixRow, window.activeMatrixCol);
+        });
+      }
+
+      // 6. Bind events to step decrement and increment buttons
+      const stepDec = getCachedEl("matrixStepDec");
+      const stepInc = getCachedEl("matrixStepInc");
+      
+      const stepValue = (delta) => {
+        if (!window.activeMatrixInput) return;
+        let current = parseFloat(window.activeMatrixInput.value) || 0;
+        let next = Math.max(0, Math.min(1.0, Math.round((current + delta) * 100) / 100));
+        window.activeMatrixInput.value = next.toFixed(2);
+        const activeSlider = getCachedEl('matrixAdjustSlider');
+        const activeValText = getCachedEl('matrixAdjustVal');
+        if (activeSlider) activeSlider.value = next;
+        if (activeValText) activeValText.textContent = next.toFixed(2);
+        window.balanceMarkovRow(window.activeMatrixRow, window.activeMatrixCol);
+      };
+
+      if (stepDec) {
+        stepDec.addEventListener("click", (e) => {
+          const delta = e.shiftKey ? -0.03 : -0.01;
+          stepValue(delta);
+        });
+      }
+      if (stepInc) {
+        stepInc.addEventListener("click", (e) => {
+          const delta = e.shiftKey ? 0.03 : 0.01;
+          stepValue(delta);
+        });
+      }
+
+      // 7. Bind delegated click events for all quick values, deltas, and defaults buttons
+      const adjusterButtonsRow = getCachedQuery(".adjuster-buttons-row");
+      if (adjusterButtonsRow) {
+        adjusterButtonsRow.addEventListener("click", (e) => {
+          const btn = e.target.closest(".btn-matrix-quick");
+          if (!btn || !window.activeMatrixInput) return;
+          
+          const activeSlider = getCachedEl("matrixAdjustSlider");
+          const activeValText = getCachedEl("matrixAdjustVal");
+          
+          if (btn.classList.contains("btn-val")) {
+            const val = parseFloat(btn.dataset.val);
+            if (!isNaN(val)) {
+              window.activeMatrixInput.value = val.toFixed(2);
+              if (activeSlider) activeSlider.value = val;
+              if (activeValText) activeValText.textContent = val.toFixed(2);
+              window.balanceMarkovRow(window.activeMatrixRow, window.activeMatrixCol);
+            }
+          } else if (btn.classList.contains("btn-delta")) {
+            const delta = parseFloat(btn.dataset.delta);
+            if (!isNaN(delta)) {
+              let current = parseFloat(window.activeMatrixInput.value) || 0;
+              let next = Math.max(0, Math.min(1.0, Math.round((current + delta) * 100) / 100));
+              window.activeMatrixInput.value = next.toFixed(2);
+              if (activeSlider) activeSlider.value = next;
+              if (activeValText) activeValText.textContent = next.toFixed(2);
+              window.balanceMarkovRow(window.activeMatrixRow, window.activeMatrixCol);
+            }
+          } else if (btn.classList.contains("btn-reset")) {
+            const defaultVal = window.defaultMarkovValues[window.activeMatrixInput.id];
+            if (defaultVal !== undefined) {
+              const val = parseFloat(defaultVal) || 0;
+              window.activeMatrixInput.value = val.toFixed(2);
+              if (activeSlider) activeSlider.value = val;
+              if (activeValText) activeValText.textContent = val.toFixed(2);
+              window.balanceMarkovRow(window.activeMatrixRow, window.activeMatrixCol);
+            }
+          }
+        });
+      }
+
+      // Event delegation for saving sidebar settings instantly (now debounced)
+      const configSidebar = getCachedQuery(".config-sidebar");
+      if (configSidebar) {
+        configSidebar.addEventListener("change", window.saveAllInputs);
+        configSidebar.addEventListener("input", window.saveAllInputs);
+      }
+
+      // Event delegation for saving table settings instantly (now debounced)
+      const tbody = getCachedQuery("#attachmentTable tbody");
+      if (tbody) {
+        tbody.addEventListener("change", window.saveTableSettings);
+        tbody.addEventListener("input", window.saveTableSettings);
+      }
+
+      // MutationObserver to safely restore table accessories and exclusions once populated dynamically
+      let restoreTimeout = null;
+      const observer = new MutationObserver((mutations) => {
+        let hasRowAdded = false;
+        for (const m of mutations) {
+          if (m.addedNodes.length > 0) {
+            hasRowAdded = true;
+            break;
+          }
+        }
+        
+        if (hasRowAdded) {
+          clearTimeout(restoreTimeout);
+          restoreTimeout = setTimeout(() => {
+            observer.disconnect();
+            
+            // Restore weapon settings from cache
+            window.restoreTableSettings();
+            
+            // Restore persistent exclusions
+            const savedExclusions = localStorage.getItem('deltaTtk_exclusions');
+            if (savedExclusions) {
+              const exclusions = JSON.parse(savedExclusions);
+              let appliedEx = false;
+              document.querySelectorAll("#attachmentTable tbody tr").forEach(row => {
+                const name = row.dataset.weaponName || (row.cells[0] && row.cells[0].textContent.trim());
+                if (exclusions[name]) {
+                  row.dataset.excluded = "1";
+                  row.style.display = "none";
+                  appliedEx = true;
+                }
+              });
+              if (appliedEx) {
+                window.needsTtkRebuild = true;
+              }
+            } else {
+              // Default: Exclude DMR except M14 on first load
+              const excludeDmrBtn = getCachedEl("excludeDmrBtn");
+              if (excludeDmrBtn) excludeDmrBtn.click();
+            }
+            
+            // Re-observe
+            setTimeout(() => {
+              const tb = getCachedQuery("#attachmentTable tbody");
+              if (tb) observer.observe(tb, { childList: true });
+            }, 300);
+          }, 150);
+        }
+      });
+
+      const tb = getCachedQuery("#attachmentTable tbody");
+      if (tb) observer.observe(tb, { childList: true });
+    });
+
+    window.normalizeProbability = function() {
+      const parts = ['pHead', 'pChest', 'pStomach', 'pArms', 'pLegs'];
+      const inputs = {};
+      parts.forEach(p => {
+        const el = getCachedEl(p);
+        inputs[p] = el ? (parseFloat(el.value) || 0) : 0;
+      });
+      const normalized = window.normalizeToSumOne(inputs, parts);
+      parts.forEach(p => {
+        const el = getCachedEl(p);
+        if (el) {
+          // Silent update — do NOT dispatch change events to avoid triggering balanceProbability loops
+          el.value = normalized[p].toFixed(2);
+        }
+      });
+    };
+
+    window.balanceProbability = function(changedId) {
+      if (window.isRestoring || window.isBalancingProbability) return;
+      window.isBalancingProbability = true;
+      
+      const parts = ['pHead', 'pChest', 'pStomach', 'pArms', 'pLegs'];
+      const inputs = {};
+      parts.forEach(p => {
+        const el = getCachedEl(p);
+        inputs[p] = el ? (parseFloat(el.value) || 0) : 0;
+      });
+      
+      const changedVal = inputs[changedId];
+      const balanced = window.additiveBalance(inputs, changedId, changedVal, parts);
+      
+      // Batch DOM writes in the next animation frame for optimal visual performance
+      requestAnimationFrame(() => {
+        parts.forEach(p => {
+          const el = getCachedEl(p);
+          if (el) {
+            const newVal = balanced[p].toFixed(2);
+            if (el.value !== newVal) {
+              el.value = newVal;
+            }
+          }
+        });
+        
+        // Also update the hint tag manually since we're not dispatching change events
+        const hintEl = getCachedQuery('.prob-hint-tag');
+        if (hintEl) {
+          const vals = parts.map(p => parseFloat(getCachedEl(p).value) || 0);
+          const labels = ['头', '胸', '腹', '手', '脚'];
+          hintEl.textContent = labels.map((l, i) => `${l} ${vals[i].toFixed(2)}`).join(' / ');
+        }
+      });
+      
+      window.isBalancingProbability = false;
+      window.saveAllInputs();
+      // Chart is NOT auto-refreshed here — user clicks 生成 TTK 排行榜 when ready
+    };
+
+    window.adjustProbability = function(partId, delta, event) {
+      if (window.isRestoring) return;
+      if (event && event.shiftKey) {
+        delta = delta > 0 ? 0.01 : -0.01;
+      }
+      
+      const el = getCachedEl(partId);
+      if (!el) return;
+      
+      let currentVal = parseFloat(el.value) || 0;
+      let targetVal = currentVal + delta;
+      el.value = Math.max(0, Math.min(1.0, Math.round(targetVal * 100) / 100)).toFixed(2);
+      
+      window.balanceProbability(partId);
+    };
+  </script>
+  <script src="./bundle.js" defer></script>
+</body>
+
+</html>

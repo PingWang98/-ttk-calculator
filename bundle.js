@@ -1547,6 +1547,7 @@
             name: "余烬枪管",
             rangeAdd: 5,
             velocityAdd: 175,
+            decays: [1, 0.9, 0.7, 0.7, 0.7],
             damageBonus: 3,
             armorDamageBonus: 0,
             rofMult: 1,
