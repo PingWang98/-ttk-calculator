@@ -387,6 +387,11 @@
       mm = multMult && Object.prototype.hasOwnProperty.call(multMult, r) ? multMult[r] : void 0;
     return typeof mm == "number" ? baseMult * mm : baseMult;
   }
+  function getEffectivePartMultipliers(e, a) {
+    return ["head", "chest", "stomach", "limbs"].reduce((t, n) => {
+      return (t[n] = roundDamageValue(getEffectivePartMultiplier(e, a, n))), t;
+    }, {});
+  }
   function getSpecialAmmoDisplayStats(e, a, t) {
     if (!isSpecialAmmoKey(a)) return null;
     let n = getAmmoProfile(e, a);
@@ -404,10 +409,7 @@
           : e.armor * s,
       u = Math.abs(o - e.flesh) > 1e-9,
       m = Math.abs(i - e.armor) > 1e-9,
-      l = ["head", "chest", "stomach", "limbs"].reduce((d, g) => {
-        let y = getEffectivePartMultiplier(e, n, g);
-        return (d[g] = roundDamageValue(y)), d;
-      }, {}),
+      l = getEffectivePartMultipliers(e, n),
       d = ["head", "chest", "stomach", "limbs"].some(
         (g) => Math.abs(l[g] - e.mult[g]) > 1e-9,
       );
@@ -2601,15 +2603,6 @@
             f = l && l.partMultAdd ? l.partMultAdd : null,
             M = { ...r.mult };
           if (f) for (let L in f) M[L] = (M[L] ?? 1) + f[L];
-          let ammo = getAmmoProfile(r, e[s].bulletType);
-          if (ammo) {
-            if (ammo.partMult) {
-              for (let L in ammo.partMult) M[L] = ammo.partMult[L];
-            }
-            if (ammo.partMultMult) {
-              for (let L in ammo.partMultMult) M[L] = (M[L] ?? 1) * ammo.partMultMult[L];
-            }
-          }
           let I = r.triggerDelay || 0,
             C =
               l && typeof l.triggerDelayDelta == "number"
@@ -2691,15 +2684,6 @@
             f = l && l.partMultAdd ? l.partMultAdd : null,
             M = { ...r.mult };
           if (f) for (let A in f) M[A] = (M[A] ?? 1) + f[A];
-          let ammo = getAmmoProfile(r, r.attachmentConfig.bulletType);
-          if (ammo) {
-            if (ammo.partMult) {
-              for (let A in ammo.partMult) M[A] = ammo.partMult[A];
-            }
-            if (ammo.partMultMult) {
-              for (let A in ammo.partMultMult) M[A] = (M[A] ?? 1) * ammo.partMultMult[A];
-            }
-          }
           let I = r.triggerDelay || 0,
             C =
               l && typeof l.triggerDelayDelta == "number"
@@ -3423,17 +3407,13 @@ ${$(n, "ms_raw")}`;
       let globalBulletLevel = Number(document.getElementById("bulletLevel")?.value || 4);
       let targetArmorLevel = Number(document.getElementById("armorLevel")?.value || 4);
       e.forEach((t, n) => {
-        let bulletKey = t.bulletType || globalBulletLevel;
-        if (!t.bulletType) {
-          let allowed = t.allowedBullets || [];
-          if (globalBulletLevel === 3 && allowed.includes("6.8×51mm PLY-I")) bulletKey = "6.8×51mm PLY-I";
-          else if (globalBulletLevel === 4 && allowed.includes("6.8×51mm PLY-II")) bulletKey = "6.8×51mm PLY-II";
-          else if (globalBulletLevel === 5 && allowed.includes("6.8×51mm PLY-III")) bulletKey = "6.8×51mm PLY-III";
-          else if (globalBulletLevel === 6 && allowed.includes("AP")) bulletKey = "AP";
-        }
+        let bulletKey = R.getRealBulletKey(t.bulletType, t, {
+          bulletLevel: globalBulletLevel,
+        });
         let ammo = getAmmoProfile(t, bulletKey);
         let dispFlesh = t.flesh;
         let dispArmor = t.armor;
+        let dispMult = t.mult;
         if (ammo) {
           let baseFlesh = getProjectileBaseFlesh(t, ammo);
           if (typeof baseFlesh === "number") dispFlesh = Math.round(baseFlesh);
@@ -3441,6 +3421,7 @@ ${$(n, "ms_raw")}`;
           if (typeof armorMult === "number") {
             dispArmor = Math.round(t.armor * (ammo.armorBase || 1) * armorMult);
           }
+          dispMult = getEffectivePartMultipliers(t, ammo);
         }
         if (t.isClone) {
           let r = n - a,
@@ -3455,7 +3436,7 @@ ${$(n, "ms_raw")}`;
           let l = document.querySelector(`.currentArmor[data-clone="${r}"]`);
           l && (l.textContent = dispArmor);
           let d = document.querySelector(`.multipliers[data-clone="${r}"]`);
-          d && (d.textContent = P(t.mult));
+          d && (d.textContent = P(dispMult));
         } else {
           let r = document.querySelector(`.currentRof[data-weapon="${n}"]`);
           r && (r.textContent = Math.round(t.rof));
@@ -3470,7 +3451,7 @@ ${$(n, "ms_raw")}`;
           let m = document.querySelector(`.currentArmor[data-weapon="${n}"]`);
           m && (m.textContent = dispArmor);
           let l = document.querySelector(`.multipliers[data-weapon="${n}"]`);
-          l && (l.textContent = P(t.mult));
+          l && (l.textContent = P(dispMult));
         }
       });
     }
