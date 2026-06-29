@@ -250,6 +250,67 @@
           6: { armorMult: 1.1, pen: 0 },
         },
       },
+      "9×19mm CT": {
+        base: 1.0,
+        partMultMult: {
+          limbs: 1.75,
+        },
+        armor: {
+          1: { armorMult: 0.4, pen: 0 },
+          2: { armorMult: 0.3, pen: 0 },
+          3: { armorMult: 0.2, pen: 0 },
+          4: { armorMult: 0.2, pen: 0 },
+          5: { armorMult: 0.2, pen: 0 },
+          6: { armorMult: 0.2, pen: 0 },
+        },
+      },
+      ".45 ACP CT": {
+        base: 1.0,
+        partMultMult: {
+          limbs: 1.6,
+        },
+        armor: {
+          1: { armorMult: 0.4, pen: 0 },
+          2: { armorMult: 0.3, pen: 0 },
+          3: { armorMult: 0.2, pen: 0 },
+          4: { armorMult: 0.2, pen: 0 },
+          5: { armorMult: 0.2, pen: 0 },
+          6: { armorMult: 0.2, pen: 0 },
+        },
+      },
+      "6.8×51mm PLY-I": {
+        base: 1.0,
+        armor: {
+          1: { armorMult: 0.81, pen: 1 },
+          2: { armorMult: 0.81, pen: 0.75 },
+          3: { armorMult: 0.81, pen: 0.5 },
+          4: { armorMult: 0.81, pen: 0 },
+          5: { armorMult: 0.45, pen: 0 },
+          6: { armorMult: 0.36, pen: 0 },
+        },
+      },
+      "6.8×51mm PLY-II": {
+        base: 1.0,
+        armor: {
+          1: { armorMult: 0.9, pen: 1 },
+          2: { armorMult: 0.9, pen: 1 },
+          3: { armorMult: 0.9, pen: 0.75 },
+          4: { armorMult: 0.9, pen: 0.5 },
+          5: { armorMult: 0.9, pen: 0 },
+          6: { armorMult: 0.54, pen: 0 },
+        },
+      },
+      "6.8×51mm PLY-III": {
+        base: 1.0,
+        armor: {
+          1: { armorMult: 0.99, pen: 1 },
+          2: { armorMult: 0.99, pen: 1 },
+          3: { armorMult: 0.99, pen: 1 },
+          4: { armorMult: 0.99, pen: 0.75 },
+          5: { armorMult: 0.99, pen: 0.5 },
+          6: { armorMult: 0.99, pen: 0 },
+        },
+      },
     },
     marlinAmmoProfiles = {
       4: {
@@ -321,7 +382,10 @@
     let r = (t === "arms" || t === "legs") ? "limbs" : t;
     let n = a == null ? void 0 : a.partMult,
       o = n && Object.prototype.hasOwnProperty.call(n, r) ? n[r] : void 0;
-    return typeof o == "number" ? o : e.mult[r];
+    let baseMult = typeof o == "number" ? o : e.mult[r];
+    let multMult = a == null ? void 0 : a.partMultMult,
+      mm = multMult && Object.prototype.hasOwnProperty.call(multMult, r) ? multMult[r] : void 0;
+    return typeof mm == "number" ? baseMult * mm : baseMult;
   }
   function getSpecialAmmoDisplayStats(e, a, t) {
     if (!isSpecialAmmoKey(a)) return null;
@@ -615,7 +679,7 @@
     },
     N = class {
       static getStrategy(e) {
-        return e && /RIP/i.test(e) ? le : e === "Double" ? oe : se;
+        return e && (/RIP/i.test(e) || /CT/i.test(e)) ? le : e === "Double" ? oe : se;
       }
     };
   var R = class {
@@ -765,12 +829,18 @@
           .sort((o, r) => o.avgTime - r.avgTime);
       }
       static getRealBulletKey(e, a, t) {
-        return e === "__EXCLUDE__"
-          ? null
-          : e ||
-              ((a.allowedBullets || []).includes(t.bulletLevel)
-                ? t.bulletLevel
-                : null);
+        if (e === "__EXCLUDE__") return null;
+        if (e) return e;
+        let o = a.allowedBullets || [];
+        if (o.includes(t.bulletLevel)) return t.bulletLevel;
+        if (t.bulletLevel === 6 && o.includes("AP")) return "AP";
+        let numericLevels = o.filter((r) => typeof r === "number");
+        if (numericLevels.length > 0) {
+          let candidates = numericLevels.filter((r) => r <= t.bulletLevel);
+          if (candidates.length > 0) return Math.max(...candidates);
+          return Math.min(...numericLevels);
+        }
+        return null;
       }
     },
     Le = k.calculate,
@@ -824,7 +894,7 @@
           },
         ],
         mult: { head: 1.9, chest: 1, stomach: 0.9, limbs: 0.4 },
-        allowedBullets: [1, 2, 3, 4, "RIP"],
+        allowedBullets: [1, 2, 3, 4, "RIP", "9×19mm CT"],
       },
       {
         name: "MK4",
@@ -889,7 +959,7 @@
           },
         ],
         mult: { head: 1.9, chest: 1, stomach: 0.9, limbs: 0.4 },
-        allowedBullets: [1, 2, 3, 4, "RIP"],
+        allowedBullets: [1, 2, 3, 4, "RIP", "9×19mm CT"],
       },
       {
         name: "QCQ171",
@@ -918,7 +988,7 @@
           },
         ],
         mult: { head: 1.9, chest: 1, stomach: 0.9, limbs: 0.4 },
-        allowedBullets: [1, 2, 3, 4, "RIP"],
+        allowedBullets: [1, 2, 3, 4, "RIP", "9×19mm CT"],
       },
       {
         name: "QCQ171稳固",
@@ -947,7 +1017,7 @@
           },
         ],
         mult: { head: 1.9, chest: 1, stomach: 0.9, limbs: 0.4 },
-        allowedBullets: [1, 2, 3, 4, "RIP"],
+        allowedBullets: [1, 2, 3, 4, "RIP", "9×19mm CT"],
       },
       {
         name: "P90",
@@ -1032,7 +1102,7 @@
           },
         ],
         mult: { head: 1.9, chest: 1, stomach: 0.9, limbs: 0.4 },
-        allowedBullets: [1, 2, 3, 4, "RIP"],
+        allowedBullets: [1, 2, 3, 4, "RIP", "9×19mm CT"],
       },
       {
         name: "Vector",
@@ -1061,7 +1131,7 @@
           },
         ],
         mult: { head: 1.9, chest: 1, stomach: 0.9, limbs: 0.4 },
-        allowedBullets: [1, 2, 3, 4, "RIP45", "ACP SUPER"],
+        allowedBullets: [1, 2, 3, 4, "RIP45", "ACP SUPER", ".45 ACP CT"],
       },
       {
         name: "MP7",
@@ -1147,7 +1217,7 @@
           },
         ],
         mult: { head: 1.9, chest: 1, stomach: 0.9, limbs: 0.4 },
-        allowedBullets: [1, 2, 3, 4, "RIP"],
+        allowedBullets: [1, 2, 3, 4, "RIP", "9×19mm CT"],
       },
       {
         name: "UZI",
@@ -1176,7 +1246,7 @@
           },
         ],
         mult: { head: 1.9, chest: 1, stomach: 0.9, limbs: 0.4 },
-        allowedBullets: [1, 2, 3, 4, "RIP"],
+        allowedBullets: [1, 2, 3, 4, "RIP", "9×19mm CT"],
       },
       {
         name: "SMG-45",
@@ -1212,7 +1282,7 @@
           },
         ],
         mult: { head: 1.9, chest: 1, stomach: 0.9, limbs: 0.4 },
-        allowedBullets: [1, 2, 3, 4, "RIP45", "ACP SUPER"],
+        allowedBullets: [1, 2, 3, 4, "RIP45", "ACP SUPER", ".45 ACP CT"],
       },
       {
         name: "K416",
@@ -1256,8 +1326,8 @@
         ranges: [21,40, 1 / 0, 1 / 0],
         decays: [1, 0.9, 0.8, 0.8, 0.8],
         velocity: 300,
-        flesh: 29,
-        armor: 48,
+        flesh: 28,
+        armor: 44,
         rof: 972,
         triggerDelay: 0,
         barrels: [
@@ -1457,7 +1527,7 @@
           },
         ],
         mult: { head: 1.82, chest: 1, stomach: 0.7, limbs: 0.4 },
-        allowedBullets: [4, 5, "AP"],
+        allowedBullets: [3, 4, 5, "6.8×51mm PLY-I", "6.8×51mm PLY-II", "6.8×51mm PLY-III", "AP"],
       },
       {
         name: "PKM",
@@ -1803,7 +1873,7 @@
             rofMult: 1,
           },
         ],
-        mult: { head: 1.9, chest: 1, stomach: 0.9, limbs: 0.4 },
+        mult: { head: 1.9, chest: 1, stomach: 0.9, limbs: 0.45 },
         allowedBullets: [1, 2, 3, 4, 5, "BT +P"],
       },
       {
@@ -1900,7 +1970,7 @@
         ranges: [50, 85, 1 / 0, 1 / 0],
         decays: [1, 0.9, 0.8, 0.8, 0.8],
         velocity: 630,
-        flesh: 38,
+        flesh: 37,
         armor: 40,
         rof: 649,
         triggerDelay: 0,
@@ -1927,8 +1997,8 @@
             rofMult: 1,
           },
         ],
-        mult: { head: 1.9, chest: 1, stomach: 1, limbs: 0.4 },
-        allowedBullets: [4, 5, "AP"],
+        mult: { head: 1.9, chest: 1, stomach: 1, limbs: 0.35 },
+        allowedBullets: [3, 4, 5, "6.8×51mm PLY-I", "6.8×51mm PLY-II", "6.8×51mm PLY-III", "AP"],
       },
       {
         name: "ASh-12",
@@ -2531,6 +2601,15 @@
             f = l && l.partMultAdd ? l.partMultAdd : null,
             M = { ...r.mult };
           if (f) for (let L in f) M[L] = (M[L] ?? 1) + f[L];
+          let ammo = getAmmoProfile(r, e[s].bulletType);
+          if (ammo) {
+            if (ammo.partMult) {
+              for (let L in ammo.partMult) M[L] = ammo.partMult[L];
+            }
+            if (ammo.partMultMult) {
+              for (let L in ammo.partMultMult) M[L] = (M[L] ?? 1) * ammo.partMultMult[L];
+            }
+          }
           let I = r.triggerDelay || 0,
             C =
               l && typeof l.triggerDelayDelta == "number"
@@ -2584,6 +2663,7 @@
               burstCount: O,
               burstInternalROF: V,
               burstInterval: F,
+              bulletType: e[s].bulletType,
             }
           );
         }),
@@ -2611,6 +2691,15 @@
             f = l && l.partMultAdd ? l.partMultAdd : null,
             M = { ...r.mult };
           if (f) for (let A in f) M[A] = (M[A] ?? 1) + f[A];
+          let ammo = getAmmoProfile(r, r.attachmentConfig.bulletType);
+          if (ammo) {
+            if (ammo.partMult) {
+              for (let A in ammo.partMult) M[A] = ammo.partMult[A];
+            }
+            if (ammo.partMultMult) {
+              for (let A in ammo.partMultMult) M[A] = (M[A] ?? 1) * ammo.partMultMult[A];
+            }
+          }
           let I = r.triggerDelay || 0,
             C =
               l && typeof l.triggerDelayDelta == "number"
@@ -2664,6 +2753,7 @@
               burstCount: O,
               burstInternalROF: V,
               burstInterval: F,
+              bulletType: r.attachmentConfig.bulletType,
             }
           );
         });
@@ -3226,7 +3316,12 @@ ${$(n, "ms_raw")}`;
         (b.dataset.weaponName = u.name),
           (b.dataset.rowOrder = String(m)),
           ((b.innerHTML = `
-        <td>${u.name}</td>
+        <td>
+          <span class="row-action-wrap" style="display: inline-flex; align-items: center; gap: 6px; margin-right: 8px; vertical-align: middle;">
+            ${this.createActionButton(m, "add", o)}
+          </span>
+          <span class="weapon-name-text" style="vertical-align: middle;">${u.name}</span>
+        </td>
         <td>${u.type}</td>
         <td class="currentRof" data-weapon="${m}">${u.rof}</td>
         <td class="currentVelocity" data-weapon="${m}">${u.velocity}</td>
@@ -3239,7 +3334,6 @@ ${$(n, "ms_raw")}`;
         <td>${this.createSelectHTML("bulletSel", m, y, 0)}</td>
         <td><input type="number" data-weapon="${m}" class="hitRateInput" min="0" max="1" step="0.01" /></td>
         <td>${this.createVelocityPrecisionSlider(m, !1, 0)}</td>
-        <td>${this.createActionButton(m, "add", o)}</td>
       `),
           s.appendChild(b));
       }),
@@ -3249,7 +3343,12 @@ ${$(n, "ms_raw")}`;
             (l.dataset.weaponName = u.name),
             (l.dataset.rowOrder = String(e.length + m)),
             (l.innerHTML = `
-        <td>${u.name}</td>
+        <td>
+          <span class="row-action-wrap" style="display: inline-flex; align-items: center; gap: 6px; margin-right: 8px; vertical-align: middle;">
+            ${this.createActionButton(m, "remove", r)}
+          </span>
+          <span class="weapon-name-text" style="vertical-align: middle;">${u.name}</span>
+        </td>
         <td>${u.type}</td>
         <td class="currentRof" data-clone="${m}">${u.rof}</td>
         <td class="currentVelocity" data-clone="${m}">${u.velocity}</td>
@@ -3261,7 +3360,7 @@ ${$(n, "ms_raw")}`;
         <td>${u.attachmentConfig.muzzleIndex > 0 ? a[u.attachmentConfig.muzzleIndex].name : "\u65E0"}</td>
         <td>${u.attachmentConfig.bulletType || "\u5168\u5C40"}</td>
         <td>${u.attachmentConfig.hitRate || ""}</td>
-        <td>${this.createActionButton(m, "remove", r)}</td>
+        <td>${this.createVelocityPrecisionSlider(m, !0, u.attachmentConfig.velocityPrecision || 0)}</td>
       `),
             s.appendChild(l));
         }),
@@ -3321,7 +3420,28 @@ ${$(n, "ms_raw")}`;
     }
     updateWeaponStats(e) {
       let a = document.querySelectorAll(".currentRof[data-weapon]").length;
+      let globalBulletLevel = Number(document.getElementById("bulletLevel")?.value || 4);
+      let targetArmorLevel = Number(document.getElementById("armorLevel")?.value || 4);
       e.forEach((t, n) => {
+        let bulletKey = t.bulletType || globalBulletLevel;
+        if (!t.bulletType) {
+          let allowed = t.allowedBullets || [];
+          if (globalBulletLevel === 3 && allowed.includes("6.8×51mm PLY-I")) bulletKey = "6.8×51mm PLY-I";
+          else if (globalBulletLevel === 4 && allowed.includes("6.8×51mm PLY-II")) bulletKey = "6.8×51mm PLY-II";
+          else if (globalBulletLevel === 5 && allowed.includes("6.8×51mm PLY-III")) bulletKey = "6.8×51mm PLY-III";
+          else if (globalBulletLevel === 6 && allowed.includes("AP")) bulletKey = "AP";
+        }
+        let ammo = getAmmoProfile(t, bulletKey);
+        let dispFlesh = t.flesh;
+        let dispArmor = t.armor;
+        if (ammo) {
+          let baseFlesh = getProjectileBaseFlesh(t, ammo);
+          if (typeof baseFlesh === "number") dispFlesh = Math.round(baseFlesh);
+          let armorMult = ammo.armor?.[targetArmorLevel]?.armorMult;
+          if (typeof armorMult === "number") {
+            dispArmor = Math.round(t.armor * (ammo.armorBase || 1) * armorMult);
+          }
+        }
         if (t.isClone) {
           let r = n - a,
             s = document.querySelector(`.currentRof[data-clone="${r}"]`);
@@ -3331,9 +3451,9 @@ ${$(n, "ms_raw")}`;
           let u = document.querySelector(`.currentRanges[data-clone="${r}"]`);
           u && (u.textContent = K(t.ranges.map((g) => Math.round(g))));
           let m = document.querySelector(`.currentFlesh[data-clone="${r}"]`);
-          m && (m.textContent = t.flesh);
+          m && (m.textContent = dispFlesh);
           let l = document.querySelector(`.currentArmor[data-clone="${r}"]`);
-          l && (l.textContent = t.armor);
+          l && (l.textContent = dispArmor);
           let d = document.querySelector(`.multipliers[data-clone="${r}"]`);
           d && (d.textContent = P(t.mult));
         } else {
@@ -3346,9 +3466,9 @@ ${$(n, "ms_raw")}`;
           let i = document.querySelector(`.currentRanges[data-weapon="${n}"]`);
           i && (i.textContent = K(t.ranges.map((d) => Math.round(d))));
           let u = document.querySelector(`.currentFlesh[data-weapon="${n}"]`);
-          u && (u.textContent = t.flesh);
+          u && (u.textContent = dispFlesh);
           let m = document.querySelector(`.currentArmor[data-weapon="${n}"]`);
-          m && (m.textContent = t.armor);
+          m && (m.textContent = dispArmor);
           let l = document.querySelector(`.multipliers[data-weapon="${n}"]`);
           l && (l.textContent = P(t.mult));
         }
@@ -3532,15 +3652,35 @@ ${$(n, "ms_raw")}`;
             });
           }),
         document.getElementById("markov-matrix-group") &&
-          (document.getElementById("markov-matrix-group").style.display = e.markovModelEnable ? "block" : "none"),
+          (document.getElementById("markov-matrix-group").style.display = e.markovModelEnable ? "block" : "none"));
         ["head", "chest", "stomach", "arms", "legs"].forEach((t) => {
           let n = document.getElementById(
             "p" + t.charAt(0).toUpperCase() + t.slice(1),
           );
           if (n) n.value = e.hitProb[t];
-        }),
-        this.applyVelocityPrecisionSettings(e.velocityPrecisionSettings),
-        this.syncRankFilterControls());
+        });
+        let c = document.getElementById("onlyLegs100");
+        if (c) {
+          let onlyLegs = Number(e.hitProb.legs || 0) === 1 && 
+                         Number(e.hitProb.head || 0) === 0 && 
+                         Number(e.hitProb.chest || 0) === 0 && 
+                         Number(e.hitProb.stomach || 0) === 0 && 
+                         Number(e.hitProb.arms || 0) === 0;
+          c.checked = onlyLegs;
+          ["Head", "Chest", "Stomach", "Arms", "Legs"].forEach((p) => {
+            let input = document.getElementById("p" + p);
+            if (input) input.disabled = onlyLegs;
+            let parent = document.getElementById("p" + p)?.closest(".prob-adjuster-wrap");
+            if (parent) {
+              parent.querySelectorAll("button").forEach((btn) => {
+                btn.disabled = onlyLegs;
+                btn.style.opacity = onlyLegs ? "0.5" : "1";
+              });
+            }
+          });
+        }
+        this.applyVelocityPrecisionSettings(e.velocityPrecisionSettings);
+        this.syncRankFilterControls();
     }
     setupAutoSave() {
       ([
@@ -4573,11 +4713,48 @@ ${$(n, "ms_raw")}`;
           }));
       }
       bindPresetButtons() {
-        let e = document.getElementById("avgHitProbBtn");
+        let e = document.getElementById("avgHitProbBtn"),
+          c = document.getElementById("onlyLegs100");
         e &&
-          e.addEventListener("click", () =>
-            this.applyAverageHitProbabilityModel(),
-          );
+          e.addEventListener("click", () => {
+            if (c && c.checked) {
+              c.checked = false;
+              this.toggleLegs100(false);
+            } else {
+              this.applyAverageHitProbabilityModel();
+            }
+          });
+        if (c) {
+          c.addEventListener("change", () => {
+            this.toggleLegs100(c.checked);
+          });
+        }
+      }
+      toggleLegs100(enabled) {
+        let parts = ["Head", "Chest", "Stomach", "Arms", "Legs"];
+        parts.forEach((p) => {
+          let input = document.getElementById("p" + p);
+          if (input) {
+            input.disabled = enabled;
+            if (enabled) {
+              input.value = p === "Legs" ? "1.00" : "0.00";
+            }
+          }
+          let parent = document.getElementById("p" + p)?.closest(".prob-adjuster-wrap");
+          if (parent) {
+            parent.querySelectorAll("button").forEach((btn) => {
+              btn.disabled = enabled;
+              btn.style.opacity = enabled ? "0.5" : "1";
+            });
+          }
+        });
+        if (!enabled) {
+          this.applyAverageHitProbabilityModel();
+        } else {
+          if (this.domController && typeof this.domController.saveCurrentConfig === "function") {
+            this.domController.saveCurrentConfig();
+          }
+        }
       }
       applyAverageHitProbabilityModel() {
         let e = { head: 0.10, chest: 0.30, stomach: 0.19, arms: 0.23, legs: 0.18 };
@@ -4585,7 +4762,7 @@ ${$(n, "ms_raw")}`;
           let n = document.getElementById(
             "p" + a.charAt(0).toUpperCase() + a.slice(1),
           );
-          n && (n.value = String(t));
+          if (n) n.value = String(t);
         }),
           this.domController &&
             typeof this.domController.saveCurrentConfig === "function" &&

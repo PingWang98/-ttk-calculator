@@ -42,7 +42,7 @@
         <div class="title-text-group">
           <div class="title-brand-row">
             <span class="brand-beacon">烽火地带</span>
-            <span class="brand-season">S9</span>
+            <span class="brand-season">S10</span>
           </div>
           <div class="title-sub-row">
             <span class="cyber-logo-badge">TACTICAL SYSTEM</span>
@@ -266,7 +266,13 @@
             </div>
           </div>
           <div class="prob-actions-bar">
-            <button id="avgHitProbBtn" type="button" class="btn-tech">平均击中概率模型</button>
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+              <button id="avgHitProbBtn" type="button" class="btn-tech">平均击中概率模型</button>
+              <label class="checkbox-container" style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer; color: var(--color-text-muted); font-size: 13px; user-select: none;">
+                <input type="checkbox" id="onlyLegs100" style="cursor: pointer; width: 14px; height: 14px; margin: 0;">
+                <span>脚部100%命中</span>
+              </label>
+            </div>
             <div class="prob-hint-tag">头 0.10 / 胸 0.30 / 腹 0.19 / 手 0.23 / 脚 0.18</div>
           </div>
         </div>
