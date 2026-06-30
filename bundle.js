@@ -2672,6 +2672,25 @@
       }
       return 0;
     }
+    getRangeMultiplier(e, a) {
+      let t = e && typeof e.rangeAdd == "number" ? 1 : e ? e.rangeMult : 1,
+        n = a ? a.mult : 0;
+      return t + n;
+    }
+    calculateRanges(e, a, t) {
+      let n = a && Array.isArray(a.ranges) && a.ranges.length > 0 ? a.ranges : e.ranges;
+      return a && typeof a.rangeAdd == "number" && n === e.ranges
+        ? n.map((o) => (o === 1 / 0 ? 1 / 0 : Math.round(o * t + a.rangeAdd)))
+        : n.map((o) => (o === 1 / 0 ? 1 / 0 : o * t));
+    }
+    calculateVelocity(e, a, t, n) {
+      let o = a ? t : 1,
+        r = e.velocity;
+      a && typeof a.velocityAdd == "number"
+        ? (r += a.velocityAdd + e.velocity * n)
+        : (r *= o);
+      return r;
+    }
     getClonedWeapons() {
       return this.clonedWeapons;
     }
@@ -2703,14 +2722,9 @@
             l = i > 0 ? r.barrels[i - 1] : null,
             d = u > 0 ? this.muzzles[u] : null,
             fc = fcIndex > 0 && r.fireControls ? r.fireControls[fcIndex - 1] : null,
-            g = 1;
-          {
-            let A =
-                l && typeof l.rangeAdd == "number" ? 1 : l ? l.rangeMult : 1,
-              T = d ? d.mult : 0;
-            g *= A + T;
-          }
-          let y = g,
+            g = this.getRangeMultiplier(l, d),
+            muzzleVelocityMult = d ? d.mult : 0;
+          let y = 1,
             b = this.getWeaponVelocityPrecision(s, !1, a);
           y *= 1 + b;
           let p = l ? l.rofMult : 1,
@@ -2725,23 +2739,12 @@
                 ? l.triggerDelayDelta
                 : 0,
             D = Math.max(0, Math.round(I + C)),
-            B;
-          l && Array.isArray(l.ranges) && l.ranges.length > 0
-            ? (B = l.ranges)
-            : (B =
-                l && typeof l.rangeAdd == "number"
-                  ? r.ranges.map((A) =>
-                      A === 1 / 0 ? 1 / 0 : Math.round(A * g + l.rangeAdd),
-                    )
-                  : r.ranges.map((A) => A * g));
+            B = this.calculateRanges(r, l, g);
           let S =
               l && Array.isArray(l.decays) && l.decays.length > 0
                 ? l.decays
                 : r.decays,
-            ne =
-              l && typeof l.velocityAdd == "number"
-                ? Math.round((r.velocity + l.velocityAdd) * y)
-                : r.velocity * y,
+            ne = this.calculateVelocity(r, l, g, muzzleVelocityMult) * y,
             w = r.fireMode || null;
           l && l.fireMode !== void 0 && (w = l.fireMode);
           let O = l && l.burstCount !== void 0 ? l.burstCount : r.burstCount,
@@ -2808,14 +2811,9 @@
             l = i > 0 ? r.barrels[i - 1] : null,
             d = u > 0 ? this.muzzles[u] : null,
             fc = fcIndex > 0 && r.fireControls ? r.fireControls[fcIndex - 1] : null,
-            g = 1;
-          {
-            let T =
-                l && typeof l.rangeAdd == "number" ? 1 : l ? l.rangeMult : 1,
-              Me = d ? d.mult : 0;
-            g *= T + Me;
-          }
-          let y = g,
+            g = this.getRangeMultiplier(l, d),
+            muzzleVelocityMult = d ? d.mult : 0;
+          let y = 1,
             b = this.getWeaponVelocityPrecision(s, !0, a);
           y *= 1 + b;
           let p = l ? l.rofMult : 1,
@@ -2830,23 +2828,12 @@
                 ? l.triggerDelayDelta
                 : 0,
             D = Math.max(0, Math.round(I + C)),
-            B;
-          l && Array.isArray(l.ranges) && l.ranges.length > 0
-            ? (B = l.ranges)
-            : (B =
-                l && typeof l.rangeAdd == "number"
-                  ? r.ranges.map((T) =>
-                      T === 1 / 0 ? 1 / 0 : Math.round(T * g + l.rangeAdd),
-                    )
-                  : r.ranges.map((T) => T * g));
+            B = this.calculateRanges(r, l, g);
           let S =
               l && Array.isArray(l.decays) && l.decays.length > 0
                 ? l.decays
                 : r.decays,
-            ne =
-              l && typeof l.velocityAdd == "number"
-                ? Math.round((r.velocity + l.velocityAdd) * y)
-                : r.velocity * y,
+            ne = this.calculateVelocity(r, l, g, muzzleVelocityMult) * y,
             w = r.fireMode || null;
           l && l.fireMode !== void 0 && (w = l.fireMode);
           let O = l && l.burstCount !== void 0 ? l.burstCount : r.burstCount,
@@ -2926,13 +2913,9 @@
         r = t > 0 ? e.barrels[t - 1] : null,
         s = n > 0 ? this.muzzles[n] : null,
         fc = fcIndex > 0 && e.fireControls ? e.fireControls[fcIndex - 1] : null,
-        i = 1;
-      {
-        let B = r && typeof r.rangeAdd == "number" ? 1 : r ? r.rangeMult : 1,
-          S = s ? s.mult : 0;
-        i *= B + S;
-      }
-      let u = i;
+        i = this.getRangeMultiplier(r, s),
+        muzzleVelocityMult = s ? s.mult : 0;
+      let u = 1;
       a.muzzlePrecisionEnable && r && (u *= ce);
       let m = r ? r.rofMult : 1,
         l = r && r.damageBonus !== void 0 ? r.damageBonus : 0,
@@ -2944,24 +2927,15 @@
         p =
           r && typeof r.triggerDelayDelta == "number" ? r.triggerDelayDelta : 0,
         v = Math.max(0, Math.round(b + p)),
-        h;
-      r && Array.isArray(r.ranges) && r.ranges.length > 0
-        ? (h = r.ranges)
-        : (h =
-            r && typeof r.rangeAdd == "number"
-              ? e.ranges.map((B) =>
-                  B === 1 / 0 ? 1 / 0 : Math.round(B * i + r.rangeAdd),
-                )
-              : e.ranges.map((B) => Math.round(B * i)));
+        h = this.calculateRanges(e, r, i).map((B) =>
+          B === 1 / 0 ? 1 / 0 : Math.round(B),
+        );
       let f =
           r && Array.isArray(r.decays) && r.decays.length > 0
             ? r.decays
-            : e.decays,
-        M = r && typeof r.velocityAdd == "number";
+            : e.decays;
       return {
-        velocity: Math.round(
-          M ? (e.velocity + r.velocityAdd) * u : e.velocity * u,
-        ),
+        velocity: Math.round(this.calculateVelocity(e, r, i, muzzleVelocityMult) * u),
         ranges: h,
         decays: f,
         rof:
@@ -3444,9 +3418,10 @@ ${$(n, "ms_raw")}`;
             if (!f) return -1 / 0;
             let M = typeof f.rangeAdd == "number",
               I = M ? 1 : typeof f.rangeMult == "number" ? f.rangeMult : 1,
-              C = h.ranges.map((S) =>
-                S === 1 / 0 ? 1 / 0 : Math.round(S * I),
-              ),
+              C = (Array.isArray(f.ranges) && f.ranges.length > 0
+                ? f.ranges
+                : h.ranges
+              ).map((S) => (S === 1 / 0 ? 1 / 0 : Math.round(S * I))),
               B = (
                 M ? C.map((S) => (S === 1 / 0 ? 1 / 0 : S + f.rangeAdd)) : C
               ).filter(Number.isFinite);
@@ -4264,7 +4239,10 @@ ${$(n, "ms_raw")}`;
                     : typeof m.rangeMult == "number"
                       ? m.rangeMult
                       : 1,
-                  g = u.ranges.map((p) => (p === 1 / 0 ? 1 / 0 : p * d)),
+                  g = (Array.isArray(m.ranges) && m.ranges.length > 0
+                    ? m.ranges
+                    : u.ranges
+                  ).map((p) => (p === 1 / 0 ? 1 / 0 : p * d)),
                   b = (
                     l
                       ? g.map((p) => (p === 1 / 0 ? 1 / 0 : p + m.rangeAdd))
