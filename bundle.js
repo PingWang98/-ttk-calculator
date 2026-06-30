@@ -347,6 +347,19 @@
   function isDoubleBluntAmmo(e) {
     return !!(e && e.blunt === true);
   }
+  function getProjectileCount(e, a) {
+    let t =
+        e && typeof e.projectileCount == "number" && isFinite(e.projectileCount)
+          ? e.projectileCount
+          : 1,
+      n =
+        a && typeof a.projectileCount == "number" && isFinite(a.projectileCount)
+          ? a.projectileCount
+          : isDoubleBluntAmmo(a)
+            ? 2
+            : 1;
+    return Math.max(1, Math.round(t)) * Math.max(1, Math.round(n));
+  }
   function getDoubleProjectileRawFlesh(e, a) {
     if (!isDoubleBluntAmmo(a)) return null;
     return e.flesh * (typeof a.base == "number" ? a.base : 1);
@@ -517,8 +530,9 @@
     oe = class {
       static calculateHitDamage(e, a, t, n, o, state) {
         let i = 0,
-          u = null;
-        for (let m = 0; m < 2; m++) {
+          u = null,
+          projectileTotal = getProjectileCount(e, t);
+        for (let m = 0; m < projectileTotal; m++) {
           let l = H.select(o),
             d = q.calculate(e, t, l, n),
             g = getDoubleProjectileArmorDamage(e, t);
@@ -680,8 +694,13 @@
       }
     },
     N = class {
-      static getStrategy(e) {
-        return e && (/RIP/i.test(e) || /CT/i.test(e)) ? le : e === "Double" ? oe : se;
+      static getStrategy(e, a) {
+        let t = a ? getAmmoProfile(a, e) : null;
+        return e && (/RIP/i.test(e) || /CT/i.test(e))
+          ? le
+          : getProjectileCount(a, t) > 1
+            ? oe
+            : se;
       }
     };
   var R = class {
@@ -699,7 +718,6 @@
           m = typeof e.hitRate == "number" ? e.hitRate : a.hitRate,
           l = getAmmoProfile(e, s),
           d = e.fireMode === "burst" && e.burstCount && e.burstInternalROF,
-          g = this._calculateShotInterval(e, d),
           y = k.calculate(i, e),
           b = 0,
           p = 0,
@@ -766,7 +784,9 @@
           lastPart = state.hitPart || "chest";
         }
         let w = i / e.velocity;
-        let shotIntervalSum = g * (b - 1 - vCount);
+        let shotIntervalSum = d
+          ? this._calculateShotInterval(e, d) * (b - 1 - vCount)
+          : this._calculateShotIntervalSum(e, b);
         return {
           time: w + shotIntervalSum + vTotalTime,
           shots: b,
@@ -777,6 +797,22 @@
       }
       static _calculateShotInterval(e, a) {
         return a ? 60 / e.burstInternalROF : 60 / e.rof;
+      }
+      static _calculateShotIntervalSum(e, a) {
+        let t = a - 1;
+        if (t <= 0) return 0;
+        let n =
+            e && typeof e.initialFastShotCount == "number"
+              ? Math.max(1, Math.round(e.initialFastShotCount))
+              : 1,
+          o =
+            e && typeof e.initialFastRof == "number" && e.initialFastRof > 0
+              ? e.initialFastRof
+              : null;
+        if (!o || n <= 0) return t * (60 / e.rof);
+        let r = Math.min(t, n),
+          s = t - r;
+        return r * (60 / o) + s * (60 / e.rof);
       }
       static _updateBurstInterval(e, a, t) {
         a <= e.burstCount ||
@@ -817,7 +853,7 @@
             if (!i) return null;
             let u = s.hitRate ?? t.hitRate,
               m = { ...t, hitRate: u, bulletLevel: i },
-              l = N.getStrategy(i);
+              l = N.getStrategy(i, o);
             return {
               ...this.calculateAvgStats(o, m, void 0, l),
               weapon: o,
@@ -852,6 +888,7 @@
       { name: "\u6B7B\u5BC2", mult: 0.24 },
       { name: "\u5148\u8FDB/\u8F7B\u8BED/\u52C7\u706B", mult: 0.18 },
       { name: "\u51B2\u950B\u67AA\u56DE\u58F0\u6D88\u97F3\u5668", mult: 0.3 },
+      { name: "RM277断流消音器", mult: 0.18, weapons: ["RM277"] },
     ],
     ge = [
       {
@@ -915,7 +952,7 @@
         barrels: [
           {
             name: "深空镀铬枪管",
-            rangeAdd: 5,
+            rangeMult: 1.3,
             velocityAdd: 100,
             damageBonus: -2,
             armorDamageBonus: -3,
@@ -1066,7 +1103,7 @@
         barrels: [
           {
             name: "夜莺一体消音组合",
-            rangeAdd: 6,
+            rangeMult: 1.18,
             velocityAdd: 95,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -1074,7 +1111,7 @@
           },
           {
             name: "AR57激流超长枪管",
-            rangeAdd: 11,
+            rangeMult: 1.18,
             velocityAdd: 158,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -1475,12 +1512,11 @@
           },
           {
             name: "猎手枪管",
-            rangeAdd: 9,
+            rangeMult: 1.3,
             velocityAdd: 310,
             damageBonus: 0,
             armorDamageBonus: 0,
             rofMult: 1,
-            rangeMult: 1,
           },
         ],
         mult: { head: 1.9, chest: 1, stomach: 0.9, limbs: 0.35 },
@@ -1610,14 +1646,14 @@
         barrels: [
           {
             name: "鏖战枪管",
-            rangeAdd: -5,
+            rangeMult: 0.833333,
             damageBonus: 4,
             armorDamageBonus: 1,
             rofMult: 1,
           },
           {
             name: "余烬枪管",
-            rangeAdd: 5,
+            rangeMult: 1.18,
             velocityAdd: 175,
             decays: [1, 0.9, 0.7, 0.7, 0.7],
             damageBonus: 3,
@@ -2003,6 +2039,35 @@
         allowedBullets: [3, 4, 5, "6.8×51mm PLY-I", "6.8×51mm PLY-II", "6.8×51mm PLY-III", "AP"],
       },
       {
+        name: "RM277",
+        type: "步枪",
+        ranges: [55, 90, 1 / 0, 1 / 0],
+        decays: [1, 0.9, 0.8, 0.8, 0.8],
+        velocity: 650,
+        flesh: 41,
+        armor: 42,
+        rof: 550,
+        triggerDelay: 0,
+        barrels: [
+          {
+            name: "RM277鲸鲨枪管组合",
+            rangeMult: 1.3,
+            damageBonus: 0,
+            armorDamageBonus: 0,
+            rofMult: 1,
+          },
+          {
+            name: "RM277重型一体枪管",
+            rangeMult: 1.18,
+            damageBonus: 0,
+            armorDamageBonus: 0,
+            rofMult: 1,
+          },
+        ],
+        mult: { head: 1.9, chest: 1, stomach: 1, limbs: 0.4 },
+        allowedBullets: [3, 4, 5, "6.8×51mm PLY-I", "6.8×51mm PLY-II", "6.8×51mm PLY-III", "AP"],
+      },
+      {
         name: "ASh-12",
         type: "步枪",
         ranges: [55, 90, 1 / 0, 1 / 0],
@@ -2028,6 +2093,14 @@
             armorDamageBonus: -15,
             partMultAdd: { head: 0.15, stomach: -0.2, limbs: -0.2 },
             rofMult: 0.8,
+          },
+          {
+            name: "HVK双发套件",
+            rangeMult: 1,
+            damageBonus: -14,
+            armorDamageBonus: -10,
+            rofMult: 0.8,
+            projectileCount: 2,
           },
         ],
         mult: { head: 1.6, chest: 1, stomach: 0.9, limbs: 0.45 },
@@ -2176,7 +2249,7 @@
         barrels: [
           {
             name: "猎鹿人枪管",
-            rangeAdd: 9,
+            rangeMult: 1.3,
             velocityAdd: 225,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2199,7 +2272,7 @@
         barrels: [
           {
             name: "猎鹿人枪管",
-            rangeAdd: 9,
+            rangeMult: 1.45,
             velocityAdd: 225,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2222,7 +2295,7 @@
         barrels: [
           {
             name: "猎鹿人枪管",
-            rangeAdd: 9,
+            rangeMult: 1.3,
             velocityAdd: 225,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2245,7 +2318,7 @@
         barrels: [
           {
             name: "G3平台神射枪管组合",
-            rangeAdd: 32,
+            rangeMult: 1.355556,
             velocityAdd: 198,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2254,7 +2327,7 @@
           },
           {
             name: "G3加强长枪管组合",
-            rangeAdd: 27,
+            rangeMult: 1.3,
             velocityAdd: 165,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2262,7 +2335,7 @@
           },
           {
             name: "G3守卫标准枪管组合",
-            rangeAdd: 16,
+            rangeMult: 1.177778,
             velocityAdd: 99,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2285,7 +2358,7 @@
         barrels: [
           {
             name: "G3平台神射枪管组合",
-            rangeAdd: 32,
+            rangeMult: 1.355556,
             velocityAdd: 198,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2294,7 +2367,7 @@
           },
           {
             name: "G3加强长枪管组合",
-            rangeAdd: 27,
+            rangeMult: 1.3,
             velocityAdd: 165,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2302,7 +2375,7 @@
           },
           {
             name: "G3守卫标准枪管组合",
-            rangeAdd: 16,
+            rangeMult: 1.177778,
             velocityAdd: 99,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2325,7 +2398,7 @@
         barrels: [
           {
             name: "SR25瞬息短枪管",
-            rangeAdd: -10,
+            rangeMult: 0.833333,
             velocityAdd: 75,
             damageBonus: 5,
             armorDamageBonus: 0,
@@ -2334,7 +2407,7 @@
           },
           {
             name: "SR25追风长枪管",
-            rangeAdd: 46,
+            rangeMult: 1.766667,
             velocityAdd: 200,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2342,7 +2415,7 @@
           },
           {
             name: "SR25新星超长枪管",
-            rangeAdd: 57,
+            rangeMult: 1.95,
             velocityAdd: 350,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2365,7 +2438,7 @@
         barrels: [
           {
             name: "SKS瞬息超长枪管",
-            rangeAdd: 17,
+            rangeMult: 1.3,
             velocityAdd: 173,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2388,7 +2461,7 @@
         barrels: [
           {
             name: "SVD黑刺超长枪管",
-            rangeAdd: 21,
+            rangeMult: 1.3,
             velocityAdd: 150,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2396,7 +2469,7 @@
           },
           {
             name: "SVD实用长枪管",
-            rangeAdd: 13,
+            rangeMult: 1.18,
             velocityAdd: 90,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2404,6 +2477,45 @@
           },
         ],
         mult: { head: 2.3, chest: 1, stomach: 0.9, limbs: 0.4 },
+        allowedBullets: [1, 2, 3, 4, 5],
+      },
+      {
+        name: "SVCH",
+        type: "精确射手步枪",
+        ranges: [65, 1 / 0, 1 / 0, 1 / 0],
+        decays: [1, 0.9, 0.9, 0.9, 0.9],
+        velocity: 680,
+        flesh: 47,
+        armor: 46,
+        rof: 600,
+        triggerDelay: 0,
+        defaultBarrelName: "SVCH碳纤长枪管",
+        defaultFireControlName: "镀铬爆发枪机",
+        fireControls: [
+          {
+            name: "镀铬爆发枪机",
+            initialFastShotCount: 3,
+            initialFastRof: 700,
+          },
+        ],
+        barrels: [
+          {
+            name: "SVCH碳纤长枪管",
+            rangeMult: 1.3,
+            damageBonus: 0,
+            armorDamageBonus: 0,
+            rofMult: 1,
+            fireMode: "auto",
+          },
+          {
+            name: "SVCH精工短枪管",
+            rangeMult: 1,
+            damageBonus: 0,
+            armorDamageBonus: 0,
+            rofMult: 1,
+          },
+        ],
+        mult: { head: 1.9, chest: 1, stomach: 0.9, limbs: 0.4 },
         allowedBullets: [1, 2, 3, 4, 5],
       },
       {
@@ -2419,7 +2531,7 @@
         barrels: [
           {
             name: "VSS海啸长枪管组合",
-            rangeAdd: 36,
+            rangeMult: 1.3,
             velocityAdd: 99,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2442,7 +2554,7 @@
         barrels: [
           {
             name: "mini-14增强枪管",
-            rangeAdd: 27,
+            rangeMult: 1.3,
             velocityAdd: 195,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2566,17 +2678,20 @@
     canAddClone() {
       return this.clonedWeapons.length < this.maxClones;
     }
-    readAttachmentsWithBullet(e, a, t, n) {
+    readAttachmentsWithBullet(e, a, t, n, fireValues) {
       return this.weapons.map((o, r) => {
         let s = e[r] || "",
           i = a[r] || "",
+          fire = fireValues ? fireValues[r] || "" : "",
           [, u] = s.split("|").map(Number),
           [, m] = i.split("|").map(Number),
+          [, fireIndex] = fire.split("|").map(Number),
           l = t[r] === "" ? null : Number(t[r]),
           d = n ? n[r] : null;
         return {
           barrelIndex: u === -1 ? 0 : u,
           muzzleIndex: m === -1 ? 0 : m,
+          fireControlIndex: fireIndex === -1 || isNaN(fireIndex) ? 0 : fireIndex,
           hitRate: l,
           bulletType: d,
         };
@@ -2584,9 +2699,10 @@
     }
     applyAttachments(e, a) {
       let t = this.weapons.map((r, s) => {
-          let { barrelIndex: i, muzzleIndex: u, hitRate: m } = e[s],
+          let { barrelIndex: i, muzzleIndex: u, hitRate: m, fireControlIndex: fcIndex } = e[s],
             l = i > 0 ? r.barrels[i - 1] : null,
             d = u > 0 ? this.muzzles[u] : null,
+            fc = fcIndex > 0 && r.fireControls ? r.fireControls[fcIndex - 1] : null,
             g = 1;
           {
             let A =
@@ -2636,7 +2752,25 @@
             F =
               l && l.burstInterval !== void 0
                 ? l.burstInterval
-                : r.burstInterval;
+                : r.burstInterval,
+            ae =
+              l && l.projectileCount !== void 0
+                ? l.projectileCount
+                : r.projectileCount,
+            Te =
+              l && l.initialFastShotCount !== void 0
+                ? l.initialFastShotCount
+                : fc && fc.initialFastShotCount !== void 0
+                  ? fc.initialFastShotCount
+                  : r.initialFastShotCount,
+            Pe =
+              l && l.initialFastRof !== void 0
+                ? l.initialFastRof
+                : fc && fc.initialFastRof !== void 0
+                  ? fc.initialFastRof
+                  : r.initialFastRof,
+            fcRof = fc && typeof fc.rof == "number" ? fc.rof : r.rof,
+            fcRofAdd = fc && typeof fc.rofAdd == "number" ? fc.rofAdd : 0;
           return (
             w === "auto" && ((O = void 0), (V = void 0), (F = void 0)),
             {
@@ -2645,10 +2779,11 @@
               ranges: B,
               decays: S,
               rof:
-                r.rof * p + (l && typeof l.rofAdd == "number" ? l.rofAdd : 0),
+                fcRof * p + (l && typeof l.rofAdd == "number" ? l.rofAdd : 0) + fcRofAdd,
               flesh: r.flesh + v,
               armor: r.armor + h,
               activeBarrelName: l ? l.name : null,
+              activeFireControlName: fc ? fc.name : null,
               hitRate: m ?? r.hitRate,
               triggerDelay: D,
               mult: M,
@@ -2656,6 +2791,9 @@
               burstCount: O,
               burstInternalROF: V,
               burstInterval: F,
+              projectileCount: ae,
+              initialFastShotCount: Te,
+              initialFastRof: Pe,
               bulletType: e[s].bulletType,
             }
           );
@@ -2665,9 +2803,11 @@
               barrelIndex: i,
               muzzleIndex: u,
               hitRate: m,
+              fireControlIndex: fcIndex,
             } = r.attachmentConfig,
             l = i > 0 ? r.barrels[i - 1] : null,
             d = u > 0 ? this.muzzles[u] : null,
+            fc = fcIndex > 0 && r.fireControls ? r.fireControls[fcIndex - 1] : null,
             g = 1;
           {
             let T =
@@ -2717,7 +2857,25 @@
             F =
               l && l.burstInterval !== void 0
                 ? l.burstInterval
-                : r.burstInterval;
+                : r.burstInterval,
+            ae =
+              l && l.projectileCount !== void 0
+                ? l.projectileCount
+                : r.projectileCount,
+            Te =
+              l && l.initialFastShotCount !== void 0
+                ? l.initialFastShotCount
+                : fc && fc.initialFastShotCount !== void 0
+                  ? fc.initialFastShotCount
+                  : r.initialFastShotCount,
+            Pe =
+              l && l.initialFastRof !== void 0
+                ? l.initialFastRof
+                : fc && fc.initialFastRof !== void 0
+                  ? fc.initialFastRof
+                  : r.initialFastRof,
+            fcRof = fc && typeof fc.rof == "number" ? fc.rof : r.rof,
+            fcRofAdd = fc && typeof fc.rofAdd == "number" ? fc.rofAdd : 0;
           return (
             w === "auto" && ((O = void 0), (V = void 0), (F = void 0)),
             {
@@ -2726,10 +2884,11 @@
               ranges: B,
               decays: S,
               rof:
-                r.rof * p + (l && typeof l.rofAdd == "number" ? l.rofAdd : 0),
+                fcRof * p + (l && typeof l.rofAdd == "number" ? l.rofAdd : 0) + fcRofAdd,
               flesh: r.flesh + v,
               armor: r.armor + h,
               activeBarrelName: l ? l.name : null,
+              activeFireControlName: fc ? fc.name : null,
               hitRate: m ?? r.hitRate,
               triggerDelay: D,
               mult: M,
@@ -2737,6 +2896,9 @@
               burstCount: O,
               burstInternalROF: V,
               burstInterval: F,
+              projectileCount: ae,
+              initialFastShotCount: Te,
+              initialFastRof: Pe,
               bulletType: r.attachmentConfig.bulletType,
             }
           );
@@ -2760,9 +2922,10 @@
       return !0;
     }
     calculateCloneDisplayData(e, a = {}) {
-      let { barrelIndex: t, muzzleIndex: n, hitRate: o } = e.attachmentConfig,
+      let { barrelIndex: t, muzzleIndex: n, hitRate: o, fireControlIndex: fcIndex } = e.attachmentConfig,
         r = t > 0 ? e.barrels[t - 1] : null,
         s = n > 0 ? this.muzzles[n] : null,
+        fc = fcIndex > 0 && e.fireControls ? e.fireControls[fcIndex - 1] : null,
         i = 1;
       {
         let B = r && typeof r.rangeAdd == "number" ? 1 : r ? r.rangeMult : 1,
@@ -2803,8 +2966,10 @@
         decays: f,
         rof:
           Math.round(
-            (e.rof * m + (r && typeof r.rofAdd == "number" ? r.rofAdd : 0)) *
-              100,
+            (((fc && typeof fc.rof == "number" ? fc.rof : e.rof) * m +
+              (r && typeof r.rofAdd == "number" ? r.rofAdd : 0) +
+              (fc && typeof fc.rofAdd == "number" ? fc.rofAdd : 0)) *
+              100),
           ) / 100,
         flesh: Math.round(e.flesh + l),
         armor: Math.round(e.armor + d),
@@ -3163,7 +3328,7 @@ ${$(n, "ms_raw")}`;
               i = R.getRealBulletKey(s, o, t);
             if (!i) return null;
             let u = a[r].hitRate != null ? a[r].hitRate : t.hitRate,
-              m = N.getStrategy(i),
+              m = N.getStrategy(i, o),
               d = [
                 0,
                 ...o.ranges.filter((h) => h !== 1 / 0 && h <= _.MAX_DISTANCE),
@@ -3292,11 +3457,21 @@ ${$(n, "ms_raw")}`;
               let I = p(u, u.barrels[h]);
               return p(u, f) > I ? M : h;
             }, 0) + 1;
+          if (u.defaultBarrelName) {
+            let h = u.barrels.findIndex((f) => f.name === u.defaultBarrelName);
+            h >= 0 && (l = h + 1);
+          }
         }
         let d = [{ name: "\u65E0", rangeMult: 0 }, ...u.barrels],
-          g = a,
-          y = u.allowedBullets || [],
+          g = a.filter((h, f) => f === 0 || !h.weapons || h.weapons.includes(u.name)),
+          y = [{ name: "\u65E0" }, ...(u.fireControls || [])],
+          fcDefaultIndex = 0,
+          bOptions = u.allowedBullets || [],
           b = document.createElement("tr");
+        if (u.defaultFireControlName && u.fireControls) {
+          let h = u.fireControls.findIndex((f) => f.name === u.defaultFireControlName);
+          h >= 0 && (fcDefaultIndex = h + 1);
+        }
         (b.dataset.weaponName = u.name),
           (b.dataset.rowOrder = String(m)),
           ((b.innerHTML = `
@@ -3314,8 +3489,9 @@ ${$(n, "ms_raw")}`;
         <td class="currentArmor" data-weapon="${m}">${u.armor}</td>
         <td class="multipliers" data-weapon="${m}">${P(u.mult)}</td>
         <td>${this.createSelectHTML("barrelSel", m, d, l)}</td>
+        <td>${this.createSelectHTML("fireControlSel", m, y, fcDefaultIndex)}</td>
         <td>${this.createSelectHTML("muzzleSel", m, g, 0)}</td>
-        <td>${this.createSelectHTML("bulletSel", m, y, 0)}</td>
+        <td>${this.createSelectHTML("bulletSel", m, bOptions, 0)}</td>
         <td><input type="number" data-weapon="${m}" class="hitRateInput" min="0" max="1" step="0.01" /></td>
         <td>${this.createVelocityPrecisionSlider(m, !1, 0)}</td>
       `),
@@ -3341,6 +3517,7 @@ ${$(n, "ms_raw")}`;
         <td class="currentArmor" data-clone="${m}">${u.armor}</td>
         <td class="multipliers" data-clone="${m}">${P(u.mult)}</td>
         <td>${u.attachmentConfig.barrelIndex > 0 ? u.barrels[u.attachmentConfig.barrelIndex - 1].name : "\u65E0"}</td>
+        <td>${u.attachmentConfig.fireControlIndex > 0 && u.fireControls ? u.fireControls[u.attachmentConfig.fireControlIndex - 1].name : "\u65E0"}</td>
         <td>${u.attachmentConfig.muzzleIndex > 0 ? a[u.attachmentConfig.muzzleIndex].name : "\u65E0"}</td>
         <td>${u.attachmentConfig.bulletType || "\u5168\u5C40"}</td>
         <td>${u.attachmentConfig.hitRate || ""}</td>
@@ -3477,6 +3654,11 @@ ${$(n, "ms_raw")}`;
           e();
         });
       }),
+        document.querySelectorAll(".fireControlSel").forEach((s) => {
+          s.addEventListener("change", () => {
+            e();
+          });
+        }),
         document.querySelectorAll(".muzzleSel").forEach((s) => {
           s.addEventListener("change", () => {
             e();
@@ -3865,7 +4047,8 @@ ${$(n, "ms_raw")}`;
       let e = this.weaponManager.getWeapons().length,
         a = Array(e).fill(""),
         t = Array(e).fill(""),
-        n = Array(e).fill("");
+        n = Array(e).fill(""),
+        o = Array(e).fill("");
       return (
         document.querySelectorAll(".barrelSel").forEach((o) => {
           let r = Number(o.dataset.weapon);
@@ -3879,7 +4062,11 @@ ${$(n, "ms_raw")}`;
           let r = Number(o.dataset.weapon);
           Number.isInteger(r) && r >= 0 && r < e && (n[r] = o.value || "");
         }),
-        { barrelValues: a, muzzleValues: t, hitRateValues: n }
+        document.querySelectorAll(".fireControlSel").forEach((r) => {
+          let s = Number(r.dataset.weapon);
+          Number.isInteger(s) && s >= 0 && s < e && (o[s] = r.value);
+        }),
+        { barrelValues: a, muzzleValues: t, hitRateValues: n, fireControlValues: o }
       );
     }
     renderAttachmentTable() {
@@ -3912,10 +4099,12 @@ ${$(n, "ms_raw")}`;
           barrelValues: t,
           muzzleValues: n,
           hitRateValues: o,
+          fireControlValues: fcValues,
         } = this.collectAttachmentData(),
         r = {
           barrelIndex: this.parseBarrelIndex(t[e]),
           muzzleIndex: this.parseMuzzleIndex(n[e]),
+          fireControlIndex: this.parseFireControlIndex(fcValues[e]),
           hitRate: o[e] === "" ? null : Number(o[e]),
           bulletType: a[e],
         },
@@ -3937,6 +4126,11 @@ ${$(n, "ms_raw")}`;
       if (!e) return 0;
       let [, a] = e.split("|").map(Number);
       return a === -1 ? 0 : a;
+    }
+    parseFireControlIndex(e) {
+      if (!e) return 0;
+      let [, a] = e.split("|").map(Number);
+      return a === -1 || isNaN(a) ? 0 : a;
     }
     readCurrentWeaponState(e) {
       let a = Number(
@@ -3994,6 +4188,7 @@ ${$(n, "ms_raw")}`;
       <td class="currentArmor" data-clone="${s}">${u.armor}</td>
       <td class="multipliers" data-clone="${s}">${P(u.mult)}</td>
       <td>${a.barrelIndex > 0 ? t[e].barrels[a.barrelIndex - 1].name : "\u65E0"}</td>
+      <td>${a.fireControlIndex > 0 && t[e].fireControls ? t[e].fireControls[a.fireControlIndex - 1].name : "\u65E0"}</td>
       <td>${a.muzzleIndex > 0 ? n[a.muzzleIndex].name : "\u65E0"}</td>
       <td>${a.bulletType || "\u5168\u5C40"}</td>
       <td>${a.hitRate || ""}</td>
@@ -4028,15 +4223,17 @@ ${$(n, "ms_raw")}`;
           barrelValues: a,
           muzzleValues: t,
           hitRateValues: n,
+          fireControlValues: fcValues,
         } = this.collectAttachmentData(),
         o = {
           barrelValues: a,
           muzzleValues: t,
           hitRateValues: n,
+          fireControlValues: fcValues,
           bulletTypes: e,
         },
         r = this.readPageParams(),
-        s = this.weaponManager.readAttachmentsWithBullet(a, t, n, e),
+        s = this.weaponManager.readAttachmentsWithBullet(a, t, n, e, fcValues),
         i = this.weaponManager.applyAttachments(s, r);
       this.viewRenderer.updateWeaponStats(i);
     }
@@ -4109,6 +4306,10 @@ ${$(n, "ms_raw")}`;
                         : A;
                 }, u[0]).idx;
               })();
+            if (o.defaultBarrelName) {
+              let u = o.barrels.findIndex((m) => m.name === o.defaultBarrelName);
+              u >= 0 && (s = u);
+            }
             t.value = `${o.barrels[s].name}|${s + 1}`;
           } else t.value = "无|-1";
         t.dispatchEvent(new Event("change"));
@@ -4272,12 +4473,19 @@ ${$(n, "ms_raw")}`;
           ) + "%",
       },
       { label: "射速", value: c.rof },
+      c.activeBarrelName ? { label: "枪管", value: c.activeBarrelName } : null,
+      c.activeFireControlName ? { label: "枪机", value: c.activeFireControlName } : null,
+      c.initialFastRof && c.initialFastShotCount
+        ? { label: `第2-${c.initialFastShotCount + 1}发射速`, value: c.initialFastRof }
+        : null,
       { label: "初速", value: Math.round(c.velocity) + " m/s" },
       { label: "射程", value: formatWeaponRangesForModal(c) },
       { label: "基础伤害", value: c.flesh },
       { label: "护甲伤害", value: c.armor },
       { label: "部位倍率", value: formatWeaponMultsForModal(c) },
-    ];
+    ].filter(Boolean);
+    let n = getProjectileCount(c, getAmmoProfile(c, e.bulletKey ?? a.bulletLevel));
+    n > 1 && t.push({ label: "每次击发弹丸", value: `${n} 枚` });
     return (
       e.ammoDisplayInfo &&
         (e.ammoDisplayInfo.showFlesh &&
@@ -4447,8 +4655,9 @@ ${$(n, "ms_raw")}`;
         lastPart = lPart;
         continue;
       }
-      if (a === "Double") {
-        for (let l = 0; l < 2; l++) {
+      let projectileTotal = getProjectileCount(c, r);
+      if (projectileTotal > 1) {
+        for (let l = 0; l < projectileTotal; l++) {
           let doubleProb = currentProb;
           if (e.markovModelEnable && e.markovMatrix && l > 0) {
             let row = e.markovMatrix[lastPart || "chest"];
@@ -4463,7 +4672,7 @@ ${$(n, "ms_raw")}`;
             g = applyDetailedHit(c, r, d, s, e, t, n, {
               shotIndex: u,
               projectileIndex: l + 1,
-              projectileTotal: 2,
+              projectileTotal,
             });
           ((t = g.newHealth), (n = g.newArmorState), i.push(g));
           lastPart = d;
@@ -4538,12 +4747,13 @@ ${$(n, "ms_raw")}`;
       o = { armorVal: e.armorValue, helmetVal: e.helmetValue },
       r = getAmmoProfile(c, a),
       s = k.calculate(e.distance, c),
+      projectileTotal = getProjectileCount(c, r),
       i = [];
     for (let u = 0; u < t.length && n > 0; u++) {
       let m = t[u],
-        l = a === "Double" ? Math.floor(u / 2) + 1 : u + 1,
-        d = a === "Double" ? (u % 2) + 1 : 1,
-        g = a === "Double" ? 2 : 1,
+        l = projectileTotal > 1 ? Math.floor(u / projectileTotal) + 1 : u + 1,
+        d = projectileTotal > 1 ? (u % projectileTotal) + 1 : 1,
+        g = projectileTotal,
         y = applyDetailedHit(c, r, m, s, e, n, o, {
           shotIndex: l,
           projectileIndex: d,
@@ -4571,6 +4781,7 @@ ${$(n, "ms_raw")}`;
         )
         .join(""),
       o = simulateManualSequence(c.weapon, e, c.bulletKey, a),
+      projectileTotal = getProjectileCount(c.weapon, getAmmoProfile(c.weapon, c.bulletKey)),
       r = o.steps,
       s = r.length
         ? r.map((C) => formatHitPartLabel(C.hitPart)).join(" → ")
@@ -4593,12 +4804,14 @@ ${$(n, "ms_raw")}`;
       d = u ? " disabled" : "",
       g = r.length
         ? `已录入 ${o.hits} 次命中 / ${o.shots} 次击发`
-        : "每点一次按钮代表一次命中；Double 按弹丸逐个记录。",
+        : projectileTotal > 1
+          ? `每点一次按钮代表一枚弹丸命中；当前配置每次击发包含 ${projectileTotal} 枚弹丸。`
+          : "每点一次按钮代表一次命中。",
       y = u
         ? "目标已被击杀。你可以删除最后一次或清空序列，继续手动验证其他情况。"
         : "当前序列尚未击杀目标，可以继续点头、胸、腹、手部、脚部按钮补完整条击杀链。",
       b = `头 ${formatDetailNumber(e.hitProb.head * 100)}% / 胸 ${formatDetailNumber(e.hitProb.chest * 100)}% / 腹 ${formatDetailNumber(e.hitProb.stomach * 100)}% / 手 ${formatDetailNumber(e.hitProb.arms * 100)}% / 脚 ${formatDetailNumber(e.hitProb.legs * 100)}%`;
-    return `<div class="weapon-detail-header"><h3 id="weaponDetailTitle">${c.name} 详细击杀信息</h3><p class="weapon-detail-subtitle">用下方五个按钮手动输入命中部位，系统会按当前武器配置、特殊子弹规则和目标状态同步结算。</p><p class="weapon-detail-note">说明：这个面板按“命中序列”逐次计算，不包含空枪；Double 会按两枚弹丸分别记录在表格里；完整一枪同部位需要连续点两次。</p></div><div class="weapon-detail-grid"><section class="weapon-detail-card"><h4>当前可视数据</h4><div class="weapon-detail-list">${n}</div></section><section class="weapon-detail-card"><h4>当前目标参数</h4><div class="weapon-detail-list"><div class="row"><span class="label">生命值</span><span class="value">${e.healthValue}</span></div><div class="row"><span class="label">护甲</span><span class="value">${e.armorLevel}级 / ${e.armorValue}</span></div><div class="row"><span class="label">头盔</span><span class="value">${e.helmetLevel}级 / ${e.helmetValue}</span></div><div class="row"><span class="label">手部防护</span><span class="value">${e.limbProtection ? "是" : "否"}</span></div><div class="row"><span class="label">距离</span><span class="value">${e.distance} m</span></div><div class="row"><span class="label">部位概率</span><span class="value">${b}</span></div></div></section><section class="weapon-detail-card"><h4>当前剩余状态</h4><div class="weapon-detail-list"><div class="row"><span class="label">状态</span><span class="value"><span class="${l}">${m}</span></span></div><div class="row"><span class="label">当前血量</span><span class="value">${formatDetailNumber(o.currentHealth)}</span></div><div class="row"><span class="label">剩余胸甲</span><span class="value">${formatDetailNumber(o.currentArmor)}</span></div><div class="row"><span class="label">剩余头盔</span><span class="value">${formatDetailNumber(o.currentHelmet)}</span></div><div class="row"><span class="label">累计命中</span><span class="value">${o.hits}</span></div><div class="row"><span class="label">累计击发</span><span class="value">${o.shots}</span></div></div></section></div><section class="weapon-detail-sequence weapon-detail-controls"><strong>手动命中序列</strong><div class="weapon-detail-current-sequence">${s}</div><div class="weapon-detail-sequence-note">${g}</div><div class="weapon-detail-sequence-note">${y}</div><div class="weapon-detail-button-row"><button type="button" class="weapon-detail-action-btn sequence-hit-btn" data-hit-part="head"${d}>头部</button><button type="button" class="weapon-detail-action-btn sequence-hit-btn" data-hit-part="chest"${d}>胸部</button><button type="button" class="weapon-detail-action-btn sequence-hit-btn" data-hit-part="stomach"${d}>腹部</button><button type="button" class="weapon-detail-action-btn sequence-hit-btn" data-hit-part="arms"${d}>手部</button><button type="button" class="weapon-detail-action-btn sequence-hit-btn" data-hit-part="legs"${d}>脚部</button></div><div class="weapon-detail-button-row utility"><button type="button" class="weapon-detail-action-btn secondary" data-sequence-action="undo"${r.length ? "" : " disabled"}>删除最后一次</button><button type="button" class="weapon-detail-action-btn secondary" data-sequence-action="clear"${r.length ? "" : " disabled"}>清空序列</button></div></section><div class="weapon-detail-table-wrap"><table class="weapon-detail-table"><thead><tr><th>命中序号</th><th>击发</th><th>弹丸</th><th>部位</th><th>肉伤</th><th>甲伤</th><th>敌人扣血</th><th>命中前血量</th><th>敌人当前血量</th><th>命中前胸甲</th><th>剩余胸甲</th><th>命中前头盔</th><th>剩余头盔</th></tr></thead><tbody>${i}</tbody></table></div>`;
+    return `<div class="weapon-detail-header"><h3 id="weaponDetailTitle">${c.name} 详细击杀信息</h3><p class="weapon-detail-subtitle">用下方五个按钮手动输入命中部位，系统会按当前武器配置、特殊子弹规则和目标状态同步结算。</p><p class="weapon-detail-note">说明：这个面板按“命中序列”逐次计算，不包含空枪；多弹丸配置会按弹丸逐个记录在表格里；完整一枪同部位需要连续点满该枪的弹丸数。</p></div><div class="weapon-detail-grid"><section class="weapon-detail-card"><h4>当前可视数据</h4><div class="weapon-detail-list">${n}</div></section><section class="weapon-detail-card"><h4>当前目标参数</h4><div class="weapon-detail-list"><div class="row"><span class="label">生命值</span><span class="value">${e.healthValue}</span></div><div class="row"><span class="label">护甲</span><span class="value">${e.armorLevel}级 / ${e.armorValue}</span></div><div class="row"><span class="label">头盔</span><span class="value">${e.helmetLevel}级 / ${e.helmetValue}</span></div><div class="row"><span class="label">手部防护</span><span class="value">${e.limbProtection ? "是" : "否"}</span></div><div class="row"><span class="label">距离</span><span class="value">${e.distance} m</span></div><div class="row"><span class="label">部位概率</span><span class="value">${b}</span></div></div></section><section class="weapon-detail-card"><h4>当前剩余状态</h4><div class="weapon-detail-list"><div class="row"><span class="label">状态</span><span class="value"><span class="${l}">${m}</span></span></div><div class="row"><span class="label">当前血量</span><span class="value">${formatDetailNumber(o.currentHealth)}</span></div><div class="row"><span class="label">剩余胸甲</span><span class="value">${formatDetailNumber(o.currentArmor)}</span></div><div class="row"><span class="label">剩余头盔</span><span class="value">${formatDetailNumber(o.currentHelmet)}</span></div><div class="row"><span class="label">累计命中</span><span class="value">${o.hits}</span></div><div class="row"><span class="label">累计击发</span><span class="value">${o.shots}</span></div></div></section></div><section class="weapon-detail-sequence weapon-detail-controls"><strong>手动命中序列</strong><div class="weapon-detail-current-sequence">${s}</div><div class="weapon-detail-sequence-note">${g}</div><div class="weapon-detail-sequence-note">${y}</div><div class="weapon-detail-button-row"><button type="button" class="weapon-detail-action-btn sequence-hit-btn" data-hit-part="head"${d}>头部</button><button type="button" class="weapon-detail-action-btn sequence-hit-btn" data-hit-part="chest"${d}>胸部</button><button type="button" class="weapon-detail-action-btn sequence-hit-btn" data-hit-part="stomach"${d}>腹部</button><button type="button" class="weapon-detail-action-btn sequence-hit-btn" data-hit-part="arms"${d}>手部</button><button type="button" class="weapon-detail-action-btn sequence-hit-btn" data-hit-part="legs"${d}>脚部</button></div><div class="weapon-detail-button-row utility"><button type="button" class="weapon-detail-action-btn secondary" data-sequence-action="undo"${r.length ? "" : " disabled"}>删除最后一次</button><button type="button" class="weapon-detail-action-btn secondary" data-sequence-action="clear"${r.length ? "" : " disabled"}>清空序列</button></div></section><div class="weapon-detail-table-wrap"><table class="weapon-detail-table"><thead><tr><th>命中序号</th><th>击发</th><th>弹丸</th><th>部位</th><th>肉伤</th><th>甲伤</th><th>敌人扣血</th><th>命中前血量</th><th>敌人当前血量</th><th>命中前胸甲</th><th>剩余胸甲</th><th>命中前头盔</th><th>剩余头盔</th></tr></thead><tbody>${i}</tbody></table></div>`;
   }
   function formatHitPartLabel(c) {
     return c === "head"
@@ -4861,8 +5074,9 @@ ${$(n, "ms_raw")}`;
             barrelValues: t,
             muzzleValues: n,
             hitRateValues: o,
+            fireControlValues: fcValues,
           } = this.domController.collectAttachmentData(),
-          r = this.weaponManager.readAttachmentsWithBullet(t, n, o, a),
+          r = this.weaponManager.readAttachmentsWithBullet(t, n, o, a, fcValues),
           s = this.weaponManager.getWeapons();
         fe(r, s);
         let i = this.weaponManager.applyAttachments(r, e),
