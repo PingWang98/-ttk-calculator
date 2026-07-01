@@ -634,6 +634,54 @@ select option {
   padding-top: 12px;
 }
 
+.prob-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.prob-toggle-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 7px 11px;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  border-radius: var(--border-radius-sm);
+  background: rgba(0, 240, 255, 0.05);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-header);
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: var(--transition-smooth);
+}
+
+.prob-toggle-box:hover {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.18);
+}
+
+.prob-toggle-box input {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--color-cyan);
+}
+
+.prob-toggle-box:has(input:checked) {
+  border-color: var(--color-cyan);
+  background: rgba(0, 240, 255, 0.14);
+  color: var(--color-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
 .prob-hint-tag {
   font-size: 0.75rem;
   color: var(--color-text-muted);
