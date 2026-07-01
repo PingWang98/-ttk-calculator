@@ -230,7 +230,7 @@
               <label for="pHead">头部</label>
               <div class="prob-adjuster-wrap">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pHead', -0.03, event)">-</button>
-                <input type="number" id="pHead" value="0.10" step="0.01" min="0" max="1">
+                <input type="number" id="pHead" value="0.10" step="0.01" min="0">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pHead', 0.03, event)">+</button>
               </div>
             </div>
@@ -239,7 +239,7 @@
               <label for="pChest">胸部</label>
               <div class="prob-adjuster-wrap">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pChest', -0.03, event)">-</button>
-                <input type="number" id="pChest" value="0.30" step="0.01" min="0" max="1">
+                <input type="number" id="pChest" value="0.30" step="0.01" min="0">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pChest', 0.03, event)">+</button>
               </div>
             </div>
@@ -248,7 +248,7 @@
               <label for="pStomach">腹部</label>
               <div class="prob-adjuster-wrap">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pStomach', -0.03, event)">-</button>
-                <input type="number" id="pStomach" value="0.19" step="0.01" min="0" max="1">
+                <input type="number" id="pStomach" value="0.19" step="0.01" min="0">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pStomach', 0.03, event)">+</button>
               </div>
             </div>
@@ -257,7 +257,7 @@
               <label for="pArms">手部</label>
               <div class="prob-adjuster-wrap">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pArms', -0.03, event)">-</button>
-                <input type="number" id="pArms" value="0.23" step="0.01" min="0" max="1">
+                <input type="number" id="pArms" value="0.23" step="0.01" min="0">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pArms', 0.03, event)">+</button>
               </div>
             </div>
@@ -266,7 +266,7 @@
               <label for="pLegs">脚部</label>
               <div class="prob-adjuster-wrap">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pLegs', -0.03, event)">-</button>
-                <input type="number" id="pLegs" value="0.18" step="0.01" min="0" max="1">
+                <input type="number" id="pLegs" value="0.18" step="0.01" min="0">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pLegs', 0.03, event)">+</button>
               </div>
             </div>
@@ -274,6 +274,7 @@
           <div class="prob-actions-bar">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
               <button id="avgHitProbBtn" type="button" class="btn-tech">平均击中概率模型</button>
+              <button id="normalizeHitProbBtn" type="button" class="btn-tech">归一化</button>
               <label class="checkbox-container" style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer; color: var(--color-text-muted); font-size: 13px; user-select: none;">
                 <input type="checkbox" id="onlyLegs100" style="cursor: pointer; width: 14px; height: 14px; margin: 0;">
                 <span>脚部100%命中</span>
@@ -1402,7 +1403,7 @@
     };
 
     window.normalizeToSumOne = function(currentVals, keys) {
-      const values = keys.map(k => parseFloat(currentVals[k]) || 0);
+      const values = keys.map(k => Math.max(0, parseFloat(currentVals[k]) || 0));
       const sum = values.reduce((s, v) => s + v, 0);
       if (sum === 0) {
         const share = Math.floor(100 / keys.length);
@@ -1595,10 +1596,29 @@
       });
 
       // Snapshot baseline TTK values BEFORE each calculation (capture phase = runs before bundle.js handlers)
+      window.validateHitProbabilitySum = function(showMessage = false) {
+        const parts = ['pHead', 'pChest', 'pStomach', 'pArms', 'pLegs'];
+        const sum = parts.reduce((total, id) => {
+          const el = getCachedEl(id);
+          const value = el ? Math.max(0, parseFloat(el.value) || 0) : 0;
+          return total + value;
+        }, 0);
+        const valid = Math.abs(sum - 1) <= 1e-6;
+        if (!valid && showMessage) {
+          alert(`部位概率总和必须为 1.00，当前为 ${sum.toFixed(2)}。请先点击“归一化”。`);
+        }
+        return valid;
+      };
+
       const calcBtnEarly = getCachedEl("calcBtn");
       if (calcBtnEarly) {
         calcBtnEarly.addEventListener("click", (event) => {
           if (!event.isTrusted) return;
+          if (!window.validateHitProbabilitySum(true)) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return;
+          }
           window.isUserGeneratingTtk = true;
           if (window.currentTtkValues) {
             window.lastTtkValues = { ...window.currentTtkValues };
@@ -1659,7 +1679,6 @@
         startupMarkovRows.forEach(r => {
           window.normalizeMarkovRow(r);
         });
-        window.normalizeProbability();
         window.isRestoring = false;
         
         window.needsTtkRebuild = true;
@@ -1717,30 +1736,52 @@
         });
       }
 
-      // Auto-updater for probability hint tag
+      // Auto-updater for probability inputs. Values are user-controlled weights until normalized manually.
       const probParts = ['pHead', 'pChest', 'pStomach', 'pArms', 'pLegs'];
+      const probLabels = ['头', '胸', '腹', '手', '脚'];
+      function clampProbabilityInput(el, formatValue) {
+        if (!el) return 0;
+        let value = parseFloat(el.value);
+        if (!Number.isFinite(value)) value = 0;
+        value = Math.max(0, value);
+        if (parseFloat(el.value) < 0 || formatValue) {
+          el.value = value.toFixed(2);
+        }
+        return value;
+      }
+
       function updateProbHintTag() {
-        const pHead = parseFloat(getCachedEl('pHead').value) || 0;
-        const pChest = parseFloat(getCachedEl('pChest').value) || 0;
-        const pStomach = parseFloat(getCachedEl('pStomach').value) || 0;
-        const pArms = parseFloat(getCachedEl('pArms').value) || 0;
-        const pLegs = parseFloat(getCachedEl('pLegs').value) || 0;
+        const vals = probParts.map(id => clampProbabilityInput(getCachedEl(id), false));
+        const total = vals.reduce((sum, val) => sum + val, 0);
         
         const hintEl = getCachedQuery('.prob-hint-tag');
         if (hintEl) {
-          hintEl.textContent = `头 ${pHead.toFixed(2)} / 胸 ${pChest.toFixed(2)} / 腹 ${pStomach.toFixed(2)} / 手 ${pArms.toFixed(2)} / 脚 ${pLegs.toFixed(2)}`;
+          hintEl.textContent = `${probLabels.map((l, i) => `${l} ${vals[i].toFixed(2)}`).join(' / ')} / 总和 ${total.toFixed(2)}`;
         }
       }
+      window.updateProbHintTag = updateProbHintTag;
       
       probParts.forEach(id => {
         const el = getCachedEl(id);
         if (el) {
-          el.addEventListener('change', updateProbHintTag);
-          el.addEventListener('input', updateProbHintTag);
-          el.addEventListener('change', () => window.balanceProbability(id));
-          el.addEventListener('input', () => window.balanceProbability(id));
+          el.addEventListener('input', () => {
+            clampProbabilityInput(el, false);
+            updateProbHintTag();
+            window.saveAllInputs();
+          });
+          el.addEventListener('change', () => {
+            clampProbabilityInput(el, true);
+            updateProbHintTag();
+            window.saveAllInputs();
+          });
         }
       });
+      const normalizeHitProbBtn = getCachedEl("normalizeHitProbBtn");
+      if (normalizeHitProbBtn) {
+        normalizeHitProbBtn.addEventListener("click", () => {
+          window.normalizeProbability();
+        });
+      }
       updateProbHintTag();
 
       // Bind Markov row auto-balancers & Interactive Adjusters
@@ -2042,6 +2083,10 @@
           el.value = normalized[p].toFixed(2);
         }
       });
+      if (typeof window.updateProbHintTag === 'function') {
+        window.updateProbHintTag();
+      }
+      window.saveAllInputs();
     };
 
     window.balanceProbability = function(changedId) {
@@ -2095,9 +2140,11 @@
       
       let currentVal = parseFloat(el.value) || 0;
       let targetVal = currentVal + delta;
-      el.value = Math.max(0, Math.min(1.0, Math.round(targetVal * 100) / 100)).toFixed(2);
-      
-      window.balanceProbability(partId);
+      el.value = Math.max(0, Math.round(targetVal * 100) / 100).toFixed(2);
+      if (typeof window.updateProbHintTag === 'function') {
+        window.updateProbHintTag();
+      }
+      window.saveAllInputs();
     };
   </script>
   <script src="./bundle.js" defer></script>

@@ -1290,7 +1290,7 @@
       {
         name: "SMG-45",
         type: "冲锋枪",
-        ranges: [27, 54, 90, 1 / 0],
+        ranges: [27, 52, 90, 1 / 0],
         decays: [1, 0.75, 0.65, 0.55, 0.55],
         velocity: 500,
         flesh: 35,
@@ -2398,7 +2398,9 @@
         barrels: [
           {
             name: "SR25瞬息短枪管",
-            rangeMult: 0.833333,
+            ranges: [50, 80, 1 / 0, 1 / 0],
+            decays: [1, 0.85, 0.7, 0.7, 0.7],
+            rangeMult: 1,
             velocityAdd: 75,
             damageBonus: 5,
             armorDamageBonus: 0,
@@ -3910,7 +3912,7 @@ ${$(n, "ms_raw")}`;
           let o = document.getElementById(
             "p" + n.charAt(0).toUpperCase() + n.slice(1),
           );
-          a.hitProb[n] = Number(o.value || 0);
+          a.hitProb[n] = Math.max(0, Number(o.value || 0));
         }),
         ["head", "chest", "stomach", "arms", "legs", "miss"].forEach((r) => {
           a.markovMatrix[r] = {};
@@ -4354,9 +4356,13 @@ ${$(n, "ms_raw")}`;
   };
   function he(c) {
     let e = me.reduce((a, t) => a + c.hitProb[t], 0);
+    if (me.some((a) => !Number.isFinite(c.hitProb[a]) || c.hitProb[a] < 0))
+      throw new Error(
+        "\u90E8\u4F4D\u6982\u7387\u4E0D\u80FD\u4E3A\u8D1F\u6570\u6216\u975E\u6570\u503C\u3002",
+      );
     if (Math.abs(e - 1) > 1e-6)
       throw new Error(
-        "\u9996\u53D1\u547D\u4E2D\u7387\u603B\u548C\u5FC5\u987B\u4E3A 1\uFF01",
+        `\u90E8\u4F4D\u6982\u7387\u603B\u548C\u5FC5\u987B\u4E3A 1.00\uFF0C\u5F53\u524D\u4E3A ${e.toFixed(2)}\u3002\u8BF7\u5148\u70B9\u51FB\u201C\u5F52\u4E00\u5316\u201D\u3002`,
       );
     if (c.markovModelEnable && c.markovMatrix) {
       let parts = ["head", "chest", "stomach", "arms", "legs", "miss"];
@@ -4901,6 +4907,7 @@ ${$(n, "ms_raw")}`;
             this.toggleLegs100(c.checked);
           });
         }
+        if (typeof window.updateProbHintTag === "function") window.updateProbHintTag();
       }
       toggleLegs100(enabled) {
         let parts = ["Head", "Chest", "Stomach", "Arms", "Legs"];
@@ -4923,6 +4930,7 @@ ${$(n, "ms_raw")}`;
         if (!enabled) {
           this.applyAverageHitProbabilityModel();
         } else {
+          if (typeof window.updateProbHintTag === "function") window.updateProbHintTag();
           if (this.domController && typeof this.domController.saveCurrentConfig === "function") {
             this.domController.saveCurrentConfig();
           }
@@ -4936,6 +4944,8 @@ ${$(n, "ms_raw")}`;
           );
           if (n) n.value = String(t);
         }),
+          typeof window.updateProbHintTag === "function" &&
+            window.updateProbHintTag(),
           this.domController &&
             typeof this.domController.saveCurrentConfig === "function" &&
             this.domController.saveCurrentConfig());
