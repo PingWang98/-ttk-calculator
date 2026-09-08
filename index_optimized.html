@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>三角洲 TTK计算中心 - 战术装配模拟器</title>
+  <title>DELTA LAB · 三角洲 S11 战术实验室</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap">
@@ -13,12 +13,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap">
   </noscript>
   <link rel="stylesheet" href="./styles_optimized.css">
+  <link rel="stylesheet" href="./ui-lab.css">
+  <script src="./ui-lab.js" defer></script>
   <script src="./assets/libs/chart.umd.min.js" defer></script>
   <script src="./assets/libs/chartjs-plugin-datalabels.min.js" defer></script>
 </head>
 
 <body>
-  <div class="cyber-scanlines"></div>
+  <nav class="lab-rail" aria-label="工作台导航">
+    <svg class="lab-symbol" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 3 38 35H2L20 3Z" stroke="currentColor" stroke-width="2"/><path d="m22 12-9 13h8l-3 8 12-16h-9l1-5Z" fill="currentColor"/></svg>
+    <a class="rail-link active" href="#workbench" aria-label="模拟工作台"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>工作台</span></a>
+    <a class="rail-link" href="#visualization-card" aria-label="分析结果"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 16l4-7 4 3 6-8"/></svg><span>分析</span></a>
+    <a class="rail-link" href="#armory-card" aria-label="枪械军械库"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6V3h8v3M3 11h18M9 11v3h6v-3"/></svg><span>军械库</span></a>
+    <span class="rail-bottom">DELTA LAB / S11</span>
+  </nav>
   
   <header class="app-header">
     <div class="header-main">
@@ -27,8 +35,8 @@
           <svg class="delta-logo-svg" viewBox="0 0 100 100" width="46" height="46">
             <defs>
               <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#00f0ff" />
-                <stop offset="100%" stop-color="#00ffb7" />
+                <stop offset="0%" stop-color="#c2f970" />
+                <stop offset="100%" stop-color="#d7fca4" />
               </linearGradient>
               <filter id="logoGlow" x="-20%" y="-20%" width="140%" height="140%">
                 <feGaussianBlur stdDeviation="3" result="blur" />
@@ -41,7 +49,7 @@
         </div>
         <div class="title-text-group">
           <div class="title-brand-row">
-            <span class="brand-beacon">烽火地带</span>
+            <span class="brand-beacon">DELTA <span style="font-weight:400;color:#8f9b93">LAB</span></span>
             <span class="brand-season">S11</span>
             <button id="changelogOpenBtn" class="changelog-trigger" type="button" aria-label="查看S11更新日志" title="查看S11更新日志">
               <span aria-hidden="true">i</span>
@@ -57,6 +65,7 @@
         </div>
       </div>
       
+      <div class="lab-status"><i></i> 烽火地带 / 战术实验室</div>
       <div class="version-info">
         <span class="author">
           <a href="https://space.bilibili.com/15094121" target="_blank" title="访问UP主B站页面">
@@ -85,18 +94,40 @@
             <span class="author-name">恐惧可怕</span>
           </a>
         </span>
+        <span class="author"><span class="author-name">Codex</span></span>
       </div>
     </div>
   </header>
   
+<div class="lab-content">
+  <section class="lab-hero" aria-labelledby="lab-title">
+    <div>
+      <div class="lab-eyebrow">BALLISTICS &amp; TACTICAL INTELLIGENCE</div>
+      <h1 id="lab-title">每一毫秒，<em>决定胜负。</em></h1>
+      <p>从第一发命中，到最后一击。模拟真实交战条件，<br>找到属于你的最优武器配置。</p>
+      <div class="hero-tags"><span>● S11 数据就绪</span><span>TTK 模拟</span><span>弹道分析</span><span>自由装配</span></div>
+    </div>
+    <svg class="lab-scope" viewBox="0 0 520 240" fill="none" aria-hidden="true">
+      <defs><pattern id="scopeGrid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" stroke="#667b59" stroke-opacity=".15" stroke-width=".5"/></pattern><linearGradient id="scopeFade"><stop stop-color="#c2f970" stop-opacity="0"/><stop offset="1" stop-color="#c2f970" stop-opacity=".09"/></linearGradient></defs>
+      <rect width="520" height="240" fill="url(#scopeGrid)"/>
+      <g stroke="#72865d" stroke-opacity=".35"><circle cx="280" cy="120" r="102"/><circle cx="280" cy="120" r="75" stroke-dasharray="2 7"/><circle cx="280" cy="120" r="48"/><path d="M150 120h260M280 0v240M90 35h45M425 195h55"/></g>
+      <g class="scope-sweep"><path d="M280 120 380 99A102 102 0 0 0 280 18Z" fill="url(#scopeFade)"/><path d="M280 120V18" stroke="#c2f970" stroke-opacity=".6"/></g>
+      <path d="M268 95v-8h-8m32 8v-8h8m-32 58v8h-8m32-8v8h8" stroke="#c2f970"/>
+      <path d="M272 112h16m-8-8v32" stroke="#c2f970" stroke-width="1.5"/>
+      <circle cx="320" cy="79" r="3" fill="#c2f970"/><circle cx="320" cy="79" r="8" stroke="#c2f970" stroke-opacity=".3"/>
+      <path d="m326 74 26-18h47M229 149l-44 25h-43" stroke="#849e67" stroke-width=".7"/>
+      <g fill="#809771" font-family="monospace" font-size="8" letter-spacing="1"><text x="353" y="49">TARGET / 01</text><text x="110" y="190">TRAJECTORY</text><text x="16" y="30">AZ / 028.4</text><text x="392" y="226">RANGE ANALYSIS</text><text x="278" y="13">N</text></g>
+    </svg>
+  </section>
+  <div class="lab-section-bar" id="workbench"><h2>模拟工作台 <span>SIMULATION WORKSPACE</span></h2><p>配置交战条件 → 生成分析 → 对比装配</p></div>
   <main class="dashboard-grid">
     <!-- Left Column: Config Panel -->
     <section class="config-sidebar">
       <!-- Card 1: 武器基本参数 -->
       <div class="tactical-card" id="combat-params-card">
         <div class="card-header">
-          <div class="card-tag">PANEL 01</div>
-          <h3 class="card-title"><span class="icon">⚡</span> 武器基础参数</h3>
+          <div class="card-tag">01 /</div>
+          <h3 class="card-title"><span class="icon">⚡</span> 交战参数</h3>
         </div>
         <div class="card-body">
           <div class="control-row">
@@ -125,7 +156,7 @@
             </div>
             <div class="control-item">
               <label for="hitRate">命中率</label>
-              <input type="number" id="hitRate" value="0.85" min="0" max="1" step="0.01">
+              <input type="number" id="hitRate" value="1" min="0" max="1" step="0.01">
             </div>
           </div>
         </div>
@@ -134,8 +165,8 @@
       <!-- Card 2: 目标防御属性 -->
       <div class="tactical-card" id="defense-params-card">
         <div class="card-header">
-          <div class="card-tag">PANEL 02</div>
-          <h3 class="card-title"><span class="icon">🛡️</span> 目标防御属性</h3>
+          <div class="card-tag">02 /</div>
+          <h3 class="card-title"><span class="icon">🛡️</span> 目标防御</h3>
         </div>
         <div class="card-body">
           <div class="control-row">
@@ -184,8 +215,8 @@
       <!-- Card 3: 伤害机制与开关 -->
       <div class="tactical-card" id="mechanism-params-card">
         <div class="card-header">
-          <div class="card-tag">PANEL 03</div>
-          <h3 class="card-title"><span class="icon">⚙️</span> 伤害判定开关</h3>
+          <div class="card-tag">03 /</div>
+          <h3 class="card-title"><span class="icon">⚙️</span> 判定与筛选</h3>
         </div>
         <div class="card-body">
           <div class="checkbox-grid">
@@ -220,17 +251,18 @@
       <!-- Card 4: 击中部位概率 -->
       <div class="tactical-card" id="hit-prob-card">
         <div class="card-header">
-          <div class="card-tag">PANEL 04</div>
-          <h3 class="card-title"><span class="icon">🎯</span> 击中部位概率模型</h3>
+          <div class="card-tag">04 /</div>
+          <h3 class="card-title"><span class="icon">🎯</span> 命中分布</h3>
         </div>
         <div class="card-body">
+          <p class="model-preset-note">默认按胸部瞄准分布，非实测统计，可自由调整。</p>
           <div class="prob-grid">
             <div class="prob-input-item">
               <span class="part-indicator head"></span>
               <label for="pHead">头部</label>
               <div class="prob-adjuster-wrap">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pHead', -0.03, event)">-</button>
-                <input type="number" id="pHead" value="0.10" step="0.01" min="0">
+                <input type="number" id="pHead" value="0.15" step="0.01" min="0">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pHead', 0.03, event)">+</button>
               </div>
             </div>
@@ -239,7 +271,7 @@
               <label for="pChest">胸部</label>
               <div class="prob-adjuster-wrap">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pChest', -0.03, event)">-</button>
-                <input type="number" id="pChest" value="0.30" step="0.01" min="0">
+                <input type="number" id="pChest" value="0.35" step="0.01" min="0">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pChest', 0.03, event)">+</button>
               </div>
             </div>
@@ -248,7 +280,7 @@
               <label for="pStomach">腹部</label>
               <div class="prob-adjuster-wrap">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pStomach', -0.03, event)">-</button>
-                <input type="number" id="pStomach" value="0.19" step="0.01" min="0">
+                <input type="number" id="pStomach" value="0.25" step="0.01" min="0">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pStomach', 0.03, event)">+</button>
               </div>
             </div>
@@ -257,7 +289,7 @@
               <label for="pArms">手部</label>
               <div class="prob-adjuster-wrap">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pArms', -0.03, event)">-</button>
-                <input type="number" id="pArms" value="0.23" step="0.01" min="0">
+                <input type="number" id="pArms" value="0.20" step="0.01" min="0">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pArms', 0.03, event)">+</button>
               </div>
             </div>
@@ -266,21 +298,21 @@
               <label for="pLegs">脚部</label>
               <div class="prob-adjuster-wrap">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pLegs', -0.03, event)">-</button>
-                <input type="number" id="pLegs" value="0.18" step="0.01" min="0">
+                <input type="number" id="pLegs" value="0.05" step="0.01" min="0">
                 <button type="button" class="btn-prob-adj" onclick="adjustProbability('pLegs', 0.03, event)">+</button>
               </div>
             </div>
           </div>
           <div class="prob-actions-bar">
             <div class="prob-action-row">
-              <button id="avgHitProbBtn" type="button" class="btn-tech">平均击中概率模型</button>
+              <button id="avgHitProbBtn" type="button" class="btn-tech">胸部瞄准预设</button>
               <button id="normalizeHitProbBtn" type="button" class="btn-tech">归一化</button>
               <label class="prob-toggle-box">
                 <input type="checkbox" id="onlyLegs100">
                 <span>脚部100%命中</span>
               </label>
             </div>
-            <div class="prob-hint-tag">头 0.10 / 胸 0.30 / 腹 0.19 / 手 0.23 / 脚 0.18</div>
+            <div class="prob-hint-tag">头 0.15 / 胸 0.35 / 腹 0.25 / 手 0.20 / 脚 0.05</div>
           </div>
         </div>
       </div>
@@ -288,10 +320,11 @@
       <!-- Card 5: 马尔可夫转移矩阵 -->
       <div class="tactical-card" id="markov-matrix-group" style="display: none;">
         <div class="card-header">
-          <div class="card-tag">PANEL 05</div>
+          <div class="card-tag">05 /</div>
           <h3 class="card-title"><span class="icon">🔄</span> 马尔可夫状态转移矩阵</h3>
         </div>
         <div class="card-body">
+          <p class="model-preset-note">默认各行胸部概率均为 35%，其他部位保留适度连续性。首发由全局命中率控制，后续打空由矩阵控制；默认打空为 0。</p>
           <div class="matrix-table-wrap">
             <table class="matrix-table">
               <thead>
@@ -308,56 +341,56 @@
               <tbody>
                 <tr>
                   <td class="row-label">头部 (head)</td>
-                  <td><input type="number" id="m_head_head" value="0.15" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_head_chest" value="0.10" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_head_stomach" value="0.05" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_head_arms" value="0.05" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_head_legs" value="0.01" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_head_miss" value="0.64" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_head_head" value="0.25" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_head_chest" value="0.35" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_head_stomach" value="0.20" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_head_arms" value="0.16" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_head_legs" value="0.04" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_head_miss" value="0.00" step="0.01" min="0" max="1"></td>
                 </tr>
                 <tr>
                   <td class="row-label">胸部 (chest)</td>
-                  <td><input type="number" id="m_chest_head" value="0.30" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_chest_chest" value="0.40" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_chest_stomach" value="0.10" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_chest_arms" value="0.10" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_chest_legs" value="0.02" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_chest_miss" value="0.08" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_chest_head" value="0.15" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_chest_chest" value="0.35" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_chest_stomach" value="0.25" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_chest_arms" value="0.20" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_chest_legs" value="0.05" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_chest_miss" value="0.00" step="0.01" min="0" max="1"></td>
                 </tr>
                 <tr>
                   <td class="row-label">腹部 (stomach)</td>
-                  <td><input type="number" id="m_stomach_head" value="0.05" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_stomach_chest" value="0.55" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_stomach_stomach" value="0.20" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_stomach_arms" value="0.10" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_stomach_legs" value="0.05" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_stomach_miss" value="0.05" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_stomach_head" value="0.12" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_stomach_chest" value="0.35" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_stomach_stomach" value="0.33" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_stomach_arms" value="0.16" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_stomach_legs" value="0.04" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_stomach_miss" value="0.00" step="0.01" min="0" max="1"></td>
                 </tr>
                 <tr>
                   <td class="row-label">手部 (arms)</td>
-                  <td><input type="number" id="m_arms_head" value="0.05" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_arms_chest" value="0.40" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_arms_stomach" value="0.15" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_arms_arms" value="0.30" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_arms_legs" value="0.05" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_arms_miss" value="0.05" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_arms_head" value="0.12" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_arms_chest" value="0.35" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_arms_stomach" value="0.20" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_arms_arms" value="0.29" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_arms_legs" value="0.04" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_arms_miss" value="0.00" step="0.01" min="0" max="1"></td>
                 </tr>
                 <tr>
                   <td class="row-label">脚部 (legs)</td>
-                  <td><input type="number" id="m_legs_head" value="0.02" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_legs_chest" value="0.20" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_legs_stomach" value="0.40" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_legs_arms" value="0.08" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_legs_legs" value="0.20" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_legs_miss" value="0.10" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_legs_head" value="0.12" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_legs_chest" value="0.35" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_legs_stomach" value="0.20" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_legs_arms" value="0.16" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_legs_legs" value="0.17" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_legs_miss" value="0.00" step="0.01" min="0" max="1"></td>
                 </tr>
                 <tr>
                   <td class="row-label">打空 (miss)</td>
-                  <td><input type="number" id="m_miss_head" value="0.10" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_miss_chest" value="0.30" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_miss_stomach" value="0.19" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_miss_arms" value="0.23" step="0.01" min="0" max="1"></td>
-                  <td><input type="number" id="m_miss_legs" value="0.18" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_miss_head" value="0.15" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_miss_chest" value="0.35" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_miss_stomach" value="0.25" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_miss_arms" value="0.20" step="0.01" min="0" max="1"></td>
+                  <td><input type="number" id="m_miss_legs" value="0.05" step="0.01" min="0" max="1"></td>
                   <td><input type="number" id="m_miss_miss" value="0.00" step="0.01" min="0" max="1"></td>
                 </tr>
               </tbody>
@@ -404,6 +437,11 @@
     
     <!-- Right Column: Visualizations & Table -->
     <section class="analytics-main">
+      <div class="lab-metrics" aria-live="polite">
+        <div class="lab-metric lab-top-three"><label>击杀效率 TOP 3</label><ol id="labTopWeapons" class="lab-top-weapons"><li class="lab-top-placeholder">等待模拟结果</li></ol><p id="labTopStatus">按当前排行榜排序</p></div>
+        <div class="lab-metric"><label>交战距离</label><strong id="labDistance">30</strong><small>m</small><p>当前模拟条件</p></div>
+        <div class="lab-metric"><label>全局命中率</label><strong id="labHitRate">100</strong><small>%</small><p>可为每把枪单独设置</p></div>
+      </div>
       <!-- Card: Action Control Center -->
       <div class="tactical-card" id="action-controls-card">
         <div class="card-header">
@@ -412,8 +450,8 @@
         </div>
         <div class="card-body action-flex-container">
           <div class="primary-buttons">
-            <button id="calcBtn" class="btn-tactical primary">生成 TTK 排行榜</button>
-            <button id="distChartBtn" class="btn-tactical secondary">生成 TTK 距离曲线</button>
+            <button id="calcBtn" class="btn-tactical primary">运行 TTK 模拟 ↗</button>
+            <button id="distChartBtn" class="btn-tactical secondary">生成距离曲线</button>
           </div>
           
           <div class="rank-filter-control">
@@ -436,33 +474,39 @@
       <!-- Card: Visualization Canvas -->
       <div class="tactical-card" id="visualization-card">
         <div class="card-header">
-          <div class="card-tag">DATAVIS 01</div>
-          <h3 class="card-title"><span class="icon">📈</span> 战术分析曲线</h3>
+          <div class="card-tag">ANALYSIS /</div>
+          <h3 class="card-title"><span class="icon">📈</span> 交战效能分析</h3>
         </div>
-        <div class="card-body chart-grid">
-          <div class="canvas-container ttk-chart-container">
+        <div class="chart-tabs" role="tablist" aria-label="分析图表">
+          <button class="chart-tab" id="labRankTab" role="tab" aria-selected="true" aria-controls="labRankPanel" type="button" data-chart="rank">TTK 排行榜</button>
+          <button class="chart-tab" id="labDistanceTab" role="tab" aria-selected="false" aria-controls="labDistancePanel" tabindex="-1" type="button" data-chart="distance">距离衰减曲线</button>
+        </div><div class="card-body chart-grid">
+          <div class="canvas-container ttk-chart-container" id="labRankPanel" role="tabpanel" aria-labelledby="labRankTab">
             <div class="canvas-header">TTK (击杀时间) 柱状排行榜 (ms)</div>
             <div class="canvas-wrapper ttk-canvas-wrapper">
-              <canvas id="ttkChart"></canvas>
+              <canvas id="ttkChart" role="img" aria-label="武器击杀时间排行榜"></canvas><div class="chart-empty" id="labEmpty-rank"><svg viewBox="0 0 100 70" fill="none" aria-hidden="true"><path d="M7 60h86M14 60V42h12v18M35 60V28h12v32M56 60V17h12v43M77 60V5h12v55" stroke="#66844b"/><path d="M14 32 41 20 61 9 85 2" stroke="#c2f970" stroke-dasharray="3 4"/></svg><strong>让数据，给出答案。</strong><p>设置左侧交战参数，点击「运行 TTK 模拟」开始分析</p></div>
             </div>
           </div>
           
-          <div class="canvas-container distance-chart-container">
+          <div class="canvas-container distance-chart-container" id="labDistancePanel" role="tabpanel" aria-labelledby="labDistanceTab" hidden>
             <div class="canvas-header">不同交战距离下的 TTK 衰减曲线 (ms)</div>
             <div class="canvas-wrapper distance-canvas-wrapper">
-              <canvas id="distanceChart"></canvas>
+              <canvas id="distanceChart" role="img" aria-label="交战距离与击杀时间曲线"></canvas><div class="chart-empty" id="labEmpty-distance"><svg viewBox="0 0 100 70" fill="none" aria-hidden="true"><path d="M7 60h86M14 60V42h12v18M35 60V28h12v32M56 60V17h12v43M77 60V5h12v55" stroke="#66844b"/><path d="M14 32 41 20 61 9 85 2" stroke="#c2f970" stroke-dasharray="3 4"/></svg><strong>看清每一段距离的优势。</strong><p>点击「生成距离曲线」，比较不同射程下的击杀时间</p></div>
             </div>
           </div>
-        </div>
+        </div><p class="lab-chart-note" id="labChartNote">模拟结果受命中分布影响；点击排行柱查看逐发伤害。</p>
       </div>
-      
+      <div class="lab-context"><span class="context-label">当前目标</span><span>生命 <b id="labHealth">100</b></span><span>护甲 <b id="labArmor">Lv.5 / 125</b></span><span>头盔 <b id="labHelmet">Lv.4 / 35</b></span><span id="labModel">独立命中模型</span></div>
+    </section>
+  </main>
       <!-- Card: Armory Table -->
       <div class="tactical-card" id="armory-card">
         <div class="card-header">
-          <div class="card-tag">DATABASE 01</div>
-          <h3 class="card-title"><span class="icon">⚙️</span> 枪械自定义装配军械库</h3>
+          <div class="card-tag">ARMORY /</div>
+          <h3 class="card-title"><span class="icon">⚙️</span> 自定义军械库</h3><div class="armory-tools"><span id="labWeaponCount"></span><input type="search" id="labWeaponSearch" placeholder="搜索武器名称或类型…" aria-label="搜索武器名称或类型"></div>
         </div>
         <div class="card-body">
+          <p class="armory-empty" id="labArmoryEmpty" hidden>没有找到匹配的武器，请更换关键词。</p>
           <div class="table-container-wrap">
             <table id="attachmentTable">
               <thead>
@@ -488,8 +532,9 @@
           </div>
         </div>
       </div>
-    </section>
-  </main>
+
+  <footer class="lab-footer"><span>DELTA LAB / S11 · 三角洲行动战术实验室</span><a href="https://github.com/PingWang98/-ttk-calculator" target="_blank" rel="noopener noreferrer">PROJECT ON GITHUB ↗</a></footer>
+  </div>
   
   <!-- Modal Dialog -->
   <div id="weaponDetailModal" class="weapon-detail-modal hidden">
@@ -650,7 +695,7 @@
                 const adjustScale = (scale) => {
                   if (!scale.grid) scale.grid = {};
                   scale.grid.color = 'rgba(255, 255, 255, 0.08)';
-                  scale.grid.borderColor = 'rgba(0, 240, 255, 0.2)';
+                  scale.grid.borderColor = 'rgba(194, 249, 112, 0.2)';
                   
                   if (!scale.ticks) scale.ticks = {};
                   scale.ticks.color = 'rgba(255, 255, 255, 0.6)';
@@ -679,9 +724,9 @@
                 // Tooltip styling
                 if (!config.options.plugins.tooltip) config.options.plugins.tooltip = {};
                 config.options.plugins.tooltip.backgroundColor = 'rgba(15, 23, 42, 0.95)';
-                config.options.plugins.tooltip.titleColor = '#00f0ff';
+                config.options.plugins.tooltip.titleColor = '#c2f970';
                 config.options.plugins.tooltip.bodyColor = '#ffffff';
-                config.options.plugins.tooltip.borderColor = 'rgba(0, 240, 255, 0.3)';
+                config.options.plugins.tooltip.borderColor = 'rgba(194, 249, 112, 0.3)';
                 config.options.plugins.tooltip.borderWidth = 1;
                 config.options.plugins.tooltip.titleFont = { family: 'Rajdhani, sans-serif', weight: 'bold' };
                 config.options.plugins.tooltip.bodyFont = { family: 'Inter, sans-serif' };
@@ -722,7 +767,7 @@
                 // ── Cyberpunk premium stacked-bar dataset colors ──
                 if (config.type === 'bar' && config.data && config.data.datasets) {
                   const cyberPalette = [
-                    { bg: 'rgba(0, 240, 255, 0.82)',   border: '#00f0ff' },   // 0: 极光青
+                    { bg: 'rgba(194, 249, 112, 0.82)',   border: '#c2f970' },   // 0: 极光青
                     { bg: 'rgba(139, 92, 246, 0.82)',  border: '#8b5cf6' },   // 1: 电致紫
                     { bg: 'rgba(249, 115, 22, 0.82)',  border: '#f97316' },   // 2: 赛博橙
                     { bg: 'rgba(59, 130, 246, 0.82)',  border: '#3b82f6' },   // 3: 数字蓝
@@ -1088,41 +1133,41 @@
           rankFilterMode: 'keepTop',
           keepTopCount: '20',
           trimBottomCount: '0',
-          m_head_head: '0.15',
-          m_head_chest: '0.10',
-          m_head_stomach: '0.05',
-          m_head_arms: '0.05',
-          m_head_legs: '0.01',
-          m_head_miss: '0.64',
-          m_chest_head: '0.30',
-          m_chest_chest: '0.40',
-          m_chest_stomach: '0.10',
-          m_chest_arms: '0.10',
-          m_chest_legs: '0.02',
-          m_chest_miss: '0.08',
-          m_stomach_head: '0.05',
-          m_stomach_chest: '0.55',
-          m_stomach_stomach: '0.20',
-          m_stomach_arms: '0.10',
-          m_stomach_legs: '0.05',
-          m_stomach_miss: '0.05',
-          m_arms_head: '0.05',
-          m_arms_chest: '0.40',
-          m_arms_stomach: '0.15',
-          m_arms_arms: '0.30',
-          m_arms_legs: '0.05',
-          m_arms_miss: '0.05',
-          m_legs_head: '0.02',
-          m_legs_chest: '0.20',
-          m_legs_stomach: '0.40',
-          m_legs_arms: '0.08',
-          m_legs_legs: '0.20',
-          m_legs_miss: '0.10',
-          m_miss_head: '0.10',
-          m_miss_chest: '0.30',
-          m_miss_stomach: '0.19',
-          m_miss_arms: '0.23',
-          m_miss_legs: '0.18',
+          m_head_head: '0.25',
+          m_head_chest: '0.35',
+          m_head_stomach: '0.20',
+          m_head_arms: '0.16',
+          m_head_legs: '0.04',
+          m_head_miss: '0.00',
+          m_chest_head: '0.15',
+          m_chest_chest: '0.35',
+          m_chest_stomach: '0.25',
+          m_chest_arms: '0.20',
+          m_chest_legs: '0.05',
+          m_chest_miss: '0.00',
+          m_stomach_head: '0.12',
+          m_stomach_chest: '0.35',
+          m_stomach_stomach: '0.33',
+          m_stomach_arms: '0.16',
+          m_stomach_legs: '0.04',
+          m_stomach_miss: '0.00',
+          m_arms_head: '0.12',
+          m_arms_chest: '0.35',
+          m_arms_stomach: '0.20',
+          m_arms_arms: '0.29',
+          m_arms_legs: '0.04',
+          m_arms_miss: '0.00',
+          m_legs_head: '0.12',
+          m_legs_chest: '0.35',
+          m_legs_stomach: '0.20',
+          m_legs_arms: '0.16',
+          m_legs_legs: '0.17',
+          m_legs_miss: '0.00',
+          m_miss_head: '0.15',
+          m_miss_chest: '0.35',
+          m_miss_stomach: '0.25',
+          m_miss_arms: '0.20',
+          m_miss_legs: '0.05',
           m_miss_miss: '0.00'
         };
 
@@ -1150,6 +1195,24 @@
     };
 
     window.applyDefaultConfigMigration();
+
+    // Apply the new hit preset once to both existing configuration stores.
+    try {
+      if (localStorage.getItem('deltaTtk_hitPresetVersion') !== '2026-09-08-chest-v3') {
+        const hitProb = {"head": 0.15, "chest": 0.35, "stomach": 0.25, "arms": 0.2, "legs": 0.05};
+        const markovMatrix = {"head": {"head": 0.25, "chest": 0.35, "stomach": 0.2, "arms": 0.16, "legs": 0.04, "miss": 0}, "chest": {"head": 0.15, "chest": 0.35, "stomach": 0.25, "arms": 0.2, "legs": 0.05, "miss": 0}, "stomach": {"head": 0.12, "chest": 0.35, "stomach": 0.33, "arms": 0.16, "legs": 0.04, "miss": 0}, "arms": {"head": 0.12, "chest": 0.35, "stomach": 0.2, "arms": 0.29, "legs": 0.04, "miss": 0}, "legs": {"head": 0.12, "chest": 0.35, "stomach": 0.2, "arms": 0.16, "legs": 0.17, "miss": 0}, "miss": {"head": 0.15, "chest": 0.35, "stomach": 0.25, "arms": 0.2, "legs": 0.05, "miss": 0}};
+        const inputs = JSON.parse(localStorage.getItem('deltaTtk_settings') || '{}');
+        inputs.hitRate = '1';
+        for (const [part,value] of Object.entries(hitProb)) inputs['p'+part[0].toUpperCase()+part.slice(1)] = String(value);
+        for (const [row,values] of Object.entries(markovMatrix)) for (const [col,value] of Object.entries(values)) inputs['m_'+row+'_'+col] = String(value);
+        const config = JSON.parse(localStorage.getItem('ttk_calculator_config') || '{}');
+        Object.assign(config, {hitRate:1,hitProb,markovMatrix});
+        localStorage.setItem('deltaTtk_settings', JSON.stringify(inputs));
+        localStorage.setItem('ttk_calculator_config', JSON.stringify(config));
+        localStorage.setItem('deltaTtk_hitPresetVersion','2026-09-08-chest-v3');
+      }
+    } catch (error) { console.error('Unable to update hit preset', error); }
+
 
     window.loadTtkValues = function() {
       try {

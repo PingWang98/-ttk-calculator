@@ -974,7 +974,9 @@
         barrels: [
           {
             name: "深空镀铬枪管",
-            rangeMult: 1.3,
+            rangeMult: 1,
+            ranges: [25, 35, 45, 1 / 0],
+            decays: [1, 0.85, 0.65, 0.55, 0.55],
             velocityAdd: 100,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -1054,7 +1056,7 @@
       {
         name: "QCQ171稳固",
         type: "冲锋枪",
-        ranges: [27, 36.45, 54, 74.25],
+        ranges: [20, 27, 40, 55],
         decays: [1, 0.75, 0.65, 0.55, 0.45],
         velocity: 450,
         flesh: 36,
@@ -1133,7 +1135,7 @@
           },
           {
             name: "AR57激流超长枪管",
-            rangeMult: 1.18,
+            rangeMult: 1.3,
             velocityAdd: 158,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -1229,6 +1231,7 @@
           {
             name: "HVK格斗套件",
             rangeMult: 1,
+            decays: [1, 0.85, 0.8, 0.55, 0.55],
             damageBonus: 5,
             armorDamageBonus: 0,
             rofMult: 1,
@@ -1293,14 +1296,14 @@
         barrels: [
           {
             name: "军需长枪管",
-            rangeMult: 1.06,
+            rangeMult: 1.18,
             damageBonus: 0,
             armorDamageBonus: 0,
             rofMult: 1,
           },
           {
             name: "竞赛性能长枪管",
-            rangeMult: 1.18,
+            rangeMult: 1.3,
             damageBonus: 0,
             armorDamageBonus: 0,
             rofMult: 1,
@@ -1312,7 +1315,7 @@
       {
         name: "SMG-45",
         type: "冲锋枪",
-        ranges: [27, 52, 90, 1 / 0],
+        ranges: [27, 54, 90, 1 / 0],
         decays: [1, 0.75, 0.65, 0.55, 0.55],
         velocity: 500,
         flesh: 35,
@@ -1384,7 +1387,7 @@
       {
         name: "AS Val",
         type: "步枪",
-        ranges: [21,40, 1 / 0, 1 / 0],
+        ranges: [21, 41, 1 / 0, 1 / 0],
         decays: [1, 0.9, 0.8, 0.8, 0.8],
         velocity: 300,
         flesh: 28,
@@ -1668,14 +1671,16 @@
         barrels: [
           {
             name: "鏖战枪管",
-            rangeMult: 0.833333,
+            rangeMult: 1,
+            ranges: [25, 40, 1 / 0, 1 / 0],
             damageBonus: 4,
             armorDamageBonus: 1,
             rofMult: 1,
           },
           {
             name: "余烬枪管",
-            rangeMult: 1.18,
+            rangeMult: 1,
+            ranges: [35, 50, 1 / 0, 1 / 0],
             velocityAdd: 175,
             decays: [1, 0.9, 0.7, 0.7, 0.7],
             damageBonus: 3,
@@ -1857,7 +1862,7 @@
       {
         name: "QJB201稳固",
         type: "轻机枪",
-        ranges: [54, 94.5, 1 / 0, 1 / 0],
+        ranges: [40, 70, 1 / 0, 1 / 0],
         decays: [1, 0.85, 0.7, 0.7, 0.7],
         velocity: 575,
         flesh: 32,
@@ -2027,7 +2032,7 @@
       {
         name: "M7",
         type: "步枪",
-        ranges: [50, 85, 1 / 0, 1 / 0],
+        ranges: [50, 70, 1 / 0, 1 / 0],
         decays: [1, 0.9, 0.8, 0.8, 0.8],
         velocity: 630,
         flesh: 37,
@@ -2093,7 +2098,7 @@
         name: "ASh-12",
         type: "步枪",
         ranges: [55, 90, 1 / 0, 1 / 0],
-        decays: [1, 0.9, 0.85, 0.85, 0.85],
+        decays: [1, 0.9, 0.8, 0.8, 0.8],
         velocity: 340,
         flesh: 56,
         armor: 55,
@@ -2204,7 +2209,7 @@
         name: "KC17",
         type: "步枪",
         ranges: [55, 90, 1 / 0, 1 / 0],
-        decays: [1, 0.85, 0.7, 0.7, 0.7],
+        decays: [1, 0.85, 0.8, 0.8, 0.8],
         velocity: 575,
         flesh: 31,
         armor: 48,
@@ -2431,7 +2436,8 @@
           },
           {
             name: "SR25追风长枪管",
-            rangeMult: 1.766667,
+            rangeMult: 1,
+            ranges: [106, 1 / 0, 1 / 0, 1 / 0],
             velocityAdd: 200,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -2439,7 +2445,8 @@
           },
           {
             name: "SR25新星超长枪管",
-            rangeMult: 1.95,
+            rangeMult: 1,
+            ranges: [117, 1 / 0, 1 / 0, 1 / 0],
             velocityAdd: 350,
             damageBonus: 0,
             armorDamageBonus: 0,
@@ -4108,8 +4115,8 @@ ${$(n, "ms_raw")}`;
         helmetValue: 35,
         distance: 30,
         healthValue: 100,
-        hitProb: { head: 0.10, chest: 0.30, stomach: 0.19, arms: 0.23, legs: 0.18 },
-        hitRate: 0.85,
+        hitProb: { head: 0.15, chest: 0.35, stomach: 0.25, arms: 0.20, legs: 0.05 },
+        hitRate: 1,
         rankFilterMode: "keepTop",
         keepTopCount: 20,
         trimBottomCount: 0,
@@ -4117,13 +4124,55 @@ ${$(n, "ms_raw")}`;
         limbProtection: !0,
         markovModelEnable: !1,
         markovMatrix: {
-          head: { head: 0.10, chest: 0.40, stomach: 0.10, arms: 0.10, legs: 0.05, miss: 0.25 },
-          chest: { head: 0.15, chest: 0.50, stomach: 0.10, arms: 0.12, legs: 0.03, miss: 0.10 },
-          stomach: { head: 0.05, chest: 0.50, stomach: 0.25, arms: 0.10, legs: 0.05, miss: 0.05 },
-          arms: { head: 0.05, chest: 0.30, stomach: 0.10, arms: 0.45, legs: 0.05, miss: 0.05 },
-          legs: { head: 0.02, chest: 0.10, stomach: 0.20, arms: 0.08, legs: 0.50, miss: 0.10 },
-          miss: { head: 0.10, chest: 0.30, stomach: 0.19, arms: 0.23, legs: 0.18, miss: 0.00 }
-        },
+  "head": {
+    "head": 0.25,
+    "chest": 0.35,
+    "stomach": 0.2,
+    "arms": 0.16,
+    "legs": 0.04,
+    "miss": 0
+  },
+  "chest": {
+    "head": 0.15,
+    "chest": 0.35,
+    "stomach": 0.25,
+    "arms": 0.2,
+    "legs": 0.05,
+    "miss": 0
+  },
+  "stomach": {
+    "head": 0.12,
+    "chest": 0.35,
+    "stomach": 0.33,
+    "arms": 0.16,
+    "legs": 0.04,
+    "miss": 0
+  },
+  "arms": {
+    "head": 0.12,
+    "chest": 0.35,
+    "stomach": 0.2,
+    "arms": 0.29,
+    "legs": 0.04,
+    "miss": 0
+  },
+  "legs": {
+    "head": 0.12,
+    "chest": 0.35,
+    "stomach": 0.2,
+    "arms": 0.16,
+    "legs": 0.17,
+    "miss": 0
+  },
+  "miss": {
+    "head": 0.15,
+    "chest": 0.35,
+    "stomach": 0.25,
+    "arms": 0.2,
+    "legs": 0.05,
+    "miss": 0
+  }
+},
         globalBarrelType: "longest",
         velocityPrecisionSettings: { weaponSettings: {} },
       };
@@ -5383,7 +5432,7 @@ ${$(n, "ms_raw")}`;
         }
       }
       applyAverageHitProbabilityModel() {
-        let e = { head: 0.10, chest: 0.30, stomach: 0.19, arms: 0.23, legs: 0.18 };
+        let e = { head: 0.15, chest: 0.35, stomach: 0.25, arms: 0.20, legs: 0.05 };
         (Object.entries(e).forEach(([a, t]) => {
           let n = document.getElementById(
             "p" + a.charAt(0).toUpperCase() + a.slice(1),

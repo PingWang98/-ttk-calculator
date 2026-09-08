@@ -1,0 +1,9777 @@
+{
+  "checkedAt": "2026-09-08",
+  "dataVersion": "20260907-050558.3",
+  "mode": "sol",
+  "scope": {
+    "weaponConfigurations": 60,
+    "baseWeaponPacks": 52,
+    "barrelOptions": 124
+  },
+  "method": "对照原始 bulletProfiles 与 catalog，普通枪管按 MainAttrValues.2；专用枪管按 BulletFlyingId 替换后再叠加射程倍率。无末尾人为最大距离截断。",
+  "pendingDecision": "用户确认稳固配件不增加射程，已修正；另两类保留待靶场验证。",
+  "records": [
+    {
+      "weapon": "SR-3M",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          15,
+          31
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65
+        ]
+      },
+      "after": {
+        "ranges": [
+          15,
+          31
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65
+        ]
+      },
+      "source": {
+        "ranges": [
+          15.0,
+          31.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000008.json",
+      "weaponId": "18020000008",
+      "bulletProfile": "authoring:weapon:18020000008:sol:bullet"
+    },
+    {
+      "weapon": "SR-3M",
+      "barrel": "SR-3M铸钢战术枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          17.7,
+          36.58
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65
+        ]
+      },
+      "after": {
+        "ranges": [
+          17.7,
+          36.58
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65
+        ]
+      },
+      "source": {
+        "ranges": [
+          17.7,
+          36.58
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000008.json",
+      "weaponId": "18020000008",
+      "itemId": "13020000522",
+      "sourceName": "SR-3M铸钢战术枪管",
+      "bulletProfile": "authoring:weapon:18020000008:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          15.0,
+          31.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "勇士",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.7,
+          0.6,
+          0.5,
+          0.4
+        ]
+      },
+      "after": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.7,
+          0.6,
+          0.5,
+          0.4
+        ]
+      },
+      "source": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.7,
+          0.6,
+          0.5,
+          0.4
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000009.json",
+      "weaponId": "18020000009",
+      "bulletProfile": "authoring:weapon:18020000009:sol:bullet"
+    },
+    {
+      "weapon": "勇士",
+      "barrel": "勇士海狸枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.7,
+          0.6,
+          0.5,
+          0.4
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.7,
+          0.6,
+          0.5,
+          0.4
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.7,
+          0.6,
+          0.5,
+          0.4
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000009.json",
+      "weaponId": "18020000009",
+      "itemId": "13020000507",
+      "sourceName": "勇士海狸枪管",
+      "bulletProfile": "authoring:weapon:18020000009:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.7,
+          0.6,
+          0.5,
+          0.4
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "MK4",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          20,
+          30,
+          40
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          20,
+          30,
+          40
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          20.0,
+          30.0,
+          40.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000012.json",
+      "weaponId": "18020000012",
+      "bulletProfile": "authoring:weapon:18020000012:sol:bullet"
+    },
+    {
+      "weapon": "MK4",
+      "barrel": "深空镀铬枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          26.0,
+          39.0,
+          52.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          25,
+          35,
+          45
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.65,
+          0.55
+        ]
+      },
+      "source": {
+        "ranges": [
+          25.0,
+          35.0,
+          45.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.65,
+          0.55
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000012.json",
+      "weaponId": "18020000012",
+      "itemId": "13020000564",
+      "sourceName": "MK4深空镀铬枪管",
+      "bulletProfile": "authoring:part:13020000564:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          25.0,
+          35.0,
+          45.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.65,
+          0.55
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "MK4",
+      "barrel": "击剑手枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          26.0,
+          39.0,
+          52.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          39.0,
+          52.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          39.0,
+          52.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000012.json",
+      "weaponId": "18020000012",
+      "itemId": "13020000563",
+      "sourceName": "MK4击剑手枪管",
+      "bulletProfile": "authoring:weapon:18020000012:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          30.0,
+          40.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "QCQ171高导",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000011.json",
+      "weaponId": "18020000011",
+      "bulletProfile": "authoring:weapon:18020000011:sol:bullet"
+    },
+    {
+      "weapon": "QCQ171高导",
+      "barrel": "新式渗透一体消音枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000011.json",
+      "weaponId": "18020000011",
+      "itemId": "13020000533",
+      "sourceName": "QCQ171新式渗透一体消音枪管",
+      "bulletProfile": "authoring:weapon:18020000011:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "QCQ171高导",
+      "barrel": "新式红缨战术长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000011.json",
+      "weaponId": "18020000011",
+      "itemId": "13020000532",
+      "sourceName": "QCQ171新式红缨战术枪管",
+      "bulletProfile": "authoring:weapon:18020000011:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "QCQ171",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000011.json",
+      "weaponId": "18020000011",
+      "bulletProfile": "authoring:weapon:18020000011:sol:bullet"
+    },
+    {
+      "weapon": "QCQ171",
+      "barrel": "新式渗透一体消音枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000011.json",
+      "weaponId": "18020000011",
+      "itemId": "13020000533",
+      "sourceName": "QCQ171新式渗透一体消音枪管",
+      "bulletProfile": "authoring:weapon:18020000011:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "QCQ171",
+      "barrel": "新式红缨战术长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000011.json",
+      "weaponId": "18020000011",
+      "itemId": "13020000532",
+      "sourceName": "QCQ171新式红缨战术枪管",
+      "bulletProfile": "authoring:weapon:18020000011:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "QCQ171稳固",
+      "barrel": null,
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          27,
+          36.45,
+          54,
+          74.25
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000011.json",
+      "weaponId": "18020000011",
+      "bulletProfile": "authoring:weapon:18020000011:sol:bullet"
+    },
+    {
+      "weapon": "QCQ171稳固",
+      "barrel": "新式渗透一体消音枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          35.1,
+          47.385000000000005,
+          70.2,
+          96.525
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000011.json",
+      "weaponId": "18020000011",
+      "itemId": "13020000533",
+      "sourceName": "QCQ171新式渗透一体消音枪管",
+      "bulletProfile": "authoring:weapon:18020000011:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "QCQ171稳固",
+      "barrel": "新式红缨战术长枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          35.1,
+          47.385000000000005,
+          70.2,
+          96.525
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000011.json",
+      "weaponId": "18020000011",
+      "itemId": "13020000532",
+      "sourceName": "QCQ171新式红缨战术枪管",
+      "bulletProfile": "authoring:weapon:18020000011:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "P90",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000002.json",
+      "weaponId": "18020000002",
+      "bulletProfile": "authoring:weapon:18020000002:sol:bullet"
+    },
+    {
+      "weapon": "P90",
+      "barrel": "重攻长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000002.json",
+      "weaponId": "18020000002",
+      "itemId": "13020000472",
+      "sourceName": "P90重攻长枪管",
+      "bulletProfile": "authoring:weapon:18020000002:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "P90",
+      "barrel": "长弓精钢枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          35,
+          60
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          35,
+          60
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          35.0,
+          60.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000002.json",
+      "weaponId": "18020000002",
+      "itemId": "13020000579",
+      "sourceName": "P90长弓精钢枪管",
+      "bulletProfile": "authoring:part:13020000579:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          35.0,
+          60.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "AR57",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          35,
+          50
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          35,
+          50
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          35.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000045.json",
+      "weaponId": "18010000045",
+      "bulletProfile": "authoring:weapon:18010000045:sol:bullet"
+    },
+    {
+      "weapon": "AR57",
+      "barrel": "夜莺一体消音组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          41.3,
+          59.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          41.3,
+          59.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          41.3,
+          59.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000045.json",
+      "weaponId": "18010000045",
+      "itemId": "13020000593",
+      "sourceName": "夜莺一体消音组合",
+      "bulletProfile": "authoring:weapon:18010000045:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          35.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "AR57",
+      "barrel": "AR57激流超长枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          41.3,
+          59.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          45.5,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          45.5,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000045.json",
+      "weaponId": "18010000045",
+      "itemId": "13020000592",
+      "sourceName": "AR57激流超长枪管",
+      "bulletProfile": "authoring:weapon:18010000045:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          35.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "野牛",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000005.json",
+      "weaponId": "18020000005",
+      "bulletProfile": "authoring:weapon:18020000005:sol:bullet"
+    },
+    {
+      "weapon": "野牛",
+      "barrel": "野牛刀锋超长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000005.json",
+      "weaponId": "18020000005",
+      "itemId": "13020000439",
+      "sourceName": "野牛刀锋超长枪管",
+      "bulletProfile": "authoring:weapon:18020000005:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "Vector",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000003.json",
+      "weaponId": "18020000003",
+      "bulletProfile": "authoring:weapon:18020000003:sol:bullet"
+    },
+    {
+      "weapon": "Vector",
+      "barrel": "导轨枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          21.200000000000003,
+          28.62,
+          42.400000000000006,
+          58.300000000000004
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          21.200000000000003,
+          28.62,
+          42.400000000000006,
+          58.300000000000004
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          21.200000000000003,
+          28.62,
+          42.400000000000006,
+          58.300000000000004
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000003.json",
+      "weaponId": "18020000003",
+      "itemId": "13020000419",
+      "sourceName": "Vector导轨枪管组合",
+      "bulletProfile": "authoring:weapon:18020000003:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.06
+    },
+    {
+      "weapon": "Vector",
+      "barrel": "长剑超长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000003.json",
+      "weaponId": "18020000003",
+      "itemId": "13020000421",
+      "sourceName": "Vector长剑超长枪管组合",
+      "bulletProfile": "authoring:weapon:18020000003:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "MP7",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          20,
+          27,
+          40
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "after": {
+        "ranges": [
+          20,
+          27,
+          40
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "source": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000010.json",
+      "weaponId": "18020000010",
+      "bulletProfile": "authoring:weapon:18020000010:sol:bullet"
+    },
+    {
+      "weapon": "MP7",
+      "barrel": "增强枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          21.200000000000003,
+          28.62,
+          42.400000000000006
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "after": {
+        "ranges": [
+          21.200000000000003,
+          28.62,
+          42.400000000000006
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "source": {
+        "ranges": [
+          21.200000000000003,
+          28.62,
+          42.400000000000006
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000010.json",
+      "weaponId": "18020000010",
+      "itemId": "13020000499",
+      "sourceName": "MP7增强枪管组合",
+      "bulletProfile": "authoring:weapon:18020000010:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "sourceMultiplier": 1.06
+    },
+    {
+      "weapon": "MP7",
+      "barrel": "蜂刺长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000010.json",
+      "weaponId": "18020000010",
+      "itemId": "13020000498",
+      "sourceName": "MP7蜂刺长枪管组合",
+      "bulletProfile": "authoring:weapon:18020000010:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "MP7",
+      "barrel": "月影镀铬枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000010.json",
+      "weaponId": "18020000010",
+      "itemId": "13020000568",
+      "sourceName": "MP7月影镀铬枪管",
+      "bulletProfile": "authoring:weapon:18020000010:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "MP7",
+      "barrel": "HVK格斗套件",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          20,
+          27,
+          40
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "after": {
+        "ranges": [
+          20,
+          27,
+          40
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.8,
+          0.55
+        ]
+      },
+      "source": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.8,
+          0.55
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000010.json",
+      "weaponId": "18020000010",
+      "itemId": "13020000595",
+      "sourceName": "HVK格斗套件",
+      "bulletProfile": "authoring:part:13020000595:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.8,
+          0.55
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "MP5",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000001.json",
+      "weaponId": "18020000001",
+      "bulletProfile": "authoring:weapon:18020000001:sol:bullet"
+    },
+    {
+      "weapon": "MP5",
+      "barrel": "战术枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          21.200000000000003,
+          28.62,
+          42.400000000000006,
+          58.300000000000004
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          21.200000000000003,
+          28.62,
+          42.400000000000006,
+          58.300000000000004
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          21.200000000000003,
+          28.62,
+          42.400000000000006,
+          58.300000000000004
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000001.json",
+      "weaponId": "18020000001",
+      "itemId": "13020000428",
+      "sourceName": "MP5战术枪管组合",
+      "bulletProfile": "authoring:weapon:18020000001:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.06
+    },
+    {
+      "weapon": "MP5",
+      "barrel": "性能枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          21.200000000000003,
+          28.62,
+          42.400000000000006,
+          58.300000000000004
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          21.200000000000003,
+          28.62,
+          42.400000000000006,
+          58.300000000000004
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          21.200000000000003,
+          28.62,
+          42.400000000000006,
+          58.300000000000004
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000001.json",
+      "weaponId": "18020000001",
+      "itemId": "13020000427",
+      "sourceName": "MP5性能枪管组合",
+      "bulletProfile": "authoring:weapon:18020000001:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.06
+    },
+    {
+      "weapon": "MP5",
+      "barrel": "斥候长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          23.599999999999998,
+          31.86,
+          47.199999999999996,
+          64.89999999999999
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          23.599999999999998,
+          31.86,
+          47.199999999999996,
+          64.89999999999999
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          23.599999999999998,
+          31.86,
+          47.199999999999996,
+          64.89999999999999
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000001.json",
+      "weaponId": "18020000001",
+      "itemId": "13020000430",
+      "sourceName": "MP5斥候长枪管组合",
+      "bulletProfile": "authoring:weapon:18020000001:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "MP5",
+      "barrel": "特勤一体消音枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000001.json",
+      "weaponId": "18020000001",
+      "itemId": "13020000474",
+      "sourceName": "MP5SD特勤一体消音枪管",
+      "bulletProfile": "authoring:weapon:18020000001:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "UZI",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          20,
+          27,
+          40,
+          55
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000004.json",
+      "weaponId": "18020000004",
+      "bulletProfile": "authoring:weapon:18020000004:sol:bullet"
+    },
+    {
+      "weapon": "UZI",
+      "barrel": "军需长枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          21.200000000000003,
+          28.62,
+          42.400000000000006,
+          58.300000000000004
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          23.599999999999998,
+          31.86,
+          47.199999999999996,
+          64.89999999999999
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          23.599999999999998,
+          31.86,
+          47.199999999999996,
+          64.89999999999999
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000004.json",
+      "weaponId": "18020000004",
+      "itemId": "13020000434",
+      "sourceName": "UZI军需长枪管",
+      "bulletProfile": "authoring:weapon:18020000004:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "UZI",
+      "barrel": "竞赛性能长枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          23.599999999999998,
+          31.86,
+          47.199999999999996,
+          64.89999999999999
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "after": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          35.1,
+          52.0,
+          71.5
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000004.json",
+      "weaponId": "18020000004",
+      "itemId": "13020000432",
+      "sourceName": "UZI竞赛性能长枪管",
+      "bulletProfile": "authoring:weapon:18020000004:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          27.0,
+          40.0,
+          55.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55,
+          0.45
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "SMG-45",
+      "barrel": null,
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          27,
+          52,
+          90
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "after": {
+        "ranges": [
+          27,
+          54,
+          90
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "source": {
+        "ranges": [
+          27.0,
+          54.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000006.json",
+      "weaponId": "18020000006",
+      "bulletProfile": "authoring:weapon:18020000006:sol:bullet"
+    },
+    {
+      "weapon": "SMG-45",
+      "barrel": "实用重枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          28.62,
+          55.120000000000005,
+          95.4
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "after": {
+        "ranges": [
+          28.62,
+          57.24,
+          95.4
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "source": {
+        "ranges": [
+          28.62,
+          57.24,
+          95.4
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000006.json",
+      "weaponId": "18020000006",
+      "itemId": "13020000423",
+      "sourceName": "smg45实用重枪管",
+      "bulletProfile": "authoring:weapon:18020000006:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          27.0,
+          54.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "sourceMultiplier": 1.06
+    },
+    {
+      "weapon": "SMG-45",
+      "barrel": "裂变长枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          31.86,
+          61.36,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "after": {
+        "ranges": [
+          31.86,
+          63.72,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "source": {
+        "ranges": [
+          31.86,
+          63.72,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000006.json",
+      "weaponId": "18020000006",
+      "itemId": "13020000523",
+      "sourceName": "SMG45裂变长枪管",
+      "bulletProfile": "authoring:weapon:18020000006:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          27.0,
+          54.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "SMG-45",
+      "barrel": "长弩超长枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          35.1,
+          67.60000000000001,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "after": {
+        "ranges": [
+          35.1,
+          70.2,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "source": {
+        "ranges": [
+          35.1,
+          70.2,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000006.json",
+      "weaponId": "18020000006",
+      "itemId": "13020000424",
+      "sourceName": "SMG长弩超长枪管",
+      "bulletProfile": "authoring:weapon:18020000006:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          27.0,
+          54.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.75,
+          0.65,
+          0.55
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "K416",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          27,
+          54
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          27,
+          54
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          27.0,
+          54.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000013.json",
+      "weaponId": "18010000013",
+      "bulletProfile": "authoring:weapon:18010000013:sol:bullet"
+    },
+    {
+      "weapon": "K416",
+      "barrel": "精英重枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          28.62,
+          57.24
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          28.62,
+          57.24
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          28.62,
+          57.24
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000013.json",
+      "weaponId": "18010000013",
+      "itemId": "13020000360",
+      "sourceName": "K416精英重枪管组合",
+      "bulletProfile": "authoring:weapon:18010000013:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          27.0,
+          54.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.06
+    },
+    {
+      "weapon": "K416",
+      "barrel": "A8枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          31.86,
+          63.72
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          31.86,
+          63.72
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          31.86,
+          63.72
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000013.json",
+      "weaponId": "18010000013",
+      "itemId": "13020000492",
+      "sourceName": "K416A8枪管组合",
+      "bulletProfile": "authoring:weapon:18010000013:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          27.0,
+          54.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "K416",
+      "barrel": "A8长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          35.1,
+          70.2
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          35.1,
+          70.2
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          35.1,
+          70.2
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000013.json",
+      "weaponId": "18010000013",
+      "itemId": "13020000493",
+      "sourceName": "K416A8长枪管组合",
+      "bulletProfile": "authoring:weapon:18010000013:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          27.0,
+          54.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "AS Val",
+      "barrel": null,
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          21,
+          40
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          21,
+          41
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          21.0,
+          41.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000037.json",
+      "weaponId": "18010000037",
+      "bulletProfile": "authoring:weapon:18010000037:sol:bullet"
+    },
+    {
+      "weapon": "AS Val",
+      "barrel": "VSS海啸长枪管组合",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          27.3,
+          52.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          27.3,
+          53.300000000000004
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          27.3,
+          53.300000000000004
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000037.json",
+      "weaponId": "18010000037",
+      "itemId": "13020000410",
+      "sourceName": "VSS海啸长枪管组合",
+      "bulletProfile": "authoring:weapon:18010000037:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          21.0,
+          41.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "AS Val",
+      "barrel": "刺客高级枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          60
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          60
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          60.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000037.json",
+      "weaponId": "18010000037",
+      "itemId": "13020000561",
+      "sourceName": "AS Val刺客高级枪管",
+      "bulletProfile": "authoring:part:13020000561:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          60.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "腾龙高导",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          35,
+          62
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          35,
+          62
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          35.0,
+          62.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000038.json",
+      "weaponId": "18010000038",
+      "bulletProfile": "authoring:weapon:18010000038:sol:bullet"
+    },
+    {
+      "weapon": "腾龙高导",
+      "barrel": "新式蛟龙战术长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          45.5,
+          80.60000000000001
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          45.5,
+          80.60000000000001
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          45.5,
+          80.60000000000001
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000038.json",
+      "weaponId": "18010000038",
+      "itemId": "13020000514",
+      "sourceName": "新式蛟龙战术长枪管",
+      "bulletProfile": "authoring:weapon:18010000038:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          35.0,
+          62.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "腾龙",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          35,
+          62
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          35,
+          62
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          35.0,
+          62.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000038.json",
+      "weaponId": "18010000038",
+      "bulletProfile": "authoring:weapon:18010000038:sol:bullet"
+    },
+    {
+      "weapon": "腾龙",
+      "barrel": "新式蛟龙战术长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          45.5,
+          80.60000000000001
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          45.5,
+          80.60000000000001
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          45.5,
+          80.60000000000001
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000038.json",
+      "weaponId": "18010000038",
+      "itemId": "13020000514",
+      "sourceName": "新式蛟龙战术长枪管",
+      "bulletProfile": "authoring:weapon:18010000038:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          35.0,
+          62.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "腾龙稳固",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          35,
+          62
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          35,
+          62
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          35.0,
+          62.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000038.json",
+      "weaponId": "18010000038",
+      "bulletProfile": "authoring:weapon:18010000038:sol:bullet"
+    },
+    {
+      "weapon": "腾龙稳固",
+      "barrel": "新式蛟龙战术长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          45.5,
+          80.60000000000001
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          45.5,
+          80.60000000000001
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          45.5,
+          80.60000000000001
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000038.json",
+      "weaponId": "18010000038",
+      "itemId": "13020000514",
+      "sourceName": "新式蛟龙战术长枪管",
+      "bulletProfile": "authoring:weapon:18010000038:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          35.0,
+          62.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "K437",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          35,
+          60
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          35,
+          60
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          35.0,
+          60.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000040.json",
+      "weaponId": "18010000040",
+      "bulletProfile": "authoring:weapon:18010000040:sol:bullet"
+    },
+    {
+      "weapon": "K437",
+      "barrel": "特攻一体消音枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          41.3,
+          70.8
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          41.3,
+          70.8
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          41.3,
+          70.8
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000040.json",
+      "weaponId": "18010000040",
+      "itemId": "13020000546",
+      "sourceName": "K437特攻一体消音枪管",
+      "bulletProfile": "authoring:weapon:18010000040:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          35.0,
+          60.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "K437",
+      "barrel": "长矛手长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          52.5,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.5,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.5,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000040.json",
+      "weaponId": "18010000040",
+      "itemId": "13020000543",
+      "sourceName": "K437长矛手长枪管组合",
+      "bulletProfile": "authoring:weapon:18010000040:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          35.0,
+          60.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.5
+    },
+    {
+      "weapon": "MCX LT",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          30,
+          50
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          30,
+          50
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          30.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000044.json",
+      "weaponId": "18010000044",
+      "bulletProfile": "authoring:weapon:18010000044:sol:bullet"
+    },
+    {
+      "weapon": "MCX LT",
+      "barrel": "焰魂枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          30,
+          50
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          30,
+          50
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          30.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000044.json",
+      "weaponId": "18010000044",
+      "itemId": "13020000573",
+      "sourceName": "MCX LT焰魂枪管",
+      "bulletProfile": "authoring:weapon:18010000044:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          30.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "MCX LT",
+      "barrel": "猎手枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          39.0,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          39.0,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          39.0,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000044.json",
+      "weaponId": "18010000044",
+      "itemId": "13020000572",
+      "sourceName": "MCX LT猎手枪管",
+      "bulletProfile": "authoring:weapon:18010000044:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          30.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "SG552",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          35,
+          65
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          35,
+          65
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          35.0,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000017.json",
+      "weaponId": "18010000017",
+      "bulletProfile": "authoring:weapon:18010000017:sol:bullet"
+    },
+    {
+      "weapon": "SG552",
+      "barrel": "骑士重枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          41.3,
+          76.7
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          41.3,
+          76.7
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          41.3,
+          76.7
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000017.json",
+      "weaponId": "18010000017",
+      "itemId": "13020000320",
+      "sourceName": "SG552骑士重枪管",
+      "bulletProfile": "authoring:weapon:18010000017:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          35.0,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "M250",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000003.json",
+      "weaponId": "18040000003",
+      "bulletProfile": "authoring:weapon:18040000003:sol:bullet"
+    },
+    {
+      "weapon": "M250",
+      "barrel": "钛金长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000003.json",
+      "weaponId": "18040000003",
+      "itemId": "13020000524",
+      "sourceName": "M250钛金长枪管",
+      "bulletProfile": "authoring:weapon:18040000003:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "PKM",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000001.json",
+      "weaponId": "18040000001",
+      "bulletProfile": "authoring:weapon:18040000001:sol:bullet"
+    },
+    {
+      "weapon": "PKM",
+      "barrel": "地平线重枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000001.json",
+      "weaponId": "18040000001",
+      "itemId": "13020000416",
+      "sourceName": "PKM地平线重枪管",
+      "bulletProfile": "authoring:weapon:18040000001:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "AKM",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000006.json",
+      "weaponId": "18010000006",
+      "bulletProfile": "authoring:weapon:18010000006:sol:bullet"
+    },
+    {
+      "weapon": "AKM",
+      "barrel": "性能枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          42.400000000000006,
+          74.2
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          42.400000000000006,
+          74.2
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          42.400000000000006,
+          74.2
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000006.json",
+      "weaponId": "18010000006",
+      "itemId": "13020000355",
+      "sourceName": "AKM性能枪管组合",
+      "bulletProfile": "authoring:weapon:18010000006:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.06
+    },
+    {
+      "weapon": "AKM",
+      "barrel": "超然长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000006.json",
+      "weaponId": "18010000006",
+      "itemId": "13020000358",
+      "sourceName": "AKM超然长枪管组合",
+      "bulletProfile": "authoring:weapon:18010000006:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "AKM",
+      "barrel": "海狸长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000006.json",
+      "weaponId": "18010000006",
+      "itemId": "13020000491",
+      "sourceName": "AKM海狸长枪管组合",
+      "bulletProfile": "authoring:weapon:18010000006:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "AKM",
+      "barrel": "实用长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000006.json",
+      "weaponId": "18010000006",
+      "itemId": "13020000357",
+      "sourceName": "AKM实用长枪管组合",
+      "bulletProfile": "authoring:weapon:18010000006:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "MK47",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          30,
+          45
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          30,
+          45
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          30.0,
+          45.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000043.json",
+      "weaponId": "18010000043",
+      "bulletProfile": "authoring:weapon:18010000043:sol:bullet"
+    },
+    {
+      "weapon": "MK47",
+      "barrel": "鏖战枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          24.99999,
+          37.499985
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          25,
+          40
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          25.0,
+          40.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000043.json",
+      "weaponId": "18010000043",
+      "itemId": "13020000560",
+      "sourceName": "MK47鏖战枪管",
+      "bulletProfile": "authoring:part:13020000560:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          25.0,
+          40.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "MK47",
+      "barrel": "余烬枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          35.4,
+          53.099999999999994
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          35,
+          50
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          35.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000043.json",
+      "weaponId": "18010000043",
+      "itemId": "13020000559",
+      "sourceName": "MK47余烬枪管",
+      "bulletProfile": "authoring:part:13020000559:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          35.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "SCAR-H",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000021.json",
+      "weaponId": "18010000021",
+      "bulletProfile": "authoring:weapon:18010000021:sol:bullet"
+    },
+    {
+      "weapon": "SCAR-H",
+      "barrel": "实用标准枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          42.400000000000006,
+          74.2
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          42.400000000000006,
+          74.2
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          42.400000000000006,
+          74.2
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000021.json",
+      "weaponId": "18010000021",
+      "itemId": "13020000391",
+      "sourceName": "SCARH实用标准枪管",
+      "bulletProfile": "authoring:weapon:18010000021:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "sourceMultiplier": 1.06
+    },
+    {
+      "weapon": "SCAR-H",
+      "barrel": "海狸长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000021.json",
+      "weaponId": "18010000021",
+      "itemId": "13020000390",
+      "sourceName": "SCARH海狸长枪管",
+      "bulletProfile": "authoring:weapon:18010000021:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "M14",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000005.json",
+      "weaponId": "18050000005",
+      "bulletProfile": "authoring:weapon:18050000005:sol:bullet"
+    },
+    {
+      "weapon": "M14",
+      "barrel": "漫游标准枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000005.json",
+      "weaponId": "18050000005",
+      "itemId": "13020000386",
+      "sourceName": "M14漫游标准枪管",
+      "bulletProfile": "authoring:weapon:18050000005:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "M14",
+      "barrel": "洞察超长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000005.json",
+      "weaponId": "18050000005",
+      "itemId": "13020000388",
+      "sourceName": "M14洞察超长枪管",
+      "bulletProfile": "authoring:weapon:18050000005:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "PTR-32",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000024.json",
+      "weaponId": "18010000024",
+      "bulletProfile": "authoring:weapon:18010000024:sol:bullet"
+    },
+    {
+      "weapon": "PTR-32",
+      "barrel": "G3守卫标准枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000024.json",
+      "weaponId": "18010000024",
+      "itemId": "13020000394",
+      "sourceName": "G3守卫标准枪管组合",
+      "bulletProfile": "authoring:weapon:18010000024:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "PTR-32",
+      "barrel": "G3加强长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000024.json",
+      "weaponId": "18010000024",
+      "itemId": "13020000486",
+      "sourceName": "G3加强长枪管组合",
+      "bulletProfile": "authoring:weapon:18010000024:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "PTR-32",
+      "barrel": "G3平台神射枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          54.400000000000006,
+          95.2
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          54.400000000000006,
+          95.2
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          54.39999999999999,
+          95.19999999999999
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000024.json",
+      "weaponId": "18010000024",
+      "itemId": "13020000512",
+      "sourceName": "G3平台神射枪管组合",
+      "bulletProfile": "authoring:weapon:18010000024:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3599999999999999
+    },
+    {
+      "weapon": "AKS-74U",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.6
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.6
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.6
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000010.json",
+      "weaponId": "18010000010",
+      "bulletProfile": "authoring:weapon:18010000010:sol:bullet"
+    },
+    {
+      "weapon": "QJB201高导",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000004.json",
+      "weaponId": "18040000004",
+      "bulletProfile": "authoring:weapon:18040000004:sol:bullet"
+    },
+    {
+      "weapon": "QJB201高导",
+      "barrel": "新式重锤战术枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000004.json",
+      "weaponId": "18040000004",
+      "itemId": "13020000530",
+      "sourceName": "QJB201新式重锤战术枪管",
+      "bulletProfile": "authoring:weapon:18040000004:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "QJB201高导",
+      "barrel": "新式獠牙短枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000004.json",
+      "weaponId": "18040000004",
+      "itemId": "13020000529",
+      "sourceName": "QJB201新式獠牙短枪管",
+      "bulletProfile": "authoring:weapon:18040000004:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "QJB201",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000004.json",
+      "weaponId": "18040000004",
+      "bulletProfile": "authoring:weapon:18040000004:sol:bullet"
+    },
+    {
+      "weapon": "QJB201",
+      "barrel": "新式重锤战术枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000004.json",
+      "weaponId": "18040000004",
+      "itemId": "13020000530",
+      "sourceName": "QJB201新式重锤战术枪管",
+      "bulletProfile": "authoring:weapon:18040000004:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "QJB201",
+      "barrel": "新式獠牙短枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000004.json",
+      "weaponId": "18040000004",
+      "itemId": "13020000529",
+      "sourceName": "QJB201新式獠牙短枪管",
+      "bulletProfile": "authoring:weapon:18040000004:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "QJB201稳固",
+      "barrel": null,
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          54,
+          94.5
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000004.json",
+      "weaponId": "18040000004",
+      "bulletProfile": "authoring:weapon:18040000004:sol:bullet"
+    },
+    {
+      "weapon": "QJB201稳固",
+      "barrel": "新式重锤战术枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          70.2,
+          122.85000000000001
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000004.json",
+      "weaponId": "18040000004",
+      "itemId": "13020000530",
+      "sourceName": "QJB201新式重锤战术枪管",
+      "bulletProfile": "authoring:weapon:18040000004:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "QJB201稳固",
+      "barrel": "新式獠牙短枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          54,
+          94.5
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000004.json",
+      "weaponId": "18040000004",
+      "itemId": "13020000529",
+      "sourceName": "QJB201新式獠牙短枪管",
+      "bulletProfile": "authoring:weapon:18040000004:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "M249",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000002.json",
+      "weaponId": "18040000002",
+      "bulletProfile": "authoring:weapon:18040000002:sol:bullet"
+    },
+    {
+      "weapon": "M249",
+      "barrel": "犀牛长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000002.json",
+      "weaponId": "18040000002",
+      "itemId": "13020000239",
+      "sourceName": "M249犀牛长枪管",
+      "bulletProfile": "authoring:weapon:18040000002:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "M249",
+      "barrel": "HVK链锯套件",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18040000002.json",
+      "weaponId": "18040000002",
+      "itemId": "13020000590",
+      "sourceName": "M249H.A.V.K链锯套件",
+      "bulletProfile": "authoring:weapon:18040000002:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "AK-12",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000018.json",
+      "weaponId": "18010000018",
+      "bulletProfile": "authoring:weapon:18010000018:sol:bullet"
+    },
+    {
+      "weapon": "AK-12",
+      "barrel": "精英脚架长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000018.json",
+      "weaponId": "18010000018",
+      "itemId": "13020000370",
+      "sourceName": "AK12精英脚架长枪管",
+      "bulletProfile": "authoring:weapon:18010000018:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "M4A1",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000001.json",
+      "weaponId": "18010000001",
+      "bulletProfile": "authoring:weapon:18010000001:sol:bullet"
+    },
+    {
+      "weapon": "M4A1",
+      "barrel": "AR特勤一体消音组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000001.json",
+      "weaponId": "18010000001",
+      "itemId": "13020000173",
+      "sourceName": "AR特勤一体消音组合",
+      "bulletProfile": "authoring:weapon:18010000001:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "M4A1",
+      "barrel": "AR战壕标准枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000001.json",
+      "weaponId": "18010000001",
+      "itemId": "13020000350",
+      "sourceName": "AR战壕标准枪管组合",
+      "bulletProfile": "authoring:weapon:18010000001:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "M4A1",
+      "barrel": "AR碳纤维枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000001.json",
+      "weaponId": "18010000001",
+      "itemId": "13020000347",
+      "sourceName": "AR碳纤维枪管组合",
+      "bulletProfile": "authoring:weapon:18010000001:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "M4A1",
+      "barrel": "AR加百列长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000001.json",
+      "weaponId": "18010000001",
+      "itemId": "13020000349",
+      "sourceName": "AR加百列长枪管组合",
+      "bulletProfile": "authoring:weapon:18010000001:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "CAR-15",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          40,
+          70
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000031.json",
+      "weaponId": "18010000031",
+      "bulletProfile": "authoring:weapon:18010000031:sol:bullet"
+    },
+    {
+      "weapon": "CAR-15",
+      "barrel": "AR特勤一体消音组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000031.json",
+      "weaponId": "18010000031",
+      "itemId": "13020000173",
+      "sourceName": "AR特勤一体消音组合",
+      "bulletProfile": "authoring:weapon:18010000031:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "CAR-15",
+      "barrel": "AR战壕标准枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000031.json",
+      "weaponId": "18010000031",
+      "itemId": "13020000350",
+      "sourceName": "AR战壕标准枪管组合",
+      "bulletProfile": "authoring:weapon:18010000031:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "CAR-15",
+      "barrel": "AR碳纤维枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          47.199999999999996,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000031.json",
+      "weaponId": "18010000031",
+      "itemId": "13020000347",
+      "sourceName": "AR碳纤维枪管组合",
+      "bulletProfile": "authoring:weapon:18010000031:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "CAR-15",
+      "barrel": "AR加百列长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          52.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000031.json",
+      "weaponId": "18010000031",
+      "itemId": "13020000349",
+      "sourceName": "AR加百列长枪管组合",
+      "bulletProfile": "authoring:weapon:18010000031:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          40.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "M7",
+      "barrel": null,
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          50,
+          85
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          50,
+          70
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          50.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000016.json",
+      "weaponId": "18010000016",
+      "bulletProfile": "authoring:weapon:18010000016:sol:bullet"
+    },
+    {
+      "weapon": "M7",
+      "barrel": "实用长枪管组合",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          59.0,
+          100.3
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          59.0,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          59.0,
+          82.6
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000016.json",
+      "weaponId": "18010000016",
+      "itemId": "13020000381",
+      "sourceName": "M7实用长枪管组合",
+      "bulletProfile": "authoring:weapon:18010000016:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          50.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "M7",
+      "barrel": "堤风超长枪管组合",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          65.0,
+          110.5
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          65.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          65.0,
+          91.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000016.json",
+      "weaponId": "18010000016",
+      "itemId": "13020000383",
+      "sourceName": "M7堤风超长枪管组合",
+      "bulletProfile": "authoring:weapon:18010000016:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          50.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "M7",
+      "barrel": "灵蜥短枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          35.0,
+          59.49999999999999
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          35.0,
+          49.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          35.0,
+          49.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000016.json",
+      "weaponId": "18010000016",
+      "itemId": "13020000518",
+      "sourceName": "M7灵蜥短枪管",
+      "bulletProfile": "authoring:weapon:18010000016:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          50.0,
+          70.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 0.7
+    },
+    {
+      "weapon": "RM277",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000049.json",
+      "weaponId": "18010000049",
+      "bulletProfile": "authoring:weapon:18010000049:sol:bullet"
+    },
+    {
+      "weapon": "RM277",
+      "barrel": "RM277鲸鲨枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000049.json",
+      "weaponId": "18010000049",
+      "itemId": "13020000602",
+      "sourceName": "RM277鲸鲨枪管组合",
+      "bulletProfile": "authoring:weapon:18010000049:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "RM277",
+      "barrel": "RM277重型一体枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          64.89999999999999,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          64.89999999999999,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          64.89999999999999,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000049.json",
+      "weaponId": "18010000049",
+      "itemId": "13020000601",
+      "sourceName": "RM277重型一体枪管",
+      "bulletProfile": "authoring:weapon:18010000049:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "ASh-12",
+      "barrel": null,
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000012.json",
+      "weaponId": "18010000012",
+      "bulletProfile": "authoring:weapon:18010000012:sol:bullet"
+    },
+    {
+      "weapon": "ASh-12",
+      "barrel": "歼灭高精长枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000012.json",
+      "weaponId": "18010000012",
+      "itemId": "13020000378",
+      "sourceName": "ASh-12 歼灭高精长枪管",
+      "bulletProfile": "authoring:weapon:18010000012:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "ASh-12",
+      "barrel": "战斧重型枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000012.json",
+      "weaponId": "18010000012",
+      "itemId": "13020000569",
+      "sourceName": "ASH-12战斧重型枪管",
+      "bulletProfile": "authoring:part:13020000569:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "ASh-12",
+      "barrel": "HVK双发套件",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000012.json",
+      "weaponId": "18010000012",
+      "itemId": "13020000603",
+      "sourceName": "HVK双发枪管",
+      "bulletProfile": "authoring:weapon:18010000012:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "G3",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000023.json",
+      "weaponId": "18010000023",
+      "bulletProfile": "authoring:weapon:18010000023:sol:bullet"
+    },
+    {
+      "weapon": "G3",
+      "barrel": "G3守卫标准枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          64.89999999999999,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          64.89999999999999,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          64.89999999999999,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000023.json",
+      "weaponId": "18010000023",
+      "itemId": "13020000394",
+      "sourceName": "G3守卫标准枪管组合",
+      "bulletProfile": "authoring:weapon:18010000023:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "G3",
+      "barrel": "G3加强长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000023.json",
+      "weaponId": "18010000023",
+      "itemId": "13020000486",
+      "sourceName": "G3加强长枪管组合",
+      "bulletProfile": "authoring:weapon:18010000023:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "G3",
+      "barrel": "G3平台神射枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          74.80000000000001,
+          122.4
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          74.80000000000001,
+          122.4
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          74.8,
+          122.39999999999999
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000023.json",
+      "weaponId": "18010000023",
+      "itemId": "13020000512",
+      "sourceName": "G3平台神射枪管组合",
+      "bulletProfile": "authoring:weapon:18010000023:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1.3599999999999999
+    },
+    {
+      "weapon": "AUG",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000015.json",
+      "weaponId": "18010000015",
+      "bulletProfile": "authoring:weapon:18010000015:sol:bullet"
+    },
+    {
+      "weapon": "AUG",
+      "barrel": "实用集成三倍镜枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          58.300000000000004,
+          95.4
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          58.300000000000004,
+          95.4
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          58.300000000000004,
+          95.4
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000015.json",
+      "weaponId": "18010000015",
+      "itemId": "13020000364",
+      "sourceName": "AUG实用集成三倍镜枪管",
+      "bulletProfile": "authoring:weapon:18010000015:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1.06
+    },
+    {
+      "weapon": "AUG",
+      "barrel": "晨零一体消音管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          64.89999999999999,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          64.89999999999999,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          64.89999999999999,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000015.json",
+      "weaponId": "18010000015",
+      "itemId": "13020000366",
+      "sourceName": "AUG晨零一体消音管",
+      "bulletProfile": "authoring:weapon:18010000015:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "AUG",
+      "barrel": "精英脚架长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "after": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000015.json",
+      "weaponId": "18010000015",
+      "itemId": "13020000367",
+      "sourceName": "AUG精英脚架长枪管",
+      "bulletProfile": "authoring:weapon:18010000015:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "KC17",
+      "barrel": null,
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000042.json",
+      "weaponId": "18010000042",
+      "bulletProfile": "authoring:weapon:18010000042:sol:bullet"
+    },
+    {
+      "weapon": "KC17",
+      "barrel": "影舞者消音",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          64.89999999999999,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          64.89999999999999,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          64.89999999999999,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000042.json",
+      "weaponId": "18010000042",
+      "itemId": "13020000554",
+      "sourceName": "KC17影舞者消音",
+      "bulletProfile": "authoring:weapon:18010000042:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "KC17",
+      "barrel": "长剑枪管",
+      "status": "corrected",
+      "before": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.8
+        ]
+      },
+      "source": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.8
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000042.json",
+      "weaponId": "18010000042",
+      "itemId": "13020000552",
+      "sourceName": "KC17长剑枪管",
+      "bulletProfile": "authoring:weapon:18010000042:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.8
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "QBZ95-1",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000008.json",
+      "weaponId": "18010000008",
+      "bulletProfile": "authoring:weapon:18010000008:sol:bullet"
+    },
+    {
+      "weapon": "QBZ95-1",
+      "barrel": "战术枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          58.300000000000004,
+          95.4
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          58.300000000000004,
+          95.4
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          58.300000000000004,
+          95.4
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000008.json",
+      "weaponId": "18010000008",
+      "itemId": "13020000505",
+      "sourceName": "QBZ95战术枪管",
+      "bulletProfile": "authoring:weapon:18010000008:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.06
+    },
+    {
+      "weapon": "QBZ95-1",
+      "barrel": "长弓枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000008.json",
+      "weaponId": "18010000008",
+      "itemId": "13020000373",
+      "sourceName": "QBZ95-1长弓枪管组合",
+      "bulletProfile": "authoring:weapon:18010000008:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "Marlin",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          30,
+          50
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          30,
+          50
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          30.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000032.json",
+      "weaponId": "18050000032",
+      "bulletProfile": "authoring:weapon:18050000032:sol:bullet"
+    },
+    {
+      "weapon": "Marlin",
+      "barrel": "猎鹿人枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          39.0,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          39.0,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          39.0,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000032.json",
+      "weaponId": "18050000032",
+      "itemId": "13020000556",
+      "sourceName": "杠杆式步枪猎鹿人枪管",
+      "bulletProfile": "authoring:weapon:18050000032:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          30.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "Marlin犀牛",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          20,
+          40
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          20,
+          40
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          20.0,
+          40.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000032.json",
+      "weaponId": "18050000032",
+      "bulletProfile": "authoring:part:13520000003:sol:bullet"
+    },
+    {
+      "weapon": "Marlin犀牛",
+      "barrel": "猎鹿人枪管",
+      "status": "pending",
+      "before": {
+        "ranges": [
+          29.0,
+          58.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          29.0,
+          58.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          26.0,
+          52.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "note": "猎鹿人枪管原倍率 1.45，源字段为 1.30；用户要求保留 29/58m，待靶场验证。",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000032.json",
+      "weaponId": "18050000032",
+      "itemId": "13020000556",
+      "sourceName": "杠杆式步枪猎鹿人枪管",
+      "bulletProfile": "authoring:part:13520000003:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          20.0,
+          40.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "Marlin蜂鸟",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          30,
+          50
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          30,
+          50
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          30.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000032.json",
+      "weaponId": "18050000032",
+      "bulletProfile": "authoring:weapon:18050000032:sol:bullet"
+    },
+    {
+      "weapon": "Marlin蜂鸟",
+      "barrel": "猎鹿人枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          39.0,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          39.0,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          39.0,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000032.json",
+      "weaponId": "18050000032",
+      "itemId": "13020000556",
+      "sourceName": "杠杆式步枪猎鹿人枪管",
+      "bulletProfile": "authoring:weapon:18050000032:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          30.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.75
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "PSG-1",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          90
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          90
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000031.json",
+      "weaponId": "18050000031",
+      "bulletProfile": "authoring:weapon:18050000031:sol:bullet"
+    },
+    {
+      "weapon": "PSG-1",
+      "barrel": "G3平台神射枪管组合",
+      "status": "pending",
+      "before": {
+        "ranges": [
+          122.00004
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          122.00004
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          122.39999999999999
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "当前近似倍率保留整数节点；用户要求保留，待靶场验证。",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000031.json",
+      "weaponId": "18050000031",
+      "itemId": "13020000512",
+      "sourceName": "G3平台神射枪管组合",
+      "bulletProfile": "authoring:weapon:18050000031:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "sourceMultiplier": 1.3599999999999999
+    },
+    {
+      "weapon": "PSG-1",
+      "barrel": "G3加强长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000031.json",
+      "weaponId": "18050000031",
+      "itemId": "13020000486",
+      "sourceName": "G3加强长枪管组合",
+      "bulletProfile": "authoring:weapon:18050000031:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "PSG-1",
+      "barrel": "G3守卫标准枪管组合",
+      "status": "pending",
+      "before": {
+        "ranges": [
+          106.00002
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          106.00002
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "当前近似倍率保留整数节点；用户要求保留，待靶场验证。",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000031.json",
+      "weaponId": "18050000031",
+      "itemId": "13020000394",
+      "sourceName": "G3守卫标准枪管组合",
+      "bulletProfile": "authoring:weapon:18050000031:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "SR9",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          90
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          90
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000008.json",
+      "weaponId": "18050000008",
+      "bulletProfile": "authoring:weapon:18050000008:sol:bullet"
+    },
+    {
+      "weapon": "SR9",
+      "barrel": "G3平台神射枪管组合",
+      "status": "pending",
+      "before": {
+        "ranges": [
+          122.00004
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          122.00004
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          122.39999999999999
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "当前近似倍率保留整数节点；用户要求保留，待靶场验证。",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000008.json",
+      "weaponId": "18050000008",
+      "itemId": "13020000512",
+      "sourceName": "G3平台神射枪管组合",
+      "bulletProfile": "authoring:weapon:18050000008:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "sourceMultiplier": 1.3599999999999999
+    },
+    {
+      "weapon": "SR9",
+      "barrel": "G3加强长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000008.json",
+      "weaponId": "18050000008",
+      "itemId": "13020000486",
+      "sourceName": "G3加强长枪管组合",
+      "bulletProfile": "authoring:weapon:18050000008:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "SR9",
+      "barrel": "G3守卫标准枪管组合",
+      "status": "pending",
+      "before": {
+        "ranges": [
+          106.00002
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          106.00002
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "当前近似倍率保留整数节点；用户要求保留，待靶场验证。",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000008.json",
+      "weaponId": "18050000008",
+      "itemId": "13020000394",
+      "sourceName": "G3守卫标准枪管组合",
+      "bulletProfile": "authoring:weapon:18050000008:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "SR-25",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          60
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          60
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          60.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000007.json",
+      "weaponId": "18050000007",
+      "bulletProfile": "authoring:weapon:18050000007:sol:bullet"
+    },
+    {
+      "weapon": "SR-25",
+      "barrel": "SR25瞬息短枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          50,
+          80
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          50,
+          80
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          50.0,
+          80.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000007.json",
+      "weaponId": "18050000007",
+      "itemId": "13020000398",
+      "sourceName": "SR25瞬息短枪管",
+      "bulletProfile": "authoring:part:13020000398:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          50.0,
+          80.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "SR-25",
+      "barrel": "SR25追风长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          106.00002
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          106
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          106.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000007.json",
+      "weaponId": "18050000007",
+      "itemId": "13020000397",
+      "sourceName": "SR25追风长枪管",
+      "bulletProfile": "authoring:part:13020000397:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          106.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "SR-25",
+      "barrel": "SR25新星超长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          117
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000007.json",
+      "weaponId": "18050000007",
+      "itemId": "13020000396",
+      "sourceName": "SR25新星超长枪管",
+      "bulletProfile": "authoring:part:13020000396:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "SKS",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          55,
+          90
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000006.json",
+      "weaponId": "18050000006",
+      "bulletProfile": "authoring:weapon:18050000006:sol:bullet"
+    },
+    {
+      "weapon": "SKS",
+      "barrel": "SKS瞬息超长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "after": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "source": {
+        "ranges": [
+          71.5,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000006.json",
+      "weaponId": "18050000006",
+      "itemId": "13020000407",
+      "sourceName": "SKS瞬息超长枪管",
+      "bulletProfile": "authoring:weapon:18050000006:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          55.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "SVD",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          70,
+          90
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.625
+        ]
+      },
+      "after": {
+        "ranges": [
+          70,
+          90
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.625
+        ]
+      },
+      "source": {
+        "ranges": [
+          70.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.625
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000004.json",
+      "weaponId": "18050000004",
+      "bulletProfile": "authoring:weapon:18050000004:sol:bullet"
+    },
+    {
+      "weapon": "SVD",
+      "barrel": "SVD黑刺超长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          91.0,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.625
+        ]
+      },
+      "after": {
+        "ranges": [
+          91.0,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.625
+        ]
+      },
+      "source": {
+        "ranges": [
+          91.0,
+          117.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.625
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000004.json",
+      "weaponId": "18050000004",
+      "itemId": "13020000403",
+      "sourceName": "SVD黑刺超长枪管",
+      "bulletProfile": "authoring:weapon:18050000004:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          70.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.625
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "SVD",
+      "barrel": "SVD实用长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          82.6,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.625
+        ]
+      },
+      "after": {
+        "ranges": [
+          82.6,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.625
+        ]
+      },
+      "source": {
+        "ranges": [
+          82.6,
+          106.19999999999999
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.625
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000004.json",
+      "weaponId": "18050000004",
+      "itemId": "13020000402",
+      "sourceName": "svd实用长枪管",
+      "bulletProfile": "authoring:weapon:18050000004:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          70.0,
+          90.0
+        ],
+        "decays": [
+          1,
+          0.9,
+          0.625
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "SVCH",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          65
+        ],
+        "decays": [
+          1,
+          0.9
+        ]
+      },
+      "after": {
+        "ranges": [
+          65
+        ],
+        "decays": [
+          1,
+          0.9
+        ]
+      },
+      "source": {
+        "ranges": [
+          65.0
+        ],
+        "decays": [
+          1,
+          0.9
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000033.json",
+      "weaponId": "18050000033",
+      "bulletProfile": "authoring:weapon:18050000033:sol:bullet"
+    },
+    {
+      "weapon": "SVCH",
+      "barrel": "SVCH碳纤长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          84.5
+        ],
+        "decays": [
+          1,
+          0.9
+        ]
+      },
+      "after": {
+        "ranges": [
+          84.5
+        ],
+        "decays": [
+          1,
+          0.9
+        ]
+      },
+      "source": {
+        "ranges": [
+          84.5
+        ],
+        "decays": [
+          1,
+          0.9
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000033.json",
+      "weaponId": "18050000033",
+      "itemId": "13020000599",
+      "sourceName": "SVCH长枪管",
+      "bulletProfile": "authoring:weapon:18050000033:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          65.0
+        ],
+        "decays": [
+          1,
+          0.9
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "SVCH",
+      "barrel": "SVCH精工短枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          65
+        ],
+        "decays": [
+          1,
+          0.9
+        ]
+      },
+      "after": {
+        "ranges": [
+          65
+        ],
+        "decays": [
+          1,
+          0.9
+        ]
+      },
+      "source": {
+        "ranges": [
+          65.0
+        ],
+        "decays": [
+          1,
+          0.9
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000033.json",
+      "weaponId": "18050000033",
+      "itemId": "13020000600",
+      "sourceName": "SVCH短枪管",
+      "bulletProfile": "authoring:weapon:18050000033:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          65.0
+        ],
+        "decays": [
+          1,
+          0.9
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "VSS",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          120
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          120
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          120.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000003.json",
+      "weaponId": "18050000003",
+      "bulletProfile": "authoring:weapon:18050000003:sol:bullet"
+    },
+    {
+      "weapon": "VSS",
+      "barrel": "VSS海啸长枪管组合",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          156.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          156.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          156.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000003.json",
+      "weaponId": "18050000003",
+      "itemId": "13020000410",
+      "sourceName": "VSS海啸长枪管组合",
+      "bulletProfile": "authoring:weapon:18050000003:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          120.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "Mini-14",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          90
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          90
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000002.json",
+      "weaponId": "18050000002",
+      "bulletProfile": "authoring:weapon:18050000002:sol:bullet"
+    },
+    {
+      "weapon": "Mini-14",
+      "barrel": "mini-14增强枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "after": {
+        "ranges": [
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "source": {
+        "ranges": [
+          117.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18050000002.json",
+      "weaponId": "18050000002",
+      "itemId": "13020000489",
+      "sourceName": "Mini-14增强枪管",
+      "bulletProfile": "authoring:weapon:18050000002:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          90.0
+        ],
+        "decays": [
+          1,
+          0.85
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "G18",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          10,
+          20,
+          30
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7,
+          0.6
+        ]
+      },
+      "after": {
+        "ranges": [
+          10,
+          20,
+          30
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7,
+          0.6
+        ]
+      },
+      "source": {
+        "ranges": [
+          10.0,
+          20.0,
+          30.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7,
+          0.6
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18070000005.json",
+      "weaponId": "18070000005",
+      "bulletProfile": "authoring:weapon:18070000005:sol:bullet"
+    },
+    {
+      "weapon": "G18",
+      "barrel": "冲击长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          13.0,
+          26.0,
+          39.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7,
+          0.6
+        ]
+      },
+      "after": {
+        "ranges": [
+          13.0,
+          26.0,
+          39.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7,
+          0.6
+        ]
+      },
+      "source": {
+        "ranges": [
+          13.0,
+          26.0,
+          39.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7,
+          0.6
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18070000005.json",
+      "weaponId": "18070000005",
+      "itemId": "13020000456",
+      "sourceName": "G18冲击长枪管",
+      "bulletProfile": "authoring:weapon:18070000005:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          10.0,
+          20.0,
+          30.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.7,
+          0.6
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "MDR",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          35,
+          50
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          35,
+          50
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          35.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000051.json",
+      "weaponId": "18010000051",
+      "bulletProfile": "authoring:weapon:18010000051:sol:bullet"
+    },
+    {
+      "weapon": "MDR",
+      "barrel": "MDR.308渗透者短枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          35,
+          50
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          35,
+          50
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          35.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000051.json",
+      "weaponId": "18010000051",
+      "itemId": "13020000615",
+      "sourceName": "MDR.308渗透者短枪管",
+      "bulletProfile": "authoring:weapon:18010000051:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          35.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "MDR",
+      "barrel": "MDR.308对峙者长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          45.5,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "after": {
+        "ranges": [
+          45.5,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "source": {
+        "ranges": [
+          45.5,
+          65.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18010000051.json",
+      "weaponId": "18010000051",
+      "itemId": "13020000616",
+      "sourceName": "MDR.308对峙者长枪管",
+      "bulletProfile": "authoring:weapon:18010000051:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          35.0,
+          50.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "汤姆逊",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          18,
+          32,
+          45
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75,
+          0.65
+        ]
+      },
+      "after": {
+        "ranges": [
+          18,
+          32,
+          45
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75,
+          0.65
+        ]
+      },
+      "source": {
+        "ranges": [
+          18.0,
+          32.0,
+          45.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75,
+          0.65
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000046.json",
+      "weaponId": "18020000046",
+      "bulletProfile": "authoring:weapon:18020000046:sol:bullet"
+    },
+    {
+      "weapon": "汤姆逊",
+      "barrel": "汤姆逊精工长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          23.400000000000002,
+          41.6,
+          58.5
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75,
+          0.65
+        ]
+      },
+      "after": {
+        "ranges": [
+          23.400000000000002,
+          41.6,
+          58.5
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75,
+          0.65
+        ]
+      },
+      "source": {
+        "ranges": [
+          23.400000000000002,
+          41.6,
+          58.5
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75,
+          0.65
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000046.json",
+      "weaponId": "18020000046",
+      "itemId": "13020000607",
+      "sourceName": "汤姆逊精工长枪管",
+      "bulletProfile": "authoring:weapon:18020000046:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          18.0,
+          32.0,
+          45.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75,
+          0.65
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "汤姆逊",
+      "barrel": "汤姆逊一体冲锋枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          20.7,
+          36.8,
+          51.74999999999999
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75,
+          0.65
+        ]
+      },
+      "after": {
+        "ranges": [
+          20.7,
+          36.8,
+          51.74999999999999
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75,
+          0.65
+        ]
+      },
+      "source": {
+        "ranges": [
+          20.7,
+          36.8,
+          51.74999999999999
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75,
+          0.65
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18020000046.json",
+      "weaponId": "18020000046",
+      "itemId": "13020000608",
+      "sourceName": "汤姆逊一体冲锋枪管",
+      "bulletProfile": "authoring:weapon:18020000046:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          18.0,
+          32.0,
+          45.0
+        ],
+        "decays": [
+          1,
+          0.85,
+          0.75,
+          0.65
+        ]
+      },
+      "sourceMultiplier": 1.15
+    },
+    {
+      "weapon": "M700",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "after": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "source": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18060000009.json",
+      "weaponId": "18060000009",
+      "bulletProfile": "authoring:weapon:18060000009:sol:bullet"
+    },
+    {
+      "weapon": "M700",
+      "barrel": "M700一体消音管",
+      "status": "matched",
+      "before": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "after": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "source": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18060000009.json",
+      "weaponId": "18060000009",
+      "itemId": "13020000443",
+      "sourceName": "M700一体消音管",
+      "bulletProfile": "authoring:weapon:18060000009:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "M700",
+      "barrel": "M700平流层长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "after": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "source": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18060000009.json",
+      "weaponId": "18060000009",
+      "itemId": "13020000444",
+      "sourceName": "M700平流层长枪管",
+      "bulletProfile": "authoring:weapon:18060000009:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "sourceMultiplier": 1.3
+    },
+    {
+      "weapon": "M700",
+      "barrel": "M700猎食军规枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "after": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "source": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18060000009.json",
+      "weaponId": "18060000009",
+      "itemId": "13020000515",
+      "sourceName": "M700猎食军规枪管",
+      "bulletProfile": "authoring:weapon:18060000009:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [],
+        "decays": [
+          1
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "93R",
+      "barrel": null,
+      "status": "matched",
+      "before": {
+        "ranges": [
+          22,
+          44
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "after": {
+        "ranges": [
+          22,
+          44
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "source": {
+        "ranges": [
+          22.0,
+          44.0
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18070000006.json",
+      "weaponId": "18070000006",
+      "bulletProfile": "authoring:weapon:18070000006:sol:bullet"
+    },
+    {
+      "weapon": "93R",
+      "barrel": "93R实用长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          25.959999999999997,
+          51.919999999999995
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "after": {
+        "ranges": [
+          25.959999999999997,
+          51.919999999999995
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "source": {
+        "ranges": [
+          25.959999999999997,
+          51.919999999999995
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18070000006.json",
+      "weaponId": "18070000006",
+      "itemId": "13020000464",
+      "sourceName": "93R实用长枪管",
+      "bulletProfile": "authoring:weapon:18070000006:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          22.0,
+          44.0
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "sourceMultiplier": 1.18
+    },
+    {
+      "weapon": "93R",
+      "barrel": "93R实用重枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          23.32,
+          46.64
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "after": {
+        "ranges": [
+          23.32,
+          46.64
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "source": {
+        "ranges": [
+          23.32,
+          46.64
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18070000006.json",
+      "weaponId": "18070000006",
+      "itemId": "13020000465",
+      "sourceName": "93R实用重枪管",
+      "bulletProfile": "authoring:weapon:18070000006:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          22.0,
+          44.0
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "sourceMultiplier": 1.06
+    },
+    {
+      "weapon": "93R",
+      "barrel": "93R实用轻枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          22,
+          44
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "after": {
+        "ranges": [
+          22,
+          44
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "source": {
+        "ranges": [
+          22.0,
+          44.0
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18070000006.json",
+      "weaponId": "18070000006",
+      "itemId": "13020000466",
+      "sourceName": "93R实用轻枪管",
+      "bulletProfile": "authoring:weapon:18070000006:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          22.0,
+          44.0
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "sourceMultiplier": 1
+    },
+    {
+      "weapon": "93R",
+      "barrel": "93R远射超长枪管",
+      "status": "matched",
+      "before": {
+        "ranges": [
+          28.6,
+          57.2
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "after": {
+        "ranges": [
+          28.6,
+          57.2
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "source": {
+        "ranges": [
+          28.6,
+          57.2
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "note": "",
+      "url": "https://dfttk.com/data/v3/packs/combat/weapons/18070000006.json",
+      "weaponId": "18070000006",
+      "itemId": "13020000467",
+      "sourceName": "93R远射超长枪管",
+      "bulletProfile": "authoring:weapon:18070000006:sol:bullet",
+      "sourceBaseCurve": {
+        "ranges": [
+          22.0,
+          44.0
+        ],
+        "decays": [
+          1,
+          0.8,
+          0.65
+        ]
+      },
+      "sourceMultiplier": 1.3
+    }
+  ]
+}
