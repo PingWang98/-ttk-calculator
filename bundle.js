@@ -132,7 +132,7 @@
           3: { armorMult: 1.1, pen: 1 },
           4: { armorMult: 1.1, pen: 0.75 },
           5: { armorMult: 1.1, pen: 0.5 },
-          6: { armorMult: 1.3, pen: 0 },
+          6: { armorMult: 1.1, pen: 0 },
         },
       },
       "7.62×39 BP SUB": {
@@ -341,6 +341,23 @@
       ? marlinAmmoProfiles[a]
       : ie[a];
   }
+  function withAmmoFireRate(weapon, bulletKey) {
+    const multiplier = getAmmoProfile(weapon, bulletKey)?.rofMult || 1;
+    if (multiplier === 1 || weapon.ammoFireRateApplied === bulletKey) return weapon;
+    return {
+      ...weapon,
+      rof: weapon.rof * multiplier,
+      burstInternalROF: weapon.burstInternalROF == null ? undefined : weapon.burstInternalROF * multiplier,
+      initialFastRof: weapon.initialFastRof == null ? undefined : weapon.initialFastRof * multiplier,
+      ammoFireRateApplied: bulletKey,
+    };
+  }
+  function normalizeKitAttachments(weapon, config) {
+    const kit = weapon.fireControls?.[config.fireControlIndex - 1];
+    return kit?.replacesBarrelAndMuzzle
+      ? { ...config, barrelIndex: 0, muzzleIndex: 0 }
+      : config;
+  }
   function isSpecialAmmoKey(e) {
     return typeof e == "string";
   }
@@ -444,7 +461,7 @@
       TOP_WEAPONS_COUNT: 10,
       PADDING_TOP: 40,
     },
-    G = { DEFAULT_SIM_COUNT: 2e4, DISTANCE_SIM_COUNT: 2e4 },
+    G = { DEFAULT_SIM_COUNT: 2e4, DISTANCE_SIM_COUNT: 2e4, MAX_SHOTS_PER_KILL: 10000, MAX_SHOTS_PER_BATCH: 2000000 },
     ce = 1.09,
     E = { SECONDS_TO_MS: 1e3, MINUTES_TO_SECONDS: 60 },
     z = {
@@ -696,7 +713,7 @@
     N = class {
       static getStrategy(e, a) {
         let t = a ? getAmmoProfile(a, e) : null;
-        return e && (/RIP/i.test(e) || /CT/i.test(e))
+        return e && !t?.useHitProbabilities && (/RIP/i.test(e) || /CT/i.test(e))
           ? le
           : getProjectileCount(a, t) > 1
             ? oe
@@ -705,6 +722,7 @@
     };
   var R = class {
       static simulateOneTTK(e, a, t, n = !1, state) {
+        e = withAmmoFireRate(e, a.bulletLevel);
         let o = a.healthValue || 100;
         if (state) {
           state.armorVal = a.armorValue;
@@ -726,6 +744,7 @@
           h = n ? [] : null;
         let lastPart = null;
         for (; o > 0; ) {
+          checkSimulationLimit(b, o);
           b++;
           if (d) {
             if (b > e.burstCount && (b % e.burstCount === 1)) {
@@ -779,6 +798,8 @@
           if (isMiss) continue;
           p++;
           t.calculateHitDamage(e, a, l, y, currentProb, state);
+          if (!Number.isFinite(state.damage) || state.damage < 0)
+            throw new Error("伤害计算结果无效，请检查武器和弹药配置。");
           if (n) h.push(state.hitPart || "chest");
           o -= state.damage;
           lastPart = state.hitPart || "chest";
@@ -836,6 +857,7 @@
             (r += m.shots),
             (s += m.shots - m.hits),
             (i += m.burstIntervalTime || 0));
+          checkSimulationBatchLimit(r);
         }
         return {
           weapon: { ...e },
@@ -1482,9 +1504,9 @@
           },
           {
             name: "长矛手长枪管组合",
-            rangeMult: 1.3,
+            rangeMult: 1.5,
             damageBonus: 0,
-            armorDamageBonus: 0,
+            armorDamageBonus: 3,
             rofMult: 1,
           },
         ],
@@ -2608,6 +2630,380 @@
     "5.45×39mm BT ST",
     "5.45×39mm BS ST+",
   ]);
+  // S11: official season notes + DFTTK snapshot 20260907-050558.3; see docs/S11-data.md.
+  Object.assign(ie, {
+  "4.6×30mm CT": {
+    "base": 1,
+    "armor": {
+      "1": {
+        "armorMult": 0.4,
+        "pen": 0
+      },
+      "2": {
+        "armorMult": 0.3,
+        "pen": 0
+      },
+      "3": {
+        "armorMult": 0.2,
+        "pen": 0
+      },
+      "4": {
+        "armorMult": 0.2,
+        "pen": 0
+      },
+      "5": {
+        "armorMult": 0.2,
+        "pen": 0
+      },
+      "6": {
+        "armorMult": 0.2,
+        "pen": 0
+      }
+    },
+    "partMultMult": {
+      "limbs": 1.85
+    },
+    "rofMult": 0.85,
+    "useHitProbabilities": true
+  },
+  "4.6×30mm FMJ ST": {
+    "base": 1,
+    "armor": {
+      "1": {
+        "armorMult": 1,
+        "pen": 1
+      },
+      "2": {
+        "armorMult": 1,
+        "pen": 1
+      },
+      "3": {
+        "armorMult": 1,
+        "pen": 0.75
+      },
+      "4": {
+        "armorMult": 1,
+        "pen": 0.5
+      },
+      "5": {
+        "armorMult": 1,
+        "pen": 0
+      },
+      "6": {
+        "armorMult": 0.6,
+        "pen": 0
+      }
+    },
+    "partMultMult": {
+      "head": 1.25,
+      "chest": 1.25,
+      "stomach": 0.9,
+      "limbs": 0.9
+    }
+  },
+  "4.6×30mm AP ST": {
+    "base": 1,
+    "armor": {
+      "1": {
+        "armorMult": 1.1,
+        "pen": 1
+      },
+      "2": {
+        "armorMult": 1.1,
+        "pen": 1
+      },
+      "3": {
+        "armorMult": 1.1,
+        "pen": 1
+      },
+      "4": {
+        "armorMult": 1.1,
+        "pen": 0.75
+      },
+      "5": {
+        "armorMult": 1.1,
+        "pen": 0.5
+      },
+      "6": {
+        "armorMult": 1.1,
+        "pen": 0
+      }
+    },
+    "partMultMult": {
+      "head": 1.25,
+      "chest": 1.25,
+      "stomach": 0.9,
+      "limbs": 0.9
+    }
+  }
+});
+  ge.push(...[
+  {
+    "name": "MDR",
+    "type": "步枪",
+    "ranges": [
+      35,
+      50,
+      1 / 0,
+      1 / 0
+    ],
+    "decays": [
+      1,
+      0.85,
+      0.75,
+      0.75,
+      0.75
+    ],
+    "velocity": 630,
+    "flesh": 41,
+    "armor": 43,
+    "rof": 650.0541711809318,
+    "triggerDelay": 0,
+    "barrels": [
+      {
+        "name": "MDR.308渗透者短枪管",
+        "rangeMult": 1,
+        "rofMult": 1,
+        "damageBonus": 0,
+        "armorDamageBonus": 0
+      },
+      {
+        "name": "MDR.308对峙者长枪管",
+        "rangeMult": 1.3,
+        "rofMult": 1,
+        "damageBonus": 0,
+        "armorDamageBonus": 0
+      }
+    ],
+    "mult": {
+      "head": 1.9,
+      "chest": 1,
+      "stomach": 0.9,
+      "limbs": 0.4
+    },
+    "allowedBullets": [
+      2,
+      3,
+      4,
+      5,
+      "M61"
+    ]
+  },
+  {
+    "name": "汤姆逊",
+    "type": "冲锋枪",
+    "ranges": [
+      18,
+      32,
+      45,
+      1 / 0
+    ],
+    "decays": [
+      1,
+      0.85,
+      0.75,
+      0.65,
+      0.65
+    ],
+    "velocity": 500,
+    "flesh": 34,
+    "armor": 36,
+    "rof": 900.0900090009002,
+    "triggerDelay": 0,
+    "barrels": [
+      {
+        "name": "汤姆逊精工长枪管",
+        "rangeMult": 1.3,
+        "rofMult": 1,
+        "damageBonus": 0,
+        "armorDamageBonus": 0
+      },
+      {
+        "name": "汤姆逊一体冲锋枪管",
+        "rangeMult": 1.15,
+        "rofMult": 1,
+        "damageBonus": 0,
+        "armorDamageBonus": 0
+      }
+    ],
+    "mult": {
+      "head": 1.9,
+      "chest": 1,
+      "stomach": 1,
+      "limbs": 0.35
+    },
+    "allowedBullets": [
+      1,
+      2,
+      3,
+      4,
+      "RIP45",
+      "ACP SUPER",
+      ".45 ACP CT"
+    ],
+    "fireControls": [
+      {
+        "name": "汤姆逊先进枪身系统",
+        "damageBonus": 3,
+        "armorDamageBonus": 1
+      }
+    ]
+  },
+  {
+    "name": "M700",
+    "type": "狙击步枪",
+    "ranges": [
+      1 / 0,
+      1 / 0,
+      1 / 0,
+      1 / 0
+    ],
+    "decays": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "velocity": 650,
+    "flesh": 61,
+    "armor": 58,
+    "rof": 48,
+    "triggerDelay": 0,
+    "barrels": [
+      {
+        "name": "M700一体消音管",
+        "rangeMult": 1,
+        "rofMult": 1.1764705882352942,
+        "damageBonus": 0,
+        "armorDamageBonus": 0
+      },
+      {
+        "name": "M700平流层长枪管",
+        "rangeMult": 1.3,
+        "rofMult": 0.8695652173913044,
+        "damageBonus": 0,
+        "armorDamageBonus": 0
+      },
+      {
+        "name": "M700猎食军规枪管",
+        "rangeMult": 1.18,
+        "rofMult": 1,
+        "damageBonus": 0,
+        "armorDamageBonus": 0
+      }
+    ],
+    "mult": {
+      "head": 2.5,
+      "chest": 1,
+      "stomach": 0.9,
+      "limbs": 0.4
+    },
+    "allowedBullets": [
+      2,
+      3,
+      4,
+      5,
+      "M61"
+    ],
+    "fireControls": [
+      {
+        "name": "HVK旋风枪身系统",
+        "rof": 133.33333333333334,
+        "fireMode": "single"
+      },
+      {
+        "name": "HVK旋风枪身系统 + 强化导气",
+        "rof": 420.0210010500524,
+        "fireMode": "auto",
+        "partMultAdd": {
+          "stomach": -0.4,
+          "limbs": -0.15
+        }
+      }
+    ]
+  },
+  {
+    "name": "93R",
+    "type": "手枪",
+    "ranges": [
+      22,
+      44,
+      1 / 0,
+      1 / 0
+    ],
+    "decays": [
+      1,
+      0.8,
+      0.65,
+      0.65,
+      0.65
+    ],
+    "velocity": 400,
+    "flesh": 34,
+    "armor": 32,
+    "rof": 508,
+    "triggerDelay": 0,
+    "barrels": [
+      {
+        "name": "93R实用长枪管",
+        "rangeMult": 1.18,
+        "rofMult": 1,
+        "damageBonus": 0,
+        "armorDamageBonus": 0
+      },
+      {
+        "name": "93R实用重枪管",
+        "rangeMult": 1.06,
+        "rofMult": 1,
+        "damageBonus": 0,
+        "armorDamageBonus": 0
+      },
+      {
+        "name": "93R实用轻枪管",
+        "rangeMult": 1,
+        "rofMult": 1,
+        "damageBonus": 0,
+        "armorDamageBonus": 0
+      },
+      {
+        "name": "93R远射超长枪管",
+        "rangeMult": 1.3,
+        "rofMult": 1,
+        "damageBonus": 0,
+        "armorDamageBonus": 0
+      }
+    ],
+    "mult": {
+      "head": 1.9,
+      "chest": 1,
+      "stomach": 0.9,
+      "limbs": 0.4
+    },
+    "allowedBullets": [
+      1,
+      2,
+      3,
+      4,
+      "RIP",
+      "9×19mm CT"
+    ],
+    "fireMode": "burst",
+    "burstCount": 3,
+    "burstInternalROF": 895.5223880597015,
+    "burstInterval": 0.22,
+    "fireControls": [
+      {
+        "name": "HVK鼬鼠冲锋枪套件",
+        "fireMode": "auto",
+        "rof": 670.8407871198568,
+        "rangeMultAdd": 0.45,
+        "replacesBarrelAndMuzzle": true
+      }
+    ]
+  }
+]);
+  appendUniqueBulletsToWeapons(["MP7", "MP7稳固"], ["4.6×30mm CT", "4.6×30mm FMJ ST", "4.6×30mm AP ST"]);
   var Y = class {
     constructor() {
       ((this.weapons = ge),
@@ -2720,21 +3116,22 @@
     }
     applyAttachments(e, a) {
       let t = this.weapons.map((r, s) => {
-          let { barrelIndex: i, muzzleIndex: u, hitRate: m, fireControlIndex: fcIndex } = e[s],
+          let { barrelIndex: i, muzzleIndex: u, hitRate: m, fireControlIndex: fcIndex } = normalizeKitAttachments(r, e[s]),
             l = i > 0 ? r.barrels[i - 1] : null,
             d = u > 0 ? this.muzzles[u] : null,
             fc = fcIndex > 0 && r.fireControls ? r.fireControls[fcIndex - 1] : null,
-            g = this.getRangeMultiplier(l, d),
+            g = this.getRangeMultiplier(l, d) + (fc?.rangeMultAdd || 0),
             muzzleVelocityMult = d ? d.mult : 0;
           let y = 1,
             b = this.getWeaponVelocityPrecision(s, !1, a);
           y *= 1 + b;
           let p = l ? l.rofMult : 1,
-            v = l && l.damageBonus !== void 0 ? l.damageBonus : 0,
-            h = l && l.armorDamageBonus !== void 0 ? l.armorDamageBonus : 0,
+            v = (l?.damageBonus || 0) + (fc?.damageBonus || 0),
+            h = (l?.armorDamageBonus || 0) + (fc?.armorDamageBonus || 0),
             f = l && l.partMultAdd ? l.partMultAdd : null,
             M = { ...r.mult };
           if (f) for (let L in f) M[L] = (M[L] ?? 1) + f[L];
+          if (fc?.partMultAdd) for (const part in fc.partMultAdd) M[part] += fc.partMultAdd[part];
           let I = r.triggerDelay || 0,
             C =
               l && typeof l.triggerDelayDelta == "number"
@@ -2746,8 +3143,8 @@
               l && Array.isArray(l.decays) && l.decays.length > 0
                 ? l.decays
                 : r.decays,
-            ne = this.calculateVelocity(r, l, g, muzzleVelocityMult) * y,
-            w = r.fireMode || null;
+            ne = (this.calculateVelocity(r, l, g, muzzleVelocityMult) + (!l || typeof l.velocityAdd === "number" ? r.velocity * (fc?.rangeMultAdd || 0) : 0)) * y,
+            w = fc?.fireMode ?? r.fireMode ?? null;
           l && l.fireMode !== void 0 && (w = l.fireMode);
           let O = l && l.burstCount !== void 0 ? l.burstCount : r.burstCount,
             V =
@@ -2809,21 +3206,22 @@
               muzzleIndex: u,
               hitRate: m,
               fireControlIndex: fcIndex,
-            } = r.attachmentConfig,
+            } = normalizeKitAttachments(r, r.attachmentConfig),
             l = i > 0 ? r.barrels[i - 1] : null,
             d = u > 0 ? this.muzzles[u] : null,
             fc = fcIndex > 0 && r.fireControls ? r.fireControls[fcIndex - 1] : null,
-            g = this.getRangeMultiplier(l, d),
+            g = this.getRangeMultiplier(l, d) + (fc?.rangeMultAdd || 0),
             muzzleVelocityMult = d ? d.mult : 0;
           let y = 1,
             b = this.getWeaponVelocityPrecision(s, !0, a);
           y *= 1 + b;
           let p = l ? l.rofMult : 1,
-            v = l && l.damageBonus !== void 0 ? l.damageBonus : 0,
-            h = l && l.armorDamageBonus !== void 0 ? l.armorDamageBonus : 0,
+            v = (l?.damageBonus || 0) + (fc?.damageBonus || 0),
+            h = (l?.armorDamageBonus || 0) + (fc?.armorDamageBonus || 0),
             f = l && l.partMultAdd ? l.partMultAdd : null,
             M = { ...r.mult };
           if (f) for (let A in f) M[A] = (M[A] ?? 1) + f[A];
+          if (fc?.partMultAdd) for (const part in fc.partMultAdd) M[part] += fc.partMultAdd[part];
           let I = r.triggerDelay || 0,
             C =
               l && typeof l.triggerDelayDelta == "number"
@@ -2835,8 +3233,8 @@
               l && Array.isArray(l.decays) && l.decays.length > 0
                 ? l.decays
                 : r.decays,
-            ne = this.calculateVelocity(r, l, g, muzzleVelocityMult) * y,
-            w = r.fireMode || null;
+            ne = (this.calculateVelocity(r, l, g, muzzleVelocityMult) + (!l || typeof l.velocityAdd === "number" ? r.velocity * (fc?.rangeMultAdd || 0) : 0)) * y,
+            w = fc?.fireMode ?? r.fireMode ?? null;
           l && l.fireMode !== void 0 && (w = l.fireMode);
           let O = l && l.burstCount !== void 0 ? l.burstCount : r.burstCount,
             V =
@@ -2892,7 +3290,7 @@
             }
           );
         });
-      return [...t, ...n];
+      return [...t, ...n].map((weapon) => withAmmoFireRate(weapon, R.getRealBulletKey(weapon.bulletType, weapon, a)));
     }
     getWeapons() {
       return this.weapons;
@@ -2911,20 +3309,21 @@
       return !0;
     }
     calculateCloneDisplayData(e, a = {}) {
-      let { barrelIndex: t, muzzleIndex: n, hitRate: o, fireControlIndex: fcIndex } = e.attachmentConfig,
+      let { barrelIndex: t, muzzleIndex: n, hitRate: o, fireControlIndex: fcIndex } = normalizeKitAttachments(e, e.attachmentConfig),
         r = t > 0 ? e.barrels[t - 1] : null,
         s = n > 0 ? this.muzzles[n] : null,
         fc = fcIndex > 0 && e.fireControls ? e.fireControls[fcIndex - 1] : null,
-        i = this.getRangeMultiplier(r, s),
+        i = this.getRangeMultiplier(r, s) + (fc?.rangeMultAdd || 0),
         muzzleVelocityMult = s ? s.mult : 0;
       let u = 1;
       a.muzzlePrecisionEnable && r && (u *= ce);
       let m = r ? r.rofMult : 1,
-        l = r && r.damageBonus !== void 0 ? r.damageBonus : 0,
-        d = r && r.armorDamageBonus !== void 0 ? r.armorDamageBonus : 0,
+        l = (r?.damageBonus || 0) + (fc?.damageBonus || 0),
+        d = (r?.armorDamageBonus || 0) + (fc?.armorDamageBonus || 0),
         g = r && r.partMultAdd ? r.partMultAdd : null,
         y = { ...e.mult };
       if (g) for (let D in g) y[D] = (y[D] ?? 1) + g[D];
+      if (fc?.partMultAdd) for (const part in fc.partMultAdd) y[part] += fc.partMultAdd[part];
       let b = e.triggerDelay || 0,
         p =
           r && typeof r.triggerDelayDelta == "number" ? r.triggerDelayDelta : 0,
@@ -2937,7 +3336,7 @@
             ? r.decays
             : e.decays;
       return {
-        velocity: Math.round(this.calculateVelocity(e, r, i, muzzleVelocityMult) * u),
+        velocity: Math.round((this.calculateVelocity(e, r, i, muzzleVelocityMult) + (!r || typeof r.velocityAdd === "number" ? e.velocity * (fc?.rangeMultAdd || 0) : 0)) * u),
         ranges: h,
         decays: f,
         rof:
@@ -2945,6 +3344,7 @@
             (((fc && typeof fc.rof == "number" ? fc.rof : e.rof) * m +
               (r && typeof r.rofAdd == "number" ? r.rofAdd : 0) +
               (fc && typeof fc.rofAdd == "number" ? fc.rofAdd : 0)) *
+              (getAmmoProfile(e, R.getRealBulletKey(e.attachmentConfig.bulletType, e, a))?.rofMult || 1) *
               100),
           ) / 100,
         flesh: Math.round(e.flesh + l),
@@ -3633,6 +4033,15 @@ ${$(n, "ms_raw")}`;
       }),
         document.querySelectorAll(".fireControlSel").forEach((s) => {
           s.addEventListener("change", () => {
+            const index = Number(s.value.split("|").pop());
+            const kit = ge[Number(s.dataset.weapon)]?.fireControls?.[index - 1];
+            for (const selector of [".barrelSel", ".muzzleSel"]) {
+              const input = s.closest("tr")?.querySelector(selector);
+              if (input) {
+                input.disabled = !!kit?.replacesBarrelAndMuzzle;
+                if (input.disabled) input.selectedIndex = 0;
+              }
+            }
             e();
           });
         }),
@@ -3912,7 +4321,7 @@ ${$(n, "ms_raw")}`;
           let o = document.getElementById(
             "p" + n.charAt(0).toUpperCase() + n.slice(1),
           );
-          a.hitProb[n] = Math.max(0, Number(o.value || 0));
+          a.hitProb[n] = Number(o.value || 0);
         }),
         ["head", "chest", "stomach", "arms", "legs", "miss"].forEach((r) => {
           a.markovMatrix[r] = {};
@@ -4354,7 +4763,21 @@ ${$(n, "ms_raw")}`;
       return this.handlers.has(e);
     }
   };
+  function checkSimulationLimit(shots, health) {
+    if (!Number.isFinite(health))
+      throw new Error("模拟生命值无效，请检查伤害参数。");
+    if (shots >= G.MAX_SHOTS_PER_KILL)
+      throw new Error("单次模拟超过 10000 发仍未击杀，已停止计算。请检查命中率、转移概率和伤害配置。");
+  }
+  function checkSimulationBatchLimit(shots) {
+    if (shots > G.MAX_SHOTS_PER_BATCH)
+      throw new Error("模拟计算量超过安全上限，已停止计算。请提高命中率或检查目标与伤害配置。");
+  }
   function he(c) {
+    if (!c.hitProb)
+      throw new Error("缺少命中部位概率。");
+    if (c.markovModelEnable && !c.markovMatrix)
+      throw new Error("缺少马尔可夫矩阵。");
     let e = me.reduce((a, t) => a + c.hitProb[t], 0);
     if (me.some((a) => !Number.isFinite(c.hitProb[a]) || c.hitProb[a] < 0))
       throw new Error(
@@ -4366,9 +4789,21 @@ ${$(n, "ms_raw")}`;
       );
     if (c.markovModelEnable && c.markovMatrix) {
       let parts = ["head", "chest", "stomach", "arms", "legs", "miss"];
+      // Validate every row before mutating the matrix.
+      parts.forEach((r) => {
+        let row = c.markovMatrix[r];
+        if (!row || parts.some((col) => !Number.isFinite(row[col]) || row[col] < 0))
+          throw new Error("马尔可夫矩阵必须完整，且每项必须是有限的非负数。");
+        let sum = parts.reduce((acc, col) => acc + row[col], 0);
+        if (!Number.isFinite(sum) || sum <= 0)
+          throw new Error("马尔可夫矩阵每行的权重总和必须是有限的正数。");
+      });
+      if (c.markovMatrix.miss.miss > 0 && parts.every((p) => p === "miss" || c.markovMatrix.miss[p] === 0))
+        throw new Error("打空后不能永远打空，请为打空行设置至少一个可命中的部位。");
+      delete c.preNormalizedMarkovMatrix;
       parts.forEach((r) => {
         let sum = parts.reduce((acc, col) => acc + c.markovMatrix[r][col], 0);
-        if (Math.abs(sum) < 1e-6) {
+        if (sum <= 0) {
           let label = r === "miss" ? "\u6253\u7A7A" : formatHitPartLabel(r);
           throw new Error(`\u9A6C\u5C14\u53EF\u592B\u77E9\u9635\u4E2D\uFF0C\u201C${label}\u201D\u884C\u7684\u6982\u7387\u4E4B\u548C\u4E0D\u80FD\u4E3A 0\uFF01`);
         }
@@ -4382,14 +4817,19 @@ ${$(n, "ms_raw")}`;
   function fe(c, e) {
     for (let a = 0; a < c.length; a++) {
       let { hitRate: t } = c[a];
-      if (t != null && (t < 0 || t > 1))
+      if (t != null && (!Number.isFinite(t) || t <= 0 || t > 1))
         throw new Error(
-          `${e[a].name} \u7684\u547D\u4E2D\u7387\u5FC5\u987B\u5728 0 \u5230 1 \u4E4B\u95F4`,
+          `${e[a].name} 的命中率必须是大于 0 且不超过 1 的有限数值`,
         );
     }
     return !0;
   }
   function ye(c) {
+    for (let field of ["distance", "armorValue", "helmetValue", "healthValue", "hitRate"])
+      if (!Number.isFinite(c[field]))
+        throw new Error("距离、护甲、头盔、生命值和命中率必须是有限数值。");
+    if (c.healthValue <= 0)
+      throw new Error("生命值必须大于 0。");
     if (c.distance < 0)
       throw new Error("\u8DDD\u79BB\u4E0D\u80FD\u4E3A\u8D1F\u6570");
     if (c.armorValue < 0 || c.armorValue > 200)
@@ -4400,9 +4840,9 @@ ${$(n, "ms_raw")}`;
       throw new Error(
         "\u5934\u76D4\u503C\u5FC5\u987B\u5728 0 \u5230 100 \u4E4B\u95F4",
       );
-    if (c.hitRate < 0 || c.hitRate > 1)
+    if (c.hitRate <= 0 || c.hitRate > 1)
       throw new Error(
-        "\u547D\u4E2D\u7387\u5FC5\u987B\u5728 0 \u5230 1 \u4E4B\u95F4",
+        "命中率必须大于 0 且不超过 1。",
       );
     if (![1, 2, 3, 4, 5].includes(c.bulletLevel))
       throw new Error(
@@ -4566,6 +5006,8 @@ ${$(n, "ms_raw")}`;
       } else
         ((u = f), (m = I), p ? (l.helmetVal = w - I) : (l.armorVal = w - I));
     }
+    if (!Number.isFinite(u) || u < 0)
+      throw new Error("伤害计算结果无效，请检查武器和弹药配置。");
     let b = Math.max(0, o - u);
     return {
       hitPart: a,
@@ -4595,6 +5037,7 @@ ${$(n, "ms_raw")}`;
       m = 0;
     let lastPart = null;
     for (; t > 0; ) {
+      checkSimulationLimit(u, t);
       u++;
       let isMiss = false;
       let currentProb = e.hitProb;
@@ -4693,9 +5136,12 @@ ${$(n, "ms_raw")}`;
       o = new Map(),
       r = new Map(),
       s = null;
+    let totalShots = 0;
     for (let i = 0; i < t; i++) {
       let u = simulateDetailedKill(c, e, a),
         m = n.get(u.sequenceKey);
+      totalShots += u.shots;
+      checkSimulationBatchLimit(totalShots);
       (m ? m.count++ : n.set(u.sequenceKey, { count: 1, simulation: u }),
         o.set(u.shots, (o.get(u.shots) || 0) + 1),
         r.set(u.hits, (r.get(u.hits) || 0) + 1));

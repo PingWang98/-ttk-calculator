@@ -1,0 +1,381 @@
+{
+  "dataVersion": "20260907-050558.3",
+  "mode": "sol",
+  "weapons": [
+    {
+      "name": "MDR",
+      "type": "步枪",
+      "ranges": [
+        35,
+        50,
+        null,
+        null
+      ],
+      "decays": [
+        1,
+        0.85,
+        0.75,
+        0.75,
+        0.75
+      ],
+      "velocity": 630,
+      "flesh": 41,
+      "armor": 43,
+      "rof": 650.0541711809318,
+      "triggerDelay": 0,
+      "barrels": [
+        {
+          "name": "MDR.308渗透者短枪管",
+          "rangeMult": 1,
+          "rofMult": 1,
+          "damageBonus": 0,
+          "armorDamageBonus": 0
+        },
+        {
+          "name": "MDR.308对峙者长枪管",
+          "rangeMult": 1.3,
+          "rofMult": 1,
+          "damageBonus": 0,
+          "armorDamageBonus": 0
+        }
+      ],
+      "mult": {
+        "head": 1.9,
+        "chest": 1,
+        "stomach": 0.9,
+        "limbs": 0.4
+      },
+      "allowedBullets": [
+        2,
+        3,
+        4,
+        5,
+        "M61"
+      ]
+    },
+    {
+      "name": "汤姆逊",
+      "type": "冲锋枪",
+      "ranges": [
+        18,
+        32,
+        45,
+        null
+      ],
+      "decays": [
+        1,
+        0.85,
+        0.75,
+        0.65,
+        0.65
+      ],
+      "velocity": 500,
+      "flesh": 34,
+      "armor": 36,
+      "rof": 900.0900090009002,
+      "triggerDelay": 0,
+      "barrels": [
+        {
+          "name": "汤姆逊精工长枪管",
+          "rangeMult": 1.3,
+          "rofMult": 1,
+          "damageBonus": 0,
+          "armorDamageBonus": 0
+        },
+        {
+          "name": "汤姆逊一体冲锋枪管",
+          "rangeMult": 1.15,
+          "rofMult": 1,
+          "damageBonus": 0,
+          "armorDamageBonus": 0
+        }
+      ],
+      "mult": {
+        "head": 1.9,
+        "chest": 1,
+        "stomach": 1,
+        "limbs": 0.35
+      },
+      "allowedBullets": [
+        1,
+        2,
+        3,
+        4,
+        "RIP45",
+        "ACP SUPER",
+        ".45 ACP CT"
+      ],
+      "fireControls": [
+        {
+          "name": "汤姆逊先进枪身系统",
+          "damageBonus": 3,
+          "armorDamageBonus": 1
+        }
+      ]
+    },
+    {
+      "name": "M700",
+      "type": "狙击步枪",
+      "ranges": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "decays": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "velocity": 650,
+      "flesh": 61,
+      "armor": 58,
+      "rof": 48,
+      "triggerDelay": 0,
+      "barrels": [
+        {
+          "name": "M700一体消音管",
+          "rangeMult": 1,
+          "rofMult": 1.1764705882352942,
+          "damageBonus": 0,
+          "armorDamageBonus": 0
+        },
+        {
+          "name": "M700平流层长枪管",
+          "rangeMult": 1.3,
+          "rofMult": 0.8695652173913044,
+          "damageBonus": 0,
+          "armorDamageBonus": 0
+        },
+        {
+          "name": "M700猎食军规枪管",
+          "rangeMult": 1.18,
+          "rofMult": 1,
+          "damageBonus": 0,
+          "armorDamageBonus": 0
+        }
+      ],
+      "mult": {
+        "head": 2.5,
+        "chest": 1,
+        "stomach": 0.9,
+        "limbs": 0.4
+      },
+      "allowedBullets": [
+        2,
+        3,
+        4,
+        5,
+        "M61"
+      ],
+      "fireControls": [
+        {
+          "name": "HVK旋风枪身系统",
+          "rof": 133.33333333333334,
+          "fireMode": "single"
+        },
+        {
+          "name": "HVK旋风枪身系统 + 强化导气",
+          "rof": 420.0210010500524,
+          "fireMode": "auto",
+          "partMultAdd": {
+            "stomach": -0.4,
+            "limbs": -0.15
+          }
+        }
+      ]
+    },
+    {
+      "name": "93R",
+      "type": "手枪",
+      "ranges": [
+        22,
+        44,
+        null,
+        null
+      ],
+      "decays": [
+        1,
+        0.8,
+        0.65,
+        0.65,
+        0.65
+      ],
+      "velocity": 400,
+      "flesh": 34,
+      "armor": 32,
+      "rof": 508,
+      "triggerDelay": 0,
+      "barrels": [
+        {
+          "name": "93R实用长枪管",
+          "rangeMult": 1.18,
+          "rofMult": 1,
+          "damageBonus": 0,
+          "armorDamageBonus": 0
+        },
+        {
+          "name": "93R实用重枪管",
+          "rangeMult": 1.06,
+          "rofMult": 1,
+          "damageBonus": 0,
+          "armorDamageBonus": 0
+        },
+        {
+          "name": "93R实用轻枪管",
+          "rangeMult": 1,
+          "rofMult": 1,
+          "damageBonus": 0,
+          "armorDamageBonus": 0
+        },
+        {
+          "name": "93R远射超长枪管",
+          "rangeMult": 1.3,
+          "rofMult": 1,
+          "damageBonus": 0,
+          "armorDamageBonus": 0
+        }
+      ],
+      "mult": {
+        "head": 1.9,
+        "chest": 1,
+        "stomach": 0.9,
+        "limbs": 0.4
+      },
+      "allowedBullets": [
+        1,
+        2,
+        3,
+        4,
+        "RIP",
+        "9×19mm CT"
+      ],
+      "fireMode": "burst",
+      "burstCount": 3,
+      "burstInternalROF": 895.5223880597015,
+      "burstInterval": 0.22,
+      "fireControls": [
+        {
+          "name": "HVK鼬鼠冲锋枪套件",
+          "fireMode": "auto",
+          "rof": 670.8407871198568,
+          "rangeMultAdd": 0.45,
+          "replacesBarrelAndMuzzle": true
+        }
+      ]
+    }
+  ],
+  "ammo": {
+    "4.6×30mm CT": {
+      "base": 1,
+      "armor": {
+        "1": {
+          "armorMult": 0.4,
+          "pen": 0
+        },
+        "2": {
+          "armorMult": 0.3,
+          "pen": 0
+        },
+        "3": {
+          "armorMult": 0.2,
+          "pen": 0
+        },
+        "4": {
+          "armorMult": 0.2,
+          "pen": 0
+        },
+        "5": {
+          "armorMult": 0.2,
+          "pen": 0
+        },
+        "6": {
+          "armorMult": 0.2,
+          "pen": 0
+        }
+      },
+      "partMultMult": {
+        "limbs": 1.85
+      },
+      "rofMult": 0.85,
+      "useHitProbabilities": true
+    },
+    "4.6×30mm FMJ ST": {
+      "base": 1,
+      "armor": {
+        "1": {
+          "armorMult": 1,
+          "pen": 1
+        },
+        "2": {
+          "armorMult": 1,
+          "pen": 1
+        },
+        "3": {
+          "armorMult": 1,
+          "pen": 0.75
+        },
+        "4": {
+          "armorMult": 1,
+          "pen": 0.5
+        },
+        "5": {
+          "armorMult": 1,
+          "pen": 0
+        },
+        "6": {
+          "armorMult": 0.6,
+          "pen": 0
+        }
+      },
+      "partMultMult": {
+        "head": 1.25,
+        "chest": 1.25,
+        "stomach": 0.9,
+        "limbs": 0.9
+      }
+    },
+    "4.6×30mm AP ST": {
+      "base": 1,
+      "armor": {
+        "1": {
+          "armorMult": 1.1,
+          "pen": 1
+        },
+        "2": {
+          "armorMult": 1.1,
+          "pen": 1
+        },
+        "3": {
+          "armorMult": 1.1,
+          "pen": 1
+        },
+        "4": {
+          "armorMult": 1.1,
+          "pen": 0.75
+        },
+        "5": {
+          "armorMult": 1.1,
+          "pen": 0.5
+        },
+        "6": {
+          "armorMult": 1.1,
+          "pen": 0
+        }
+      },
+      "partMultMult": {
+        "head": 1.25,
+        "chest": 1.25,
+        "stomach": 0.9,
+        "limbs": 0.9
+      }
+    }
+  },
+  "sources": [
+    "https://dfttk.com/data/v3/manifest.json",
+    "https://dfttk.com/data/v3/catalog/weapons.json",
+    "https://dfttk.com/data/v3/combat/defense/ammo-interactions.json"
+  ]
+}
